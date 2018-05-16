@@ -97,7 +97,8 @@
                     ]);
                 // 传参
                   Route::get('admin/user/{name?}','IndexController@info'); //在info（$name）函数接受参数
-
+                // 参数限制
+                 Route::get('admin/user/{id}','IndexController@info')->where('id','[0-9]+') ; 
 
 
 
