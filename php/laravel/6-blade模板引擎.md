@@ -95,6 +95,18 @@ parent      //输出父模板中原有的
 @unless($name =='xdj')
 	<p> 我不是xdj </p>
 @endunless
+
+@for ($i=0; $i < 10; $i++)
+	<p>{{ $i }}</p>
+@endfor
+
+@foreach(students as $student)
+	<p>{{ $student->name }}</p>
+@endforeach
+
+
+
+
 ```
 
 
