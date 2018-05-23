@@ -1,134 +1,43 @@
 
-## 模板继承
-yield       // 用来展示某个sectionn内容，可以理解为占位符
-section    // 定义一个视图片段，与yield的区别在可扩展，也可以有内容，也可以与子模板扩展
-extends     //继承
-parent      //输出父模板中原有的
+### Request
+使用的是symfony/http-foundation组件
+请求里面存放了$_GET,$_POST,$_COOKIE,$_FILES,$_SERVER等数据
 
-#### layouts
-```html
-<head>
-    <title> 标题 @yield('title')</title>
-</head>
-<body>
-    <header>
-        @section('header')
-        @show
-    </header>
-    <content>
-        @yield('content','主内容');
-    </content>
-    <footer>
-        @section('footer')
-            底部
-        @show
-    </footer>
-</body>
+
+### 在控制器中使用
 ```
-#### home.html使用layout
-```html
-@extends('layouts');
+use Illuminate\http-foundation组件
 
-@section('title')
-    标题
-@stop
-@section('header')
-    hello header
-@stop
-@section('content')
-    @parent  
-    hello content
-@stop
-@section('footer')
-    @parent  
-    hello footer
-@stop
+class IndexController
+{
+	public function index(Request $request)
+	{
+		// 1.取值
+		$request->input('name');
+		$request->input('name' , '默认值');		//如果没有取默认值
+		
+		// 判断有没有
+		$bool = $request->has('name');
+		
+		// 取所有值
+		$res = $request->all();
+		dd($res);
+		
+		// 2.判断请求类型
+		$string = $request->method();
+		
+		//判断是否是某种请求类型
+		$bool = $request->isMethod('GET');
+		
+		// 判断是不是ajax
+		$bool = $request->ajax();
+		
+		// 判断是否符合指定的路由
+		$bool = $request->is('index/*');
+		
+		// 获取当前的url
+		$bool = $request->url();
+	}
+}
 
 ```
-
-
-#### 引入子视图
-```
-@include('child')
-@include('child',['name'=>'xdj'])	//向子视图传参
-
-//子视图案例 child.blade.html
-<p> 我是被include的子视图 {{ $name }}</p>
-```
-
-
-#### 使用变量
-{{$name}}
-
-#### 模板中调用PHP代码
-```
-<p> {{ time() }} </p>
-<p> {{ date('Y-m-d H:i:s') }} </p>
-<p> {{ in_array($name , $array) ? 'true' : 'false' }} </p>
-<p> {{ var_dump($array) }} </p>
-<p> {{ isset($name) ? $name : 'default' }} </p>
-<p> {{ $name or 'default' }} </p>
-```
-
-#### 原样输出{{
-```
-<p> @{{ $name }} </p>
-```
-
-#### 模板中的注释
-```
-{{--  模板中的注释  --}}
-```
-
-#### 模板中的流程控制
-```
-@if ($name == 'xdj')
-	<p> {{ $name  }} </p>
-@elseif ( in_array($name, $array))
-	<p> default </p>
-@else
-	其他
-@endif
-
-
-// unless 是if 的取反
-@unless($name =='xdj')
-	<p> 我不是xdj </p>
-@endunless
-
-@for ($i=0; $i < 10; $i++)
-	<p>{{ $i }}</p>
-@endfor
-
-@foreach(students as $student)
-	<p>{{ $student->name }}</p>
-@endforeach
-
-
-```
-
-
-#### 模板中生成URL 
-```
-// url()
-<a href="{{ url('routeName') }}">根据路由别名</a>
-
-//route()
-<a href="{{ route('routeName') }}">根据路由别名</a>
-
-//action()
-
-<a href="{{ action('IndexController@indexAction') }}">链接到控制器的方法</a>
-```
-
-
-
-
-
-
-
-
-
-
-
-
