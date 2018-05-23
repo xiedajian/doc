@@ -96,22 +96,14 @@ parent      //输出父模板中原有的
 	<p> 我不是xdj </p>
 @endunless
 
-// for循环
 @for ($i=0; $i < 10; $i++)
 	<p>{{ $i }}</p>
 @endfor
 
-// foreach循环
 @foreach(students as $student)
 	<p>{{ $student->name }}</p>
 @endforeach
 
-// foreach循环中使用empty  ，当子项为空的时候执行
-@foreach(students as $student)
-	<p>{{ $student->name }}</p>
-@empty
-	<p> null </p>
-@endforeach
 
 ```
 
