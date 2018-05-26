@@ -106,6 +106,13 @@ parent      //输出父模板中原有的
 	<p>{{ $student->name }}</p>
 @endforeach
 
+// foreach循环key和value
+@foreach($sheji as $key=>$she)
+	@if($key==1)
+		我是索引，第{{$key+1}}条
+	@endif
+@endforeach
+
 // foreach循环中使用empty  ，当子项为空的时候执行
 @foreach(students as $student)
 	<p>{{ $student->name }}</p>
