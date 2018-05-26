@@ -43,6 +43,7 @@ class Member extends Model
 
     
     // 2. -- 查询构造器    
+	// https://docs.golaravel.com/docs/5.0/queries/
     // 简介：使用PDO参数绑定，免于SQL注入，不需额外转义特殊字符。基本满足所有的数据库
     public function test2()
     {
@@ -87,8 +88,8 @@ class Member extends Model
          $first = DB::table('student')->orderBy('id','desc')-> first();     //根据id倒叙取第一条
          $first = DB::table('student')->where('age','>=',18)->orderBy('id','desc')-> first();     //age大于18的根据id倒叙取第一条
          $first = DB::table('student')->whereRaw('id>=? and age>?',[1001,18])->orderBy('id','desc')-> first();     //age大于18且id大于1001的根据id倒叙取第一条
-         $names = DB::table('student')->pluck('name');  // 只取单个name字段
-         $names = DB::table('student')->lists('name','id');  // 只取单个name字段,但是用id来做下标索引
+         $names = DB::table('student')->pluck('name');  // 只取单个字段 name
+         $names = DB::table('student')->lists('name','id');  // 只取单个字段 name,但是用id来做下标索引
          $array = DB::table('student')->select('id','name','age')->get();  // select返回指定字段
          // 数据量特别大可以chunk分段查询，每次查100条
          $array = DB::table('student')->chunk(100, function($students){
@@ -102,6 +103,21 @@ class Member extends Model
          $min = DB::table('student')->min('age');  //返回age数值最小的值
          $avg = DB::table('student')->avg('age');  //返回age数值的平均值
          $sum = DB::table('student')->sum('age');  //返回age数值的总和
+		 
+		 // 左连接查询  take限制  select指定字段   as表别名  as字段别名
+		 $anli=DB::table('anli as a')  	// anli表别名a
+            ->where('a.tuijian','=',1)
+            ->orderBy('a.id','desc')	
+            ->take(5)		//限制(Limit) 5条
+            ->leftJoin('fengge as f',function ($join){	//表f
+                $join->on('a.fengge_id','=','f.id');
+            })
+            ->leftJoin('shejishi as s',function ($join){	//表s
+                $join->on('a.shejishi_id','=','s.id');
+            })
+            ->select(['a.*','f.title as fengge','s.title as sjs_name','s.miaoshu as sjs_miaoshu',
+                's.titlepic as sjs_pic','s.zizhi as sjs_zizhi','s.num as sjs_num'])
+            ->get(); 
     }
 }
     
@@ -133,6 +149,13 @@ class Member extends Model
     }
     
     
+#### 查询构造器与orm的区别是什么	
+查询构造器就是pdo构造sql
+而orm是通过面向对象构造sql
+	DB主要是一个查询构造器(SQLBuilder)，它会帮你把输入的参数转变成SQL语句去数据库里查询，和你自己手动写SQL语句本质上是一样的。
+ORM是一个对象关系映射(Object Relational Mapper)工具,它会把数据库中的数据映射成对象和集合对象，你无需接触底层数据，可以直接调用映射出来的对象进行开发。
+
+DB适合用于对性能要求高或者业务逻辑简单的项目，ORM适合业务逻辑比较复杂的项目
     
     
     
