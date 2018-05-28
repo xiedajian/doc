@@ -146,6 +146,15 @@ class Member extends Model
         {
             return $val;
         }
+		
+		// orm软删除
+		// 上述删除方法都会将数据表记录从数据库删除，此外Eloquent模型还支持软删除
+		// 所谓软删除指的是数据表记录并未真的从数据库删除，而是将表记录的标识状态标记为软删除，这样在查询的时候就可以加以过滤，让对应表记录看上去是被”删除“了。
+		// Laravel中使用了一个日期字段作为标识状态，这个日期字段可以自定义，这里我们使用deleted_at，如果对应模型被软删除，则deleted_at字段的值为删除时间，否则该值为空null
+		use SoftDeletes;
+		// 标识软删除的字段
+		protected $dates = ['deleted_at'];
+		
     }
     
     
