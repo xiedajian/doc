@@ -70,9 +70,19 @@ parent      //输出父模板中原有的
 <p> {{ $name or 'default' }} </p>
 ```
 
-#### 原样输出{{
+#### 原样输出 {{ 符号
 ```
 <p> @{{ $name }} </p>
+```
+
+#### 在模板中原样输出html
+```
+	// $html = '<h1> 标题 </h1>';
+	{!! $html !!}
+```
+```
+{!! !!} 相当于 <?php echo $value; ?>
+{{ }} 相当于 <?php echo htmlspecialchars($value); ?>
 ```
 
 #### 模板中的注释
