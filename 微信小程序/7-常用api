@@ -1,0 +1,17 @@
+ 
+
+
+
+
+### 导航条
+
+ // 设置页面标题
+    wx.setNavigationBarTitle({
+      title: '明星' 
+    })
+
+ wx.showNavigationBarLoading()
+在当前页面显示导航条加载动画。
+
+wx.hideNavigationBarLoading()
+隐藏导航条加载动画。
