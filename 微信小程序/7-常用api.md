@@ -1,0 +1,35 @@
+ 
+### 全局函数
+
+var app = getApp(); 	// 获取 app 对象
+var pages =  getCurrentPages();		// 获取页面栈堆数组
+
+
+
+### 页面方法
+
+var routes = this.route;	// 获取当前页面的路由
+
+this.setData({			// 设置页面的数据
+  starId:options.starId,
+  timestring: util.formatTime(t,3)
+})
+
+
+
+
+### 设置导航条
+
+ // 设置页面标题
+    wx.setNavigationBarTitle({
+      title: 'title' 
+    })
+
+ wx.showNavigationBarLoading()
+在当前页面显示导航条加载动画。
+
+wx.hideNavigationBarLoading()
+隐藏导航条加载动画。
+
+
+
