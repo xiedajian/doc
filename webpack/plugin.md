@@ -86,6 +86,44 @@ plugins: [
 把css分离成单独的文件
 
 
+1.安装
+```
+	npm i extract-text-webpack-plugin -D //针对webpack3.x版本
+	如何最后运行报错则使用
+	npm i extract-text-webpack-plugin@next -D //针对webpack4.x版本
+
+```
+
+2.使用
+//webpack.config.js 中使用
+```
+	// 引入
+	const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+
+    //配置css规则
+    rules:[
+        {
+            test:/\.css$/,
+            // 使用 'style-loader','css-loader'
+            use:ExtractTextPlugin.extract({
+                fallback:'style-loader', // 回滚
+                use:'css-loader',
+                publicPath:'../' //解决css背景图的路径问题
+            })
+        },
+    ]
+
+
+    plugins:[
+
+	    //都提到dist目录下的css目录中,文件名是index.css里面
+	    new ExtractTextPlugin('css/index.css') ;
+	]
+
+```
+
+
 
 
 
