@@ -22,4 +22,9 @@ npm init
 
 console.log('my first cli');
 
+打开命令行工具，进入当前当前开发文件夹，输入
+
+bin/index.js
+则会输出my first cli 。
+
 
