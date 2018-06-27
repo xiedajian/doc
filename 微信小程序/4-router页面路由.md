@@ -1,28 +1,48 @@
 
 
-### 页面路由
+## 页面路由
 在小程序中所有页面的路由全部由框架进行管理,框架以栈的形式维护了当前的所有页面。
 
 
 
-#### Page.prototype.route
+### Page.prototype.route
 > 基础库 1.2.0 开始支持，低版本需做兼容处理
 route 字段可以获取到当前页面的路径。
 
-#### getCurrentPages()
+### getCurrentPages()
 getCurrentPages() 函数用于获取当前页面栈的实例，以数组形式按栈的顺序给出，第一个元素为首页，最后一个元素为当前页面。
 Tip：不要尝试修改页面栈，会导致路由以及页面状态错误。
 
 
 
 
-#### 页面跳转发生的 不同页面的生命周期变化
+### 页面跳转发生的 不同页面的生命周期变化
 https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/route.html
 
 
 
 
-#### 页面跳转
+### 页面跳转
+
+##### xml组件跳转：
+<navigator url="/page/navigate/navigate?title=navigate" hover-class="navigator-hover">跳转到新页面</navigator>
+属性参数：
+- target                  在哪个目标上发生跳转，默认当前小程序
+- url                     当前小程序内的跳转链接
+- open-type               跳转方式， navigate | redirect | switchTab | reLaunch | navigateBack | exit
+- delta                   number,当 open-type 为 'navigateBack' 时有效，表示回退的层数
+- app-id                  string,当target="miniProgram"时有效，要打开的小程序 appId
+- path                    string,当target="miniProgram"时有效，打开的页面路径，如果为空则打开首页
+- extra-data              object,当target="miniProgram"时有效，需要传递给目标小程序的数据
+- version                 string,当target="miniProgram"时有效，要打开的小程序版本，有效值 develop（开发版），trial（体验版），release（正式版）
+- hover-class             指定点击时的样式类，当hover-class="none"时，没有点击态效果
+- hover-stop-propagation  指定是否阻止本节点的祖先节点出现点击态
+- hover-start-time        按住后多久出现点击态，单位毫秒
+- hover-stay-time         手指松开后点击态保留时间，单位毫秒
+更详细请查看：https://developers.weixin.qq.com/miniprogram/dev/component/navigator.html
+
+
+##### API跳转：
 1. wx.navigateTo(object) 或使用组件 <navigator open-type="navigateTo"/>
 	打开新页面 A=>B    A-onHide,B-onLoad, B-onShow 
 2. wx.redirectTo(object) 或使用组件 <navigator open-type="redirectTo"/>
@@ -40,6 +60,9 @@ Tips:
 - reLaunch 可以打开任意页面。
 - 页面底部的 tabBar 由页面决定，即只要是定义为 tabBar 的页面，底部都有 tabBar。
 - 调用页面路由带的参数可以在目标页面的onLoad中获取。
+
+
+
 
 #### 相关API
 1. wx.navigateTo(OBJECT)
