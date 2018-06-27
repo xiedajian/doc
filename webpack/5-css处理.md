@@ -194,9 +194,21 @@ npm install -D postcss-loader autoprefixer
 
 
 
-### 分离css 为单独css文件
-详细看 plugin.md
-extract-text-webpack-plugin 
+### MiniCssExtractPlugin
 
+npm install --save-dev mini-css-extract-plugin
+
+这个插件将CSS抽取到单独的文件中。它为每个包含CSS的JS文件创建一个CSS文件。它支持按需加载CSS和SourceMaps。
+
+它建立在新的webpack v4功能（模块类型）之上，并要求webpack 4工作。
+
+与extract-text-webpack-plugin相比：
+
+异步加载
+没有重复的编译（性能）
+更易于使用
+特定于CSS
+
+详情查看 plugin.md
 
 

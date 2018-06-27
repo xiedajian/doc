@@ -5,10 +5,10 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 // 用于把src的文件复制到dist
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// 用于把最终的 css 分离成单独文件
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-/* 生成html */
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+// 用于把最终的 css 分离成单独文件 警告：由于webpack v4 extract-text-webpack-plugin不应该用于css。改为使用mini-css-extract-plugin。
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// 生成html
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
@@ -47,24 +47,12 @@ module.exports = {
             //添加对样式表.css格式文件的处理
             {
                 test: /\.css$/,
-                // use: [
-                //     {loader: 'style-loader'},
-                //     {loader: 'css-loader'},
-                //     {loader: 'postcss-loader'}
-                // ]
-                // 使用 'style-loader','css-loader'
-                use:ExtractTextPlugin.extract({
-                    fallback:'style-loader', // 回滚
-                    use:'css-loader'
-                })
-            },
-            {
-                test: /\.art$/,
-                loader: "art-template-loader",
-                options: {
-                    // art-template options (if necessary)
-                    // @see https://github.com/aui/art-template
-                }
+                 use: [
+                     {loader: 'style-loader'},
+                     {loader: 'css-loader'},
+                     {loader: 'postcss-loader'}
+                 ]
+
             },
             {
                 test:/\.(png|jpg|gif)$/,
@@ -91,7 +79,6 @@ module.exports = {
           {from:path.resolve(__dirname,'./src/assets'),to:path.resolve(__dirname,'./dist/assets')},
         ]),
 
-        new ExtractTextPlugin('assets/css/[name].css'),
 
         new HtmlWebpackPlugin({
             title: 'title',

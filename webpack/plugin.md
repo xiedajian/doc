@@ -82,47 +82,22 @@ plugins: [
 ```
 
 
-### extract-text-webpack-plugin
-把css分离成单独的文件
+### MiniCssExtractPlugin
 
+npm install --save-dev mini-css-extract-plugin
 
-1.安装
-```
-	npm i extract-text-webpack-plugin -D //针对webpack3.x版本
-	如何最后运行报错则使用
-	npm i extract-text-webpack-plugin@next -D //针对webpack4.x版本
+这个插件将CSS抽取到单独的文件中。它为每个包含CSS的JS文件创建一个CSS文件。它支持按需加载CSS和SourceMaps。
 
-```
+它建立在新的webpack v4功能（模块类型）之上，并要求webpack 4工作。
 
-2.使用
-//webpack.config.js 中使用
-```
-	// 引入
-	const ExtractTextPlugin = require('extract-text-webpack-plugin');
+与extract-text-webpack-plugin相比：
 
+异步加载
+没有重复的编译（性能）
+更易于使用
+特定于CSS
 
-    //配置css规则
-    rules:[
-        {
-            test:/\.css$/,
-            // 使用 'style-loader','css-loader'
-            use:ExtractTextPlugin.extract({
-                fallback:'style-loader', // 回滚
-                use:'css-loader',
-                publicPath:'../' //解决css背景图的路径问题
-            })
-        },
-    ]
-
-
-    plugins:[
-
-	    //都提到dist目录下的css目录中,文件名是index.css里面
-	    new ExtractTextPlugin('css/index.css') ;
-	]
-
-```
-
+https://webpack.js.org/plugins/mini-css-extract-plugin/
 
 
 

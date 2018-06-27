@@ -1,5 +1,8 @@
 webpack 4以上
 
+https://webpack.js.org/concepts/
+
+
 npm install webpack -D
 npm install webpack-cli -D
 npm install webpack-dev-server -D 
@@ -17,7 +20,7 @@ npm install -D babel-loader babel-core babel-preset-env
 
 npm i -D clean-webpack-plugin
 npm i -D copy-webpack-plugin
-npm i -D extract-text-webpack-plugin
+npm i -D mini-css-extract-plugin
 npm i -D html-webpack-plugin
 
 
