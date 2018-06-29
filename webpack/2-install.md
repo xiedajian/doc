@@ -3,26 +3,19 @@ webpack 4以上
 https://webpack.js.org/concepts/
 
 
-npm install webpack -D
-npm install webpack-cli -D
-npm install webpack-dev-server -D 
+npm i -D webpack  webpack-cli  webpack-dev-server 
 
 
-npm i url-loader -D
+npm i -D url-loader  html-loader
 
 
-npm i style-loader css-loader less less-loader -D
-npm install -D postcss-loader autoprefixer  
+npm i -D style-loader css-loader less less-loader  postcss-loader autoprefixer  
 
 
-npm install -D babel-loader babel-core babel-preset-env
+npm i -D babel-loader babel-core babel-preset-env
 
 
-npm i -D clean-webpack-plugin
-npm i -D copy-webpack-plugin
-npm i -D mini-css-extract-plugin
-npm i -D html-webpack-plugin
-
+npm i -D clean-webpack-plugin copy-webpack-plugin  mini-css-extract-plugin html-webpack-plugin  open-browser-webpack-plugin 
 
 
 默认配置  

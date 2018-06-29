@@ -82,7 +82,7 @@ plugins: [
 ```
 
 
-### MiniCssExtractPlugin
+### mini-css-extract-plugin
 
 npm install --save-dev mini-css-extract-plugin
 
@@ -100,7 +100,19 @@ npm install --save-dev mini-css-extract-plugin
 https://webpack.js.org/plugins/mini-css-extract-plugin/
 
 
+### open-browser-webpack-plugin
+
+npm install open-browser-webpack-plugin --save-dev
+
+打开浏览器特定网址
+
+```
+    const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 
+      plugins: [
+        new OpenBrowserPlugin({ url: 'http://localhost:3000' })
+      ]
+```
 
 

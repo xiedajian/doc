@@ -11,6 +11,19 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
+// 获取html-webpack-plugin参数的方法 
+var getHtmlConfig = function(name, title){
+    return {
+        template    : './src/view/' + name + '.html',
+        filename    : 'view/' + name + '.html',
+        favicon     : './favicon.ico',
+        title       : title,
+        inject      : true,
+        hash        : true,
+        chunks      : ['common', name]
+    };
+};
+
 module.exports = {
 
     // 入口文件的配置项，可以指定多个入口起点
