@@ -1,5 +1,10 @@
 
 
+
+http://www.expressjs.com.cn/4x/api.html#res
+
+
+
 # res
 响应对象
 
@@ -16,3 +21,6 @@ res.render()		渲染视图模板。
 res.send()			发送各种类型的响应。
 res.sendFile		以八位字节流的形式发送文件。
 res.sendStatus()	设置响应状态代码，并将其以字符串形式作为响应体的一部分发送。
+
+
+中间件返回的响应是随意的，可以响应一个 HTML 错误页面、一句简单的话、一个 JSON 字符串，或者其他任何您想要的东西

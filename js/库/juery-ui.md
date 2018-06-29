@@ -1,5 +1,15 @@
 
 
+# jquery-ui
+
+依赖jquery 的一组用户界面交互、特效、小部件及主题。
+
+无论您是创建高度交互的 Web 应用程序还是仅仅向窗体控件添加一个日期选择器，jQuery UI 都是一个完美的选择
+
+
+参考文档： http://www.runoob.com/jqueryui/jqueryui-tutorial.html
+
+
 ### drag 和 drap
 draggable()是被拖动的元素 
 droppable()是盛放被拖动元素的容器 
