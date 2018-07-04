@@ -8,6 +8,12 @@ prototype               // prototype 属性使您有能力向对象添加属性�
 ```
 
 
+### 新建数组
+var arr = new Array();
+var arr = [];
+arr['key'] = value;
+
+
 ### 是否为数组
 1. typeof $arr
 

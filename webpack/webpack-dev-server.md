@@ -40,3 +40,24 @@ $ npm install -D webpack-dev-server
 
 ### dev-server 代理 实现跨域
 
+proxy 属性
+
+```
+     devServer: {
+         historyApiFallback: true,
+         hot: true,
+         inline: true,
+         progress: true,
+         port: 3000,
+         host: '0.0.0.0',
+         proxy: {
+             '/test/*': {
+                 target: 'http://localhost',
+                 changeOrigin: true,
+                 secure: false
+             }
+         }
+     },
+
+```
+

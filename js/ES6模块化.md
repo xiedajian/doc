@@ -137,6 +137,14 @@ ES6模块的运行机制与CommonJS不一样，它遇到模块加载命令import
 ```
 
 
+### 浏览器中使用
+
+ type = module
+
+<script  type="module" src='xxx'></script>
+
+
+
 ## 与 Commonjs 的 require ，module exports 区分
 
 commonjs
