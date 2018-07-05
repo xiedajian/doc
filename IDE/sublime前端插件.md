@@ -28,14 +28,15 @@ sublime是通过插件管理器Package Control地对插件浏览、安装和卸�
 常用插件
 
 ```
-HTML5
-CSS3
-Javascript Completions
-Jquery
-JsFormat
-HTML-CSS-JS Prettify		// HTML/CSS/JS代码格式化插件
-LESS 			// Less语法高亮提示
-Less2Css		// Less自动编译为css
-Minify
+	HTML5
+	CSS3
+	Javascript Completions
+	Jquery
+	JsFormat
+	HTML-CSS-JS Prettify		// HTML/CSS/JS代码格式化插件
+	LESS 			// Less语法高亮提示
+	Less2Css		// Less自动编译为css
+	Minify
 
+	cssrem			// px 自动转换成 rem 
 ```
