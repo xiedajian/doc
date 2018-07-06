@@ -75,6 +75,26 @@ console.log(Object.entries(simuArray)); // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] 
 
 ```
 
+### Object.assign()
+
+用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+
+```
+  const object1 = {
+    a: 1,
+    b: 2,
+    c: 3
+  };
+
+  const object2 = Object.assign({c: 4, d: 5}, object1);
+
+  console.log(object2.c, object2.d);
+  // expected output: 3 5
+
+```
+
+
+
 ### 遍历
 1. for .. in
 ```
