@@ -6,7 +6,8 @@
 
 Lodash 是一个一致性、模块化、高性能的 JavaScript 实用工具库。
 
-为什么选择 Lodash ？
+
+## 为什么选择 Lodash ？
 
 Lodash 通过降低 array、number、objects、string 等等的使用难度从而让 JavaScript 变得更简单。
 
