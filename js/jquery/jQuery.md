@@ -5,6 +5,7 @@
 最经典的浏览器端快速操作 dom 的js库，兼容处理很好
 
 最常用版本cdn
+
 https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js
 
 
