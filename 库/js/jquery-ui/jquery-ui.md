@@ -9,6 +9,10 @@
 
 参考文档： http://www.runoob.com/jqueryui/jqueryui-tutorial.html
 
+官网： https://jqueryui.com/
+
+案例: http://www.runoob.com/jqueryui/example-draggable.html
+
 
 ### drag 和 drap
 draggable()是被拖动的元素 
