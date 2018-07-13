@@ -37,10 +37,94 @@ npm install clipboard --save
 
 ## 使用
 
+引入
 
 ```
-<script src="dist/clipboard.min.js"></script>
+	<script src="dist/clipboard.min.js"></script>
 
+```
 new ClipboardJS('.btn');
+
+1. Copy 从另一个元素复制文本:
+
+可以通过 data-clipboard-target 在触发器元素中添加属性来实现。您在此属性中包含的值需要与另一个元素选择器匹配
+
+```
+	<!-- Target -->
+	<input id="foo" value="https://github.com/zenorocha/clipboard.js.git">
+
+	<!-- Trigger -->
+	<button class="btn" data-clipboard-target="#foo">
+	    <img src="assets/clippy.svg" alt="复制到剪贴板">
+	</button>
+
 ```
 
+2. Cut 从另一个元素剪切文本
+
+定义data-clipboard-action属性以指定是要copy还是cut内容
+
+```
+	<!-- Target -->
+	<textarea id="bar">Mussum ipsum cacilds...</textarea>
+
+	<!-- Trigger -->
+	<button class="btn" data-clipboard-action="cut" data-clipboard-target="#bar">
+	   剪切切到剪贴板
+	</button>
+
+```
+
+3. 从属性复制文本
+
+事实是，你甚至不需要另一个元素来复制其内容。您可以data-clipboard-text在触发器元素中包含一个属性来承载被复制的内容
+
+```
+	<！-- Trigger --> 
+	<button class="btn" data-clipboard-text="被复制的内容">
+	    复制到剪贴板
+	</button>
+
+```
+
+4. 事件监听
+
+在某些情况下，希望修改复制/剪切操作后的内容
+
+这就是为什么我们触发自定义事件，比如success和error你倾听并实现自定义的逻辑。
+
+```
+	var clipboard = new ClipboardJS('.btn');
+
+	clipboard.on('success', function(e) {
+	    console.info('Action:', e.action);
+	    console.info('Text:', e.text);
+	    console.info('Trigger:', e.trigger);
+
+	    e.clearSelection();
+	});
+
+	clipboard.on('error', function(e) {
+	    console.error('Action:', e.action);
+	    console.error('Trigger:', e.trigger);
+	});
+
+```
+
+
+5. 销毁 clipboard 对象
+
+如果您正在使用单页应用程序，则可能需要更精确地管理DOM的生命周期。以下是清理我们创建的事件和对象的方法
+
+```
+
+	var clipboard = new ClipboardJS('.btn');
+	clipboard.destroy();
+```
+
+6. 检测是否支持clipboard.js 
+
+```
+	ClipboardJS.isSupported()
+
+```

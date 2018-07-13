@@ -80,7 +80,7 @@ document.querySelector('.target').select();		// 选择对象
 
 document.execCommand('Copy', false, null);		// 执行浏览器复制命令
 
-window.clipboardData.setData("Text",'xxxxx');	// 设置剪切板内容
+window.clipboardData.setData("Text",'xxxxx');	// 设置剪切板内容 ( IE ,FF 支持)
 
 
 ### 兼容写法
