@@ -1,0 +1,113 @@
+
+
+
+
+$ npm install -g vue-cli
+$ vue init webpack my-project
+$ cd my-project
+$ npm install
+$ npm run dev
+
+
+
+
+## 项目结构
+
+```
+
+.
+├── build/                      # webpack config files,包含开发webpack构建的实际配置。通常不需要触摸这些文件
+│   └── ...
+├── config/
+│   ├── index.js                # 主要配置文件，它公开了构建设置的一些最常见的配置选项。通常与现有的后端框架集成时使用
+│   └── ...
+├── src/
+│   ├── main.js                 # app entry file
+│   ├── App.vue                 # main app component
+│   ├── components/             # ui components
+│   │   └── ...
+│   └── assets/                 # module assets (processed by webpack)
+│       └── ...
+├── static/                     # 不希望使用Webpack处理的静态资产的存放目录，直接复制到webpack构建dist目录
+├── test/
+│   └── unit/                   # 包含单元测试相关文件
+│   │   ├── specs/              # test spec files
+│   │   ├── eslintrc            # config file for eslint with extra settings only for unit tests
+│   │   ├── index.js            # test build entry file
+│   │   ├── jest.conf.js        # Config file when using Jest for unit tests
+│   │   └── karma.conf.js       # test runner config file when using Karma for unit tests
+│   │   ├── setup.js            # file that runs before Jest runs your unit tests
+│   └── e2e/                    # 包含e2e测试相关文件
+│   │   ├── specs/              # test spec files
+│   │   ├── custom-assertions/  # custom assertions for e2e tests
+│   │   ├── runner.js           # test runner script
+│   │   └── nightwatch.conf.js  # test runner config file
+├── .babelrc                    # babel config
+├── .editorconfig               # indentation, spaces/tabs and similar settings for your editor
+├── .eslintrc.js                # eslint config
+├── .eslintignore               # eslint ignore rules
+├── .gitignore                  # sensible defaults for gitignore
+├── .postcssrc.js               # postcss config
+├── index.html                  # 这是我们单页面应用程序的模板,Webpack将生成资产的URL将自动注入此模板以呈现最终的HTML
+├── package.json                # 包含所有构建依赖项和构建命令的NPM包元文件
+└── README.md                   # Default README file
+
+```
+
+## 两个静态资源目录的区别
+
+项目结构中有两个静态资产目录：src/assets和static/。它们之间有什么区别？
+
+- static/ 目录是Webpack根本不处理文件：它们按原样直接复制到最终目标，文件名相同。您必须使用绝对路径引用这些文件
+
+- src/assets  相对资产路径，将由Webpack解析为模块依赖项
+
+
+
+# 构建命令
+
+npm run dev
+
+```
+
+	Webpack + vue-loader用于单个文件Vue组件。
+	状态保持热重载
+	状态保留编译错误覆盖
+	使用ESLint进行Lint-on-save
+	来源地图
+```
+
+
+npm run build
+
+使用UglifyJS v3缩小JavaScript 。
+用html-minifier缩小HTML。
+将所有组件中的CSS提取到单个文件中并使用cssnano缩小。
+所有静态资产都使用版本哈希编译，以实现高效的长期缓存，并index.html使用适当的URL自动生成生产，以生成这些生成的资产
+
+
+
+
+
+npm run unit
+
+使用Jest在JSDOM中运行单元测试
+
+在测试文件中支持ES2015 +
+
+
+
+
+npm run e2e
+
+在多个浏览器中并行运行测试。
+使用一个开箱即用的命令：
+自动处理Selenium和chromedriver依赖项。
+自动生成Selenium服务器
+
+
+
+
+npm run lint
+
+运行eslint并报告代码中的任何linting错误

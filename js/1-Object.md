@@ -29,6 +29,16 @@ var p2 = new person('sunxun',25);
 ```
 var bool = obj.hasOwnProperty('name')
 ```
+
+#### Object.getPropertyNames()
+ 
+返回除原型属性以外的所有属性（包括不可枚举的属性）名组成的数组
+
+```
+  //利用这个判断对象是否为空
+  if(Object.getOwnPropertyNames(obj).length ===0)
+
+```
  
 ### Object.is()
 判断两个值是否相同。
