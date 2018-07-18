@@ -2,112 +2,94 @@
 
 
 
-$ npm install -g vue-cli
-$ vue init webpack my-project
-$ cd my-project
-$ npm install
-$ npm run dev
+
+# vue
+
+Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。
+
+与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。
+
+Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。
+
+另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。
+
+
+
+# vue-cli
 
 
 
 
-## 项目结构
+# 指令
+
+v-bind
+
+指令带有前缀 v-，以表示它们是 Vue 提供的特殊特性。
+
+
+
+# 组件
+
+在 Vue 里，一个组件本质上是一个拥有预定义选项的一个 Vue 实例。在 Vue 中注册组件很简单：
+
+```
+// 定义名为 todo-item 的新组件
+Vue.component('todo-item', {
+  template: '<li>这是个待办项</li>'
+})
 
 ```
 
-.
-├── build/                      # webpack config files,包含开发webpack构建的实际配置。通常不需要触摸这些文件
-│   └── ...
-├── config/
-│   ├── index.js                # 主要配置文件，它公开了构建设置的一些最常见的配置选项。通常与现有的后端框架集成时使用
-│   └── ...
-├── src/
-│   ├── main.js                 # app entry file
-│   ├── App.vue                 # main app component
-│   ├── components/             # ui components
-│   │   └── ...
-│   └── assets/                 # module assets (processed by webpack)
-│       └── ...
-├── static/                     # 不希望使用Webpack处理的静态资产的存放目录，直接复制到webpack构建dist目录
-├── test/
-│   └── unit/                   # 包含单元测试相关文件
-│   │   ├── specs/              # test spec files
-│   │   ├── eslintrc            # config file for eslint with extra settings only for unit tests
-│   │   ├── index.js            # test build entry file
-│   │   ├── jest.conf.js        # Config file when using Jest for unit tests
-│   │   └── karma.conf.js       # test runner config file when using Karma for unit tests
-│   │   ├── setup.js            # file that runs before Jest runs your unit tests
-│   └── e2e/                    # 包含e2e测试相关文件
-│   │   ├── specs/              # test spec files
-│   │   ├── custom-assertions/  # custom assertions for e2e tests
-│   │   ├── runner.js           # test runner script
-│   │   └── nightwatch.conf.js  # test runner config file
-├── .babelrc                    # babel config
-├── .editorconfig               # indentation, spaces/tabs and similar settings for your editor
-├── .eslintrc.js                # eslint config
-├── .eslintignore               # eslint ignore rules
-├── .gitignore                  # sensible defaults for gitignore
-├── .postcssrc.js               # postcss config
-├── index.html                  # 这是我们单页面应用程序的模板,Webpack将生成资产的URL将自动注入此模板以呈现最终的HTML
-├── package.json                # 包含所有构建依赖项和构建命令的NPM包元文件
-└── README.md                   # Default README file
+能从父作用域将数据传到子组件才对。让我们来修改一下组件的定义，使之能够接受一个 prop：
+
+```
+Vue.component('todo-item', {
+  // todo-item 组件现在接受一个
+  // "prop"，类似于一个自定义特性。
+  // 这个 prop 名为 todo。
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
 
 ```
 
-## 两个静态资源目录的区别
+使用组件
 
-项目结构中有两个静态资产目录：src/assets和static/。它们之间有什么区别？
-
-- static/ 目录是Webpack根本不处理文件：它们按原样直接复制到最终目标，文件名相同。您必须使用绝对路径引用这些文件
-
-- src/assets  相对资产路径，将由Webpack解析为模块依赖项
-
-
-
-# 构建命令
-
-npm run dev
+```
+<div id="app-7">
+  <ol>
+    <!--
+      现在我们为每个 todo-item 提供 todo 对象
+      todo 对象是变量，即其内容可以是动态的。
+      我们也需要为每个组件提供一个“key”，稍后再
+      作详细解释。
+    -->
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id">
+    </todo-item>
+  </ol>
+</div>
 
 ```
 
-	Webpack + vue-loader用于单个文件Vue组件。
-	状态保持热重载
-	状态保留编译错误覆盖
-	使用ESLint进行Lint-on-save
-	来源地图
 ```
 
+Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
 
-npm run build
+var app7 = new Vue({
+  el: '#app-7',
+  data: {
+    groceryList: [
+      { id: 0, text: '蔬菜' },
+      { id: 1, text: '奶酪' },
+      { id: 2, text: '随便其它什么人吃的东西' }
+    ]
+  }
+})
 
-使用UglifyJS v3缩小JavaScript 。
-用html-minifier缩小HTML。
-将所有组件中的CSS提取到单个文件中并使用cssnano缩小。
-所有静态资产都使用版本哈希编译，以实现高效的长期缓存，并index.html使用适当的URL自动生成生产，以生成这些生成的资产
-
-
-
-
-
-npm run unit
-
-使用Jest在JSDOM中运行单元测试
-
-在测试文件中支持ES2015 +
-
-
-
-
-npm run e2e
-
-在多个浏览器中并行运行测试。
-使用一个开箱即用的命令：
-自动处理Selenium和chromedriver依赖项。
-自动生成Selenium服务器
-
-
-
-
-npm run lint
-
-运行eslint并报告代码中的任何linting错误
+```
