@@ -22,7 +22,7 @@ ES6模块主要有两个功能：export和import
 
 
 
-## export 
+## export
 
 注意： 是export ，不是exports
 
@@ -87,7 +87,7 @@ ES6模块的运行机制与CommonJS不一样，它遇到模块加载命令import
 
 默认导出
 
-注意： 一个文件最多只能有一个 export default 
+注意： 一个文件最多只能有一个 export default
 
 理解： 实际导出的是一个default命名的变量进行重命名，等价语句如下。所以import后可以是任意变量名称，且不需要{}
 
@@ -103,7 +103,7 @@ ES6模块的运行机制与CommonJS不一样，它遇到模块加载命令import
 	// a.js
 
 	var name = 'xie';
-    export default name; 
+    export default name;
 
 	// b.js
 	import n form './a.js';
@@ -135,7 +135,6 @@ ES6模块的运行机制与CommonJS不一样，它遇到模块加载命令import
 
 	console.log( myModule.name );
 ```
-
 
 ### 浏览器中使用
 

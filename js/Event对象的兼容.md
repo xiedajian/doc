@@ -4,8 +4,8 @@
 
    IE：直接使用event就行，为保险起见，写成window.event；
    FF：window.event要报错，提示undefined，经查询，发现要用参数引导才能使用；
-   原生js兼容写法： 
- 
+   原生js兼容写法：
+
 ```
 function foo(event){
     var evt = event || window.event;
@@ -32,36 +32,36 @@ function foo(event){
 $(".btn").click(function(event){
     alert(event.target);
 })
-``` 
-### 3.event.preventDefault  阻止事件默认行为 
+```
+### 3.event.preventDefault  阻止事件默认行为
 ```
 event.preventDefault ? (event.preventDefault()) : (event.returnValue = false);
 ```
-### 4.event.stopPropagation 阻止事件冒泡 
+### 4.event.stopPropagation 阻止事件冒泡
 ```
 event.stopPropagation ? (event.stopPropagation()) :  (event.cancelBubble = true);
 ```
-### 5.addEventListener 
+### 5.addEventListener
 ```
  // 添加事件
-        if (element.addEventListener) {  
-            element.addEventListener(type, hanlder, false);  
-        }  
-        else if (element.attachEvent) {  
-            element.attachEvent('on' + type, hanlder);  
-        }  
-        else {  
-            element['on' + type] = hanlder;  
-        }  
+        if (element.addEventListener) {
+            element.addEventListener(type, hanlder, false);
+        }
+        else if (element.attachEvent) {
+            element.attachEvent('on' + type, hanlder);
+        }
+        else {
+            element['on' + type] = hanlder;
+        }
 
-   // 删除事件  
-        if (element.removeEventListener) {  
-            element.removeEventListener(type, hanlder, false);  
-        }  
-        else if (element.detachEvent()) {  
-            element.detachEvent('on' + type, hanlder);  
-        }  
-        else {  
-            element['on' + type] = null;  
-        }  
+   // 删除事件
+        if (element.removeEventListener) {
+            element.removeEventListener(type, hanlder, false);
+        }
+        else if (element.detachEvent()) {
+            element.detachEvent('on' + type, hanlder);
+        }
+        else {
+            element['on' + type] = null;
+        }
 ```

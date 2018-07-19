@@ -28,3 +28,4 @@
 2. 如果要简单的from to 效果，用 transition.
 
 3. 如果要使用js灵活设定动画属性，用transition.
+
