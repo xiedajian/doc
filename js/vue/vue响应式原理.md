@@ -1,5 +1,7 @@
 
 参考文档： https://www.xiaohuochai.cc/posts/5b11e3be93b30d62504cb6a3
+参考文档：https://juejin.im/post/5adf0085518825673123da9a?utm_medium=fe&utm_source=weixinqun
+
 
 Vue最显著的特性之一便是不太引人注意的响应式系统(reactivity system)。
 
