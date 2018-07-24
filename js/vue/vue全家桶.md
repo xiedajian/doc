@@ -6,3 +6,28 @@ Vue有著名的全家桶系列，包含了vue-router（http://router.vuejs.org�
 
 vue + vuex+ vue-resource + vue-router + webpack + es6 + less的项目架构成为了越来越多大公司的第一选择
 
+
+注意：不再继续维护vue-resource，并推荐大家使用 axios 开始
+
+
+
+# vuex
+
+集中式状态管理
+
+
+# axios
+
+http请求
+
+
+# Mint UI
+
+移动端组件库  （star:11751）
+
+
+# Vux
+
+移动端组件库	   (star:13494)
+VUX 样式基于 WeUI
+VUX 必须配合 vux-loader 使用
