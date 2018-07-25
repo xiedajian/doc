@@ -2,11 +2,7 @@
 
 文档： https://www.kancloud.cn/yunye/axios/234845
 官网： https://www.axios.com/
-
-
-Vue 原本有一个官方推荐的 ajax 插件 vue-resource，但是自从 Vue 更新到 2.0 之后，官方就不再更新 vue-resource
-
-目前主流的 Vue 项目，都选择 axios 来完成 ajax 请求
+gitHub: https://github.com/axios/axios
 
 
 # axios
@@ -45,6 +41,12 @@ npm install axios
 
 
 ### 使用
+
+模块化使用需先引入axios模块
+
+```
+	import axios from 'axios'	
+```
 
 执行 GET 请求
 
@@ -123,3 +125,84 @@ axios.patch(url[, data[, config]])
 
 axios.all(iterable)
 axios.spread(callback)
+
+
+
+
+
+# 配合vue
+
+
+
+Vue 原本有一个官方推荐的 ajax 插件 vue-resource，但是自从 Vue 更新到 2.0 之后，官方就不再更新 vue-resource
+
+目前主流的 Vue 项目，都选择 axios 来完成 ajax 请求
+
+之前一直使用的是 vue-resource插件，在主入口文件引入import VueResource from 'vue-resource'之后，直接使用Vue.use(VueResource)之后即可将该插件全局引用了；
+
+
+初用axios时，无脑的按照上面的步骤进行全局引用，结果当时是惨惨的。 
+看了看文档，Axios 是一个基于 promise 的 HTTP 库
+
+> axios并没有install 方法，所以是不能使用vue.use()方法的。 
+> 那么难道每个文件都要来引用一次？解决方法有很多种： 
+> 1.结合 vue-axios使用 
+> 2. axios 改写为 Vue 的原型属性 
+> 3.结合 Vuex的action
+
+### 结合 vue-axios使用
+
+vue-axios
+
+用于将axios集成到Vuejs的小包装器
+
+github: https://github.com/axios/axios
+
+安装： npm install --save axios vue-axios
+
+vue-axios是按照vue插件的方式去写的。那么结合vue-axios，就可以去使用vue.use方法了
+
+```
+首先在主入口文件main.js中引用
+
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios,axios);
+```
+之后就可以使用了，在组件文件中的methods里去使用了
+
+```
+getNewsList(){
+      this.axios.get('api/getNewsList').then((response)=>{
+        this.newsList=response.data.data;
+      }).catch((response)=>{
+        console.log(response);
+      })
+
+
+    },
+```
+
+### 方法2： axios 改写为 Vue 的原型属性
+
+首先在主入口文件main.js中引用，之后挂在vue的原型链上
+
+import axios from 'axios'
+Vue.prototype.$ajax= axios
+
+
+在组件中使用
+
+```
+this.$ajax.get('api/getNewsList').then((response)=>{
+        this.newsList=response.data.data;
+      }).catch((response)=>{
+        console.log(response);
+      })
+```
+
+
+### 方法3：结合vuex
+
+在vuex在封装一层
