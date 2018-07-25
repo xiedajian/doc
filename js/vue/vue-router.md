@@ -36,6 +36,13 @@ Vue Router是Vue.js的官方路由器。它与Vue.js核心深度集成，使用V
 ```
 如果使用全局的 script 标签，则无须如此
 
+
+## 路由之间跳转？
+
+声明式（标签跳转）  <router-link :to="index">	
+
+编程式（ js跳转）   router.push('index')
+
 ## 使用
 
 Vue-router通过管理URL，实现URL和组件的对应，以及通过URL进行组件之间的切换。

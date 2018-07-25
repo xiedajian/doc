@@ -19,7 +19,8 @@ CubeUI  (滴滴)       70        3800          https://github.com/didi/cube-ui
 
 
 pc：
-element（饿了么）  
+
+element-ui（饿了么）  90        
 
 
 # 常见组件
