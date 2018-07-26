@@ -59,6 +59,18 @@ language-gfm-enhanced 			。与markdown-preview-enhanced配套。
 git-plus 						. git插件
 script 							. 运行各种代码和脚本，如javascript等。
 markdown-image-paste 			,从剪贴板粘贴图像到本地或七牛或sm.sm
+Sync Settings                   搭配github，同步你的atom插件信息，配置信息，让你轻松实现一台电脑配置，多台电脑共享
+Emmet                           能够基于Emmet语法产生HTML，做过前段开发的不会不知道这个插件吧。好用到哭
+Atom Beautify                   代码格式化工具，可以设置在保存时自动格式化，别提有多方便了，按Ctrl+Alt+b格式化
+Autocomplete Paths              自动补全文件路径，这个功能肯定使用嘛，完全避免了路径输入错误带来的bug
+Auto close HTML                 自动输入对应的HTML关闭标签，虽然简答但是实用
+Minimap                         这个插件不用介绍了吧，从sublime开始，一直使用。从未遗忘
+color-picker                    取色器，让你在代码编写去直接打开取色板，拾取颜色
+file-icons                      很简单，为不同类型的文件添加一个漂亮的小图标，颜控开发者必备
+docblockr                       文档化注释，你懂的，团队协作规范注释必备插件
+
+
+
 
 ```
 

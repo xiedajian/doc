@@ -1,6 +1,14 @@
 
 GitHub Pages 官网： https://pages.github.com/
 
+
+Github 有两种形式的 page：
+
+个人或组织的 page：只能存在一个，master 分支，地址为 xxx.github.io
+
+项目 page：每个项目可以生成一个，gh-pages 分支，地址为 xxx.github.io/projectname
+
+
 # 新建一个 GitHub Pages
 
 ## 1
