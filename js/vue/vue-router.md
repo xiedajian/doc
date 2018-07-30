@@ -182,6 +182,48 @@ router.push({ name: 'user', params: { userId: 123 }})
 
 
 
+## 路由组件传参
+
+在组件中使用 $route 会使之与其对应路由形成高度耦合，从而使组件只能在某些特定的 URL 上使用，限制了其灵活性
+
+使用 props 将组件和路由解耦：
+
+取代与 $route 的耦合
+
+```
+const User = {
+  template: '<div>User {{ $route.params.id }}</div>'
+}
+const router = new VueRouter({
+  routes: [
+    { path: '/user/:id', component: User }
+  ]
+})
+
+```
+
+通过 props 解耦
+
+```
+const User = {
+  props: ['id'],
+  template: '<div>User {{ id }}</div>'
+}
+const router = new VueRouter({
+  routes: [
+    { path: '/user/:id', component: User, props: true },
+
+    // 对于包含命名视图的路由，你必须分别为每个命名视图添加 `props` 选项：
+    {
+      path: '/user/:id',
+      components: { default: User, sidebar: Sidebar },
+      props: { default: true, sidebar: false }
+    }
+  ]
+})
+```
+这样你便可以在任何地方使用该组件，使得该组件更易于重用和测试。
+
 
 
 ## 入门
@@ -236,3 +278,21 @@ router.push({ name: 'user', params: { userId: 123 }})
 	}
 
 ```
+
+## HTML5 History 模式
+
+vue-router 默认 hash 模式 —— 使用 URL 的 hash 来模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载。
+
+如果不想要很丑的 hash，我们可以用路由的 history 模式，这种模式充分利用 history.pushState API 来完成 URL 跳转而无须重新加载页面。
+
+```
+const router = new VueRouter({
+  mode: 'history',
+  routes: [...]
+})
+```
+不过这种模式要玩好，还需要后台配置支持。
+
+因为我们的应用是个单页客户端应用，如果后台没有正确的配置，当用户在浏览器直接访问 http://oursite.com/user/id 就会返回 404，这就不好看了。
+
+所以呢，你要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，则应该返回同一个 index.html 页面，这个页面就是你 app 依赖的页面
