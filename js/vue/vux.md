@@ -77,6 +77,14 @@ VUX部分组件支持link属性直接支持vue-router的路由参数
 require('es6-promise').polyfill()
 ```
 
+引入
+
+```
+import { AjaxPlugin } from 'vux'
+Vue.use(AjaxPlugin)
+
+```
+
 全局使用
 
 ```

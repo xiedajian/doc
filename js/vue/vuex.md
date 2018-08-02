@@ -99,3 +99,39 @@ store.commit('increment')
 console.log(store.state.count)		// -> 1
 
 ```
+
+
+## 辅助函数
+
+Vuex 除了提供我们 Store 对象外，还对外提供了一系列的辅助函数，方便我们在代码中使用 Vuex，提供了操作 store 的各种属性的一系列语法糖
+
+#### mapState
+
+mapState 工具函数会将 store 中的 state 映射到局部计算属性中
+
+```
+import { mapState } from 'vuex'
+export default {
+	computed: mapState({
+		// 箭头函数可以让代码非常简洁
+		count: state => state.count,
+		// 传入字符串 'count' 等同于`state => state.count` 
+		countAlias: 'count', 
+	}) 
+}
+
+```
+
+#### mapGetters
+
+mapGetters 工具函数会将 store 中的 getter 映射到局部计算属性中。它的功能和 mapState 非常类似
+
+#### mapActions
+
+mapActions 工具函数会将 store 中的 dispatch 方法映射到组件的 methods 中
+
+#### mapMutations
+
+mapMutations 工具函数会将 store 中的 commit 方法映射到组件的 methods 中。和 mapActions 的功能几乎一样
+
+
