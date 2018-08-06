@@ -182,33 +182,47 @@ router.push({ name: 'user', params: { userId: 123 }})
 
 
 
-## 路由组件传参
+# 路由组件传参
+
+#### 方式1：使用 $router.params
+
+```
+// 在路由中定义参数
+const router = new VueRouter({
+  routes: [
+    { path: '/user/:id',  name: 'user', component: User }
+  ]
+})
+
+// 页面a跳转的时候传参
+<router-link to="{ path:'/user/123'}">
+或者
+<router-link to="{ name: 'user', params: { id: 123 }}">User</router-link>
+或者
+this.$router.push({path: '/user/123'})
+或者
+this.$router.push({ name: 'user', params: { id: 123 }})
+
+
+
+
+// 在 user 页面中使用参数
+<div>User {{ $route.params.id }}</div>
+或者
+this.$route.params.id
+
+```
+
+#### 方式2: 使用props
+
+文档： https://router.vuejs.org/zh/guide/essentials/passing-props.html
 
 在组件中使用 $route 会使之与其对应路由形成高度耦合，从而使组件只能在某些特定的 URL 上使用，限制了其灵活性
 
 使用 props 将组件和路由解耦：
 
-取代与 $route 的耦合
-
 ```
-const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
-}
-const router = new VueRouter({
-  routes: [
-    { path: '/user/:id', component: User }
-  ]
-})
-
-```
-
-通过 props 解耦
-
-```
-const User = {
-  props: ['id'],
-  template: '<div>User {{ id }}</div>'
-}
+// 定义路由 props
 const router = new VueRouter({
   routes: [
     { path: '/user/:id', component: User, props: true },
@@ -221,62 +235,62 @@ const router = new VueRouter({
     }
   ]
 })
+
+// 同方法1，在a页面跳转的时候传参
+<router-link to="{ path:'/user/123'}">
+
+
+// 在路由user组件中使用props接受参数
+const User = {
+  props: ['id'],
+  template: '<div>User {{ id }}</div>'
+}
+
 ```
-这样你便可以在任何地方使用该组件，使得该组件更易于重用和测试。
+这样你便可以在任何地方使用该组件，可以路由使用，也可以组件嵌套的时候使用，使得该组件更易于重用和测试。
 
 
+#### 方式3： 通过 vuex
 
-## 入门
-
-
-使用Vue.js，我们已经在使用组件编写应用程序。
-
-将Vue Router添加到混合中时，我们需要做的就是将组件映射到路由，让Vue Router知道在哪里渲染它们
+虽然不太推荐，但是也可以通过vuex实现，有点杀鸡用牛刀
 
 ```
-	<div id="app">
-	  <h1>Hello App!</h1>
-	  <p>
-	    <router-link to="/foo">Go to Foo</router-link>
-	    <router-link to="/bar">Go to Bar</router-link>
-	  </p>
-	  <router-view></router-view>
-	</div>
+// 定义store
+import Vuex from 'vuex'
+import Vue  from 'vuex'
+Vue.use(Vuex)
+export default new Vuex.Store({
+    state:{
+             id: ''
+      },
+      mutations:{
+           setId(state ,  id) {
+                   state.id = id            
+             }
+        }
+})
+
+// 在a页面设置
+ this.$store.commit( 'setId' ，(123) )
+
+// 在b页面取
+this.$store.state.id 
+
+```
+
+#### 使用本地存储，localstorage或者Session Storage
+
+原理很简单，a页面存，b页面取，不推荐
 
 
-	const Foo = { template: '<div>foo</div>' }
-	const Bar = { template: '<div>bar</div>' }
+## 返回上一页
 
-	const routes = [
-	  { path: '/foo', component: Foo },
-	  { path: '/bar', component: Bar }
-	]
-
-	const router = new VueRouter({
-	  routes // short for `routes: routes`
-	})
-
-	const app = new Vue({
-	  router
-	}).$mount('#app')
-
-
-	export default {
-	  computed: {
-	    username () {
-	      // We will see what `params` is shortly
-	      return this.$route.params.username
-	    }
-	  },
-	  methods: {
-	    goBack () {
-	      window.history.length > 1
-	        ? this.$router.go(-1)
-	        : this.$router.push('/')
-	    }
-	  }
+```
+	goBack () {
+		window.history.length > 1
+			? this.$router.go(-1)
+			: this.$router.push('/')
 	}
-
 ```
 
 ## HTML5 History 模式

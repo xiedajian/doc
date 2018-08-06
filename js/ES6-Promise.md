@@ -5,6 +5,12 @@
 我们工作中免不了运用promise用来解决异步回调问题。平时用的很多库或者插件都运用了promise 例如axios、fetch等等
 
 
+
+
+
+
+# 模拟Promise实现过程
+
 ## 1、Promise 的声明
 
 首先呢，promise肯定是一个类，我们就用class来声明。

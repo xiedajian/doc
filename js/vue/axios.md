@@ -118,6 +118,27 @@ axios.post(url[, data[, config]])
 axios.put(url[, data[, config]])
 axios.patch(url[, data[, config]])
 
+> axios post方法默认使用application/json格式编码数据
+
+
+### 解决post方法使用application/x-www-form-urlencoded格式编码数据
+
+1. 设置  headers:{ 'Content-type': 'application/x-www-form-urlencoded'}
+   
+```
+axios.post('url',data,{headers:{ 'Content-type': 'application/x-www-form-urlencoded'}})
+
+// 不想在每次请求都设置的话，可以集中设置下
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+
+```
+2. 仅仅这样并没有达到想要的效果，post的body主体中还是{"age":10}这样的格
+   式，并不是我们想要的query参数。引入Qs，这个库是axios里面包含的，不需要再下载了
+	 ```
+	 import qs from 'qs'
+	 var data = qs.stringify({"name":"xie"});
+	 axios.post('url',data).then()
+	``` 
 
 ### 并发
 
