@@ -1,5 +1,5 @@
 
-# requestAnimationFrame
+# window.requestAnimationFrame
 
 requestAnimationFrame 是专门为实现高性能的帧动画而设计的一个API，目前已在多个浏览器得到了支持
 

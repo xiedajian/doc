@@ -1,6 +1,12 @@
 
 # webSocket
 
+WebSocket 是一种网络通信协议
+
+WebSocket 是 HTML5 开始提供的一种在单个 TCP 连接上进行全双工通讯的协议
+
+WebSocket与http协议一样都是基于TCP的，所以他们都是可靠的协议，Web开发者调用的WebSocket的send函数在browser 的实现中最终都是通过TCP的系统接口进行传输的。WebSocket和Http协议一样都属于应用层的协议
+
 ```
 	var ws = new WebSocket("wss://echo.websocket.org");
 
