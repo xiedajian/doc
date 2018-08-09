@@ -113,6 +113,7 @@ wx.navigateBack({
 ```
 
 4. wx.switchTab(OBJECT)
+   
 跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面
 参数与navigateTo相同
 ```
@@ -124,13 +125,14 @@ wx.switchTab({
 })
 ```
 
-5. wx.reLaunch(OBJECT)
+1. wx.reLaunch(OBJECT)
+2. 
 > 基础库 1.1.0 开始支持，低版本需做兼容处理
 关闭所有页面，打开到应用内的某个页面。
 参数与navigateTo相同
 ```
 wx.switchTab({
-  url: 'test?id=1',		//  需要跳转的应用内页面路径 （需在 app.json 的 tabBar 字段定义的页面），路径后不能带参数
+  url: 'test?id=1',		//  需要跳转的应用内页面路径 , 路径后可以带参数
   success:Function,		// 接口调用成功的回调函数
   fail:Function,		// 接口调用失败的回调函数
   complete:Function,		// 接口调用结束的回调函数（调用成功、失败都会执行）
@@ -139,10 +141,37 @@ wx.switchTab({
 
 
 
+# 跳转时候传参
+
+navigateTo，redirectTo，reLaunch时候都可以在url后面传参
+
+```
+wx.navigateTo({
+  url: 'test?name=xiedajian',		//  路径后可以带参数 如 'path?key=value&key2=value2'
+  success:Function,		// 接口调用成功的回调函数
+  fail:Function,		// 接口调用失败的回调函数
+  complete:Function,		// 接口调用结束的回调函数（调用成功、失败都会执行）
+})
+
+//test.js
+Page({
+  onLoad: function(option){
+    console.log(option.name)	// 参数name
+  }
+})
+
+```
 
 
+# switchTab  传参
 
+跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面，路径后不能带参数
 
+所以只能有曲线救国的方案
+
+1.用全局变量来传递
+
+2.用缓存来传参
 
 
 
