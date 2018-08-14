@@ -94,3 +94,30 @@ address         省市区3级联动
 numberKeyboard  数字键盘
 passwordInput   6位密码输入框            
 imagePreview    图片预览
+
+
+
+# 个人认为
+
+视野决定，大前端的实现包括 web，小程序，app，flutter等等。
+
+不要把局限定到css语法，而是通用的样式布局。 （web,小程序，app）
+
+所以把中心放在核心的css，简单易用的css就行
+
+重心：
+
+html标签：       div     span   input
+选择器:         *  div   .class  #id
+单位：          px  rem   %   vw
+布局：          relation    absolute    fixed   flex
+盒子模型：      margin    border    padding     content     box-sizing
+伪类，伪元素：  不需要掌握
+背景：          background  
+字体：          font    text
+css3动画：      animation   transform   transition  
+响应式：        @meida screen and (min-width:480px) {}
+移动端自适应：  网易方案（js根据屏幕宽改变html字体大小，使用rem）
+
+
+
