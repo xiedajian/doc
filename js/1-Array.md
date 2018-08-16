@@ -45,9 +45,9 @@ document.write(a.concat(4,5));
 
 ### 数组分割  （pop ，shift，splice，slice  ）
 
-1. lastDeleEle = arr.pop ()     //从数组最后一项，并返回移除的项
+1. lastDeleEle = arr.pop()     //删除数组最后一项（改变原数组），并返回移除的项
 
-2. firstDeleEle = arr.shift()      // 数组删除第一个元素，并返回移除的项
+2. firstDeleEle = arr.shift()      // 数组删除第一个元素（改变原数组），并返回移除的项
 
 3. slice() 方法 不改变原数组，截取原数组的一部分返回新数组
 
