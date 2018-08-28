@@ -338,6 +338,11 @@ MongoDB还提供 文本索引以支持字符串内容的文本搜索。文本索
 
 
 
+## 聚合（多表查询）
+
+聚合操作将来自多个文档的值组合在一起，并且可以对分组数据执行各种操作以返回单个结果
+
+aggregate  ，  group
 
 # 在链接数据库时报错  current URL string parser is deprecated
 
