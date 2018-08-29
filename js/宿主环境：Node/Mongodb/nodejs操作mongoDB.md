@@ -344,6 +344,7 @@ MongoDB还提供 文本索引以支持字符串内容的文本搜索。文本索
 
 aggregate  ，  group
 
+
 # 在链接数据库时报错  current URL string parser is deprecated
 
 执行：MongoClient.connect(url,function(){})  链接数据库时

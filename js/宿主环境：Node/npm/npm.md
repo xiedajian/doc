@@ -46,7 +46,7 @@ $ npm install jquery -g                 # -g 全局安装
 
 $ npm install jquery@1.12.4。
 
-$ npm install juqery--force             # --force 或-g ，强制安装，不管node_module是否已经安装过
+$ npm install juqery--force             # --force 或-f ，强制安装，不管node_module是否已经安装过
 
 ```
 
@@ -76,9 +76,7 @@ npm info jquery   //查看模块的版本
 ```
 
 
-
-
-## npm淘宝镜像
+# 设置 npm 使用淘宝源
 
 http://www.npmjs.org npm 包官网
 
@@ -86,10 +84,49 @@ https://npm.taobao.org/ 淘宝 npm 镜像官网
 
 淘宝 NPM 镜像是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10 分钟 一次以保证尽量与官方服务同步。
 
+建议把 npm 的源切换到 淘宝源。 获取安装cnpm，使用cnpm。
+
 安装cnpm
 
 ```
 npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+
+临时使用淘宝源
+```
+npm --registry https://registry.npm.taobao.org install node-red-contrib-composer@latest
+```
+
+全局配置切换到淘宝源
+
+```
+ npm config set registry https://registry.npm.taobao.org
+```
+
+
+全局配置切换到官方源
+```
+ npm config set registry http://www.npmjs.org
+```
+
+检测是否切换到了淘宝源
+```
+npm info underscore
+
+```
+
+```
+...
+gitHead: 'e4743ab712b8ab42ad4ccb48b155034d02394e4d',
+  dist: 
+   { shasum: '4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022',
+     size: 34172,
+     noattachment: false,
+    //　有　registry.npm.taobao.org　等字样　　说明切换成功
+     tarball: 'http://registry.npm.taobao.org/underscore/download/underscore-1.8.3.tgz' },
+  directories: {},
+  publish_time: 1427988774520 }
+
 ```
 
 
