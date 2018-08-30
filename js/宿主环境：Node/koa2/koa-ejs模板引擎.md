@@ -28,6 +28,32 @@ router.get('/ejsdemo', async ctx => {
 ```
 
 
+
+# 模板中的公共数据
+
+实际工作中，经常会有这样的需求，多个页面都需要一些相同的数据，比如说用户的资料，那公共数据放到哪里呢
+
+可以存放在 ctx.state , 这样的话模板的任何地方都可以使用
+
+```
+app.use(async (ctx,next)=>{
+    ctx.state.userinfo = 'xiedajian'
+    await next()
+})
+
+router.get('/demo', async ctx => {
+    console.log(ctx.state.userinfo);    // 在中间件中使用公共变量
+})
+```
+
+在前端视图中使用
+
+```
+<p><%= userinfo %></p>
+```
+
+
+
 # 在ejs模板中的模板语法
 
 • <% %>     流程控制标签
@@ -42,3 +68,5 @@ router.get('/ejsdemo', async ctx => {
     <li><%=list[i] %></li>
 <%}%>
 ```
+
+详细案例：icode仓库的 node/koa/koa-ejs.js

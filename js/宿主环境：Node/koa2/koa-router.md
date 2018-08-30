@@ -71,4 +71,4 @@ router.get('/news/detail', async ctx => {
 })
 ```
 
-详细案例查看 icode 仓库 node/koa/koa-router.js
+详细案例：icode仓库的 node/koa/koa-router.js

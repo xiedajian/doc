@@ -84,6 +84,19 @@ app.listen(3001);
 由于 koa 不在内核方法中绑定任何中间件， 所以我们需要自己积累一些包和 中间件
 
 
+# 最简单的koa
+
+```
+const Koa = require('koa');
+const app = new Koa();
+
+app.use(async ctx => {
+    ctx.body = 'Hello World';
+});
+
+app.listen(3001);
+```
+
 
 
 

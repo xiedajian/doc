@@ -44,4 +44,28 @@ app.use(async (ctx,next)=>{
 ```
 
 
-详细的测试可以在icode仓库 node/koa/koa-middleware.js 查看
+# 公共变量
+
+公共变量,通常设置在ctx.state，可以用在其他中间件和前端视图
+
+```
+// 写一个中间件配置公共信息， 通常写在ctx.state， 其他中间件和前端试图都可以使用
+app.use(async (ctx,next)=>{
+    ctx.state.userinfo = 'xiedajian'
+    await next()
+})
+
+router.get('/demo', async ctx => {
+    console.log(ctx.state.userinfo);    // 在中间件中使用公共变量
+})
+```
+
+在前端视图中使用
+
+```
+<p><%= userinfo %></p>
+```
+
+
+
+详细案例：icode仓库的 node/koa/koa-middleware.js 
