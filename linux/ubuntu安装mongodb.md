@@ -208,3 +208,17 @@ esc 退出编辑模式，shift ：  输入 wq 回车保存
 ```
 service mongod restart
 ```
+
+3. 远程连接服务器上的mongodb数据库时失败
+
+想要远程连接，除了修改bind_ip为 127.0.0.1 ，还需要
+
+防火墙开放27017端口
+
+命令：
+
+```
+iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 27017 -j ACCEPT
+```
+
+如果是阿里云服务器，还需要在阿里云服务器的安全组规则中 - 入方向 - 允许访问端口27017/27017,授权对象 0.0.0.0/0
