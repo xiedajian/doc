@@ -1,0 +1,95 @@
+
+
+egg官网推荐解决方案：https://eggjs.org/zh-cn/tutorials/index.html
+github: https://github.com/eggjs/egg-sequelize
+
+#  egg-sequelize
+
+Sequelize plugin for Egg.js.
+
+
+
+# 安装
+```
+$ npm i --save egg-sequelize
+$ npm install --save mysql2         # 对于mysql和mariadb方言
+
+# 或使用其他数据库后端
+$ npm install --save pg pg-hstore # PostgreSQL
+$ npm install --save tedious # MSSQL
+```
+
+
+# 使用和配置
+
+启用插件 config/plugin.js
+```
+// config/plugin.js
+exports.sequelize = {
+  enable: true,
+  package: 'egg-sequelize'
+}
+
+```
+
+编辑您自己的配置 conif/config.{env}.js
+```
+// conif/config.{env}.js
+exports.sequelize = {
+  dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+  database: 'test',
+  host: 'localhost',
+  port: '3306',
+  username: 'root',
+  password: '',
+  // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
+  // baseDir: 'my_model', // load all files in `app/${baseDir}` as models, default to `model`
+  // exclude: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array
+  // more sequelize options
+};
+```
+
+egg-sequelize下面有一个默认的sequelize选项
+
+```
+
+```
+
+# 模型文件
+
+默认情况下将模型放在 app/model 目录下
+
+约定：
+
+```
+模型文件	         模型名称
+user.js	            app.model.User
+person.js	        app.model.Person
+user_group.js	    app.model.UserGroup
+user/profile.js	    app.model.User.Profile
+```
+表总是有时间戳字段：created_at datetime，updated_at datetime。
+使用下划线样式列名称，例如：user_id，comments_count。
+
+
+
+
+# 例子
+
+标准
+首先定义模型。
+
+> 注意：app.model是Sequelize的实例，因此您可以使用以下方法：app.model.sync, app.model.query ...
+
+
+
+
+
+
+
+
+
+
+
+
+

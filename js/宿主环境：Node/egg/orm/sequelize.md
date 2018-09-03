@@ -1,0 +1,90 @@
+
+
+egg官网案例：https://eggjs.org/zh-cn/tutorials/sequelize.html
+文档：http://docs.sequelizejs.com/
+
+
+# Sequelize
+
+在一些较为复杂的应用中，我们可能会需要一个 ORM 框架来帮助我们管理数据层的代码
+
+而在 Node.js 社区中，sequelize 是一个广泛使用的 ORM 框架，它支持 MySQL、PostgreSQL、SQLite 和 MSSQL 等多个数据源
+
+通过开发一个对 MySQL 中 users 表的数据做 CURD 的例子来一步步介绍如何在 egg 项目中使用 sequelize
+
+
+
+# 准备工作
+
+在这个例子中，我们会使用 sequelize 连接到 MySQL 数据源，因此在开始编写代码之前，我们需要先在本机上安装好 MySQL，如果是 MacOS，可以通过 homebrew 快速安装：
+
+brew install mysql
+brew service start mysql
+
+
+# 初始化项目
+
+## 通过 egg-init 初始化一个项目:
+
+egg-init --type=simple --dir=sequelize-project
+cd sequelize-project
+npm i
+
+## 安装并配置 egg-sequelize 插件（它会辅助我们将定义好的 Model 对象加载到 app 和 ctx 上）和 mysql2 模块：
+
+
+安装
+```
+npm install --save egg-sequelize mysql2
+```
+
+在 config/plugin.js 中引入 egg-sequelize 插件
+```
+exports.sequelize = {
+  enable: true,
+  package: 'egg-sequelize',
+};
+```
+
+在 config/config.default.js 中编写 sequelize 配置
+```
+config.sequelize = {
+  dialect: 'mysql',
+  host: '127.0.0.1',
+  port: 3306,
+  database: 'egg-sequelize-doc-default',
+};
+```
+完成上面的配置之后，一个使用 sequelize 的项目就初始化完成了。egg-sequelize 和 sequelize 还支持更多的配置项，可以在他们的文档中找到
+
+
+
+# 初始化数据库和 Migrations
+
+接下来我们先暂时离开 egg 项目的代码，设计和初始化一下我们的数据库。首先我们通过 mysql 命令在本地快速创建开发和测试要用到的两个 database：
+
+```
+mysql -u root -e 'CREATE DATABASE IF NOT EXISTS `egg-sequelize-doc-default`;'
+mysql -u root -e 'CREATE DATABASE IF NOT EXISTS `egg-sequelize-doc-unittest`;'
+```
+
+然后我们开始设计 users 表，它有如下的数据结构：
+
+```
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'primary key',
+  `name` varchar(30) DEFAULT NULL COMMENT 'user name',
+  `age` int(11) DEFAULT NULL COMMENT 'user age',
+  `created_at` datetime DEFAULT NULL COMMENT 'created time',
+  `updated_at` datetime DEFAULT NULL COMMENT 'updated time',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='user';
+```
+
+
+
+
+
+
+
+
