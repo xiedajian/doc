@@ -5,8 +5,7 @@ github: https://github.com/eggjs/egg-sequelize
 
 #  egg-sequelize
 
-Sequelize plugin for Egg.js.
-
+nodejs 使用最广泛的 ORM 库 sequelize 的 egg 插件
 
 
 # 安装
@@ -22,7 +21,8 @@ $ npm install --save tedious # MSSQL
 
 # 使用和配置
 
-启用插件 config/plugin.js
+1.启用插件 config/plugin.js
+
 ```
 // config/plugin.js
 exports.sequelize = {
@@ -32,7 +32,7 @@ exports.sequelize = {
 
 ```
 
-编辑您自己的配置 conif/config.{env}.js
+2.编辑您自己的配置 conif/config.{env}.js
 ```
 // conif/config.{env}.js
 exports.sequelize = {
