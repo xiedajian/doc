@@ -33,20 +33,49 @@ exports.sequelize = {
 ```
 
 2.编辑您自己的配置 conif/config.{env}.js
+
+连接单个数据库：
 ```
 // conif/config.{env}.js
 exports.sequelize = {
-  dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
-  database: 'test',
-  host: 'localhost',
-  port: '3306',
-  username: 'root',
-  password: '',
-  // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
-  // baseDir: 'my_model', // load all files in `app/${baseDir}` as models, default to `model`
-  // exclude: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array
-  // more sequelize options
-};
+		delegate: 'model',  // load all models to app.model and ctx.model
+		baseDir: 'model',   // load models from `app/model/*.js`
+		dialect: 'mysql',   // support: mysql, mariadb, postgres, mssql
+		host: '127.0.0.1',
+		port: 3306,
+		database: 'egg_demo',
+		username: 'root',
+		password: 'root',
+	};
+```
+
+连接多个数据库：
+
+```
+	exports.sequelize = {
+		datasources: [
+			{
+				delegate: 'model',  // load all models to app.model and ctx.model
+				baseDir: 'model',   // load models from `app/model/*.js`
+				dialect: 'mysql',   // support: mysql, mariadb, postgres, mssql
+				host: '127.0.0.1',
+				port: 3306,
+				database: 'egg_demo',
+				username: 'root',
+				password: 'root',
+			},
+			{
+				delegate: 'adminModel', // load all models to app.adminModel and ctx.adminModel
+				baseDir: 'admin_model', // load models from `app/admin_model/*.js`
+				dialect: 'mysql',
+				host: '127.0.0.2',
+				port: 3306,
+				database: 'egg_demo',
+				username: 'root',
+				password: 'root',
+			},
+		],
+	}
 ```
 
 egg-sequelize下面有一个默认的sequelize选项
