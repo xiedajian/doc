@@ -42,7 +42,7 @@ npm -v          // 5.6.0
 ## 方法2： 使用apt-get安装
 
 ```
-sudo apte-get update
+sudo apt-get update
 sudo apt-get install -y nodejs
 node -v
 npm -v
