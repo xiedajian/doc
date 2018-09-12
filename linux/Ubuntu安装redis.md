@@ -40,41 +40,6 @@ PONG
 
 
 
-# 检查Redis服务器系统进程
-
-```
-~ ps -aux|grep redis
-redis     4162  0.1  0.0  10676  1420 ?        Ss   23:24   0:00 /usr/bin/redis-server /etc/redis/redis.conf
-conan     4172  0.0  0.0  11064   924 pts/0    S+   23:26   0:00 grep --color=auto redis
-```
-
-# 通过启动命令检查Redis服务器状态
-
-```
-~ netstat -nlt|grep 6379
-tcp        0      0 127.0.0.1:6379          0.0.0.0:*               LISTEN
-```
-
-# 通过启动命令检查Redis服务器状态
-
-```
-~$ sudo /etc/init.d/redis-server status
-● redis-server.service - Advanced key-value store
-   Loaded: loaded (/lib/systemd/system/redis-server.service; enabled; vendor preset: enabled)
-   Active: active (running) since 四 2017-11-09 12:22:09 CST; 59s ago
-     Docs: http://redis.io/documentation,
-           man:redis-server(1)
- Main PID: 5394 (redis-server)
-   CGroup: /system.slice/redis-server.service
-           └─5394 /usr/bin/redis-server 127.0.0.1:6379
-
-11月 09 12:22:09 zzf systemd[1]: Starting Advanced key-value store...
-11月 09 12:22:09 zzf run-parts[5388]: run-parts: executing /etc/redis/redi...le
-11月 09 12:22:09 zzf run-parts[5395]: run-parts: executing /etc/redis/redi...le
-11月 09 12:22:09 zzf systemd[1]: Started Advanced key-value store.
-Hint: Some lines were ellipsized, use -l to show in full.
-```
-
 
 # 通过命令行客户端访问Redis
 
@@ -279,6 +244,8 @@ redis 192.168.1.199:6379> keys *
 远程访问正常。通过上面的操作，我们就把Redis数据库服务器，在Linux Ubuntu中的系统安装完成
 
 
+
+如果是阿里云服务器，还需要在阿里云服务器的 更多-网络和安全组-安全组配置-安全组列表-配置规则-添加安全组规则 中设置  - 入方向 - 允许访问端口 6379/6379,授权对象 0.0.0.0/0
 
 
 
