@@ -1,0 +1,110 @@
+
+
+
+# 1.概要
+随着越来越多的项目采用 Vue, React, Weex 进行业务开发, 在前端构建方面大多数是用webpack进行构建。但存在以下问题：
+
+各个项目都是自己从零编写 Webpack 配置，存在很多定制性的配置，无法复用，大多都是复制拷贝。 
+Webpack 配置项多，繁杂，社区插件有非常多，往往不知道哪个到底可以用，存在什么问题，需要各自摸索。当需要满足开发环境，正式环境，js/css/image压缩，css extract, css module, sass, less, stylus, postcss, babel, cdn，单页面，多页面，热更新, 前端渲染，服务器渲染等特性时，配置非常复杂。在这种情况下，急需一套稳定的 Webpack 配置骨架，简化项目使用难度和维护成本。
+
+最近半年来，基于 Webpack(Vue,Weex) 经过实际项目的不断迭代和大家的建议，在前端渲染，单页面渲染，服务端渲染等方面都进行过实际项目的实践，在此基础上面沉淀出一套建基于 Webpack 通用基础配置且可扩展性强的前端工程化解决方案 easywebpack。
+
+
+# easywebpack
+
+easywebpack 是在 Webpack 上扩展出来的前端项目构建工程化解决方案, 同时支持 Vue，React 服务端端渲染构建，也支持 Weex Nativ 和 Web 构建. 同时内置 Webpack 常用功能和基础插件，支持插件动态安装，功能开启，框架扩展等特性。
+
+
+
+
+# 基础功能
+
+- 支持服务端渲染, 前端渲染, 静态页面渲染三种构建方式
+- 支持单页面, 多页面服务端渲染构建模式
+- 默认支持 dev,test, prod 环境配置
+- 集成 webpack-hot-middleware 热更新实现
+- 支持 entry 原生配置和目录遍历自动构造 entry 功能
+- 支持自动根据后缀名构建 entry 文件，比如 .vue 和 .jsx 文件为入口文件
+- 支持 es6 class 继承方式编写 Webpack 配置
+- 支持 js/css/image 压缩, 内置支持 CDN 特性
+- 支持 css/sass/less/stylus， 支持css module 和 css extract 特性
+- 支持 loader 是否启用，合并，覆盖配置
+- 支持 plugin 是否启用，合并，覆盖配置
+- 支持 loader 和 plugin npm module 是否启用，按需安装
+- 支持 eslint, postcss 等特性
+- 提供 easywebpack-cli 和 webpack-tool 辅助工具。
+
+
+
+# 内置loader
+- babel-loader
+- eslint-loader
+- style-loader
+- css-loader
+- postcss-loader
+- sass-loader
+- less-loader
+- stylus-loader
+- url-loader
+
+
+# 内置plugin
+- extract-text-webpack-plugin
+- npm-install-webpack-plugin
+- webpack.optimize.ModuleConcatenationPlugin
+- webpack.NoEmitOnErrorsPlugin
+- webpack.ProvidePlugin
+- webpack.DefinePlugin
+- webpack.optimize.CommonsChunkPlugin
+- webpack.optimize.UglifyJsPlugin
+- webpack.HotModuleReplacementPlugin
+- progress-bar-webpack-plugin
+- imagemin-webpack-plugin
+- directory-named-webpack-plugin
+- webpack.NormalModuleReplacementPlugin
+- webpack.IgnorePlugin
+- html-webpack-plugin
+
+
+
+# 已有解决方案
+
+基于 easywebpack 基础骨架，目前已扩展 Vue React Weex 三种解决方案，其中 easywebpack-vue 和 easywebpack-react 支持纯前端构建和Node端构建模式，easywebpack-weex 支持 Native 和 Web 构建模式。
+
+- easywebpack-vue
+- easywebpack-react
+- easywebpack-weex
+
+如果你需要基于 easywebpack 扩展其他解决方案也很简单， 只需要继承 easywebpack 的 WebpackClientBuilder(前端渲染构建模式) 和 WebpackServerBuilder(服务端渲染构建模式) 即可, 你只需要把框架相关的扩展进来即可。 
+
+
+
+# 扩展实现
+
+## 前端渲染构建模式
+
+```
+const EasyWebpack = require('easywebpack');
+class WebpackClientBuilder extends EasyWebpack.WebpackClientBuilder {
+constructor(config) {
+super(config);
+// call below api custom client builder
+}
+}
+module.exports = WebpackClientBuilder;
+```
+
+## 服务端渲染构建模式
+```
+const EasyWebpack = require('easywebpack');
+class WebpackServerBuilder extends EasyWebpack.WebpackServerBuilder {
+constructor(config) {
+super(config);
+// call below api custom server builder
+}
+}
+module.exports = WebpackServerBuilder;
+```
+
+
+

@@ -14,6 +14,32 @@ sudo apt-get install redis-server
 ```
 安装完成后，Redis服务器会自动启动，我们检查Redis服务器程序
 
+
+# 启动 Redis
+```
+$ redis-server
+```
+
+# 查看 redis 是否启动？
+
+```
+$ redis-cli
+```
+
+以上命令将打开以下终端：
+```
+redis 127.0.0.1:6379>
+```
+
+127.0.0.1 是本机 IP ，6379 是 redis 服务端口。现在我们输入 PING 命令。
+```
+redis 127.0.0.1:6379> ping
+PONG
+```
+以上说明我们已经成功安装了redis。
+
+
+
 # 检查Redis服务器系统进程
 
 ```

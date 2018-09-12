@@ -1,4 +1,4 @@
-
+文档：https://eggjs.org/zh-cn/core/view.html#locals
 
 
 # ctx.locals
