@@ -30,7 +30,7 @@ Vue默认build路径是项目的dist目录下
     // 生成的单页面的位置
     index: path.resolve(__dirname, '../dist/admin.html'),
 
-    // 页面中引用资源的
+    // 页面中引用的静态资源存放的路口
     assetsRoot: path.resolve(__dirname, '../dist'),
     // 静态资源的放置目录
     assetsSubDirectory: 'admin',

@@ -210,13 +210,13 @@ getNewsList(){
 首先在主入口文件main.js中引用，之后挂在vue的原型链上
 
 import axios from 'axios'
-Vue.prototype.$ajax= axios
+Vue.prototype.$axios= axios
 
 
 在组件中使用
 
 ```
-this.$ajax.get('api/getNewsList').then((response)=>{
+this.$axios.get('api/getNewsList').then((response)=>{
         this.newsList=response.data.data;
       }).catch((response)=>{
         console.log(response);
