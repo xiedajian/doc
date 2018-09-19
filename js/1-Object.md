@@ -2,6 +2,30 @@
 
 # object
 
+hasOwnProperty() // 检查对象是否拥有一个指定名字的本地定义（而不是继承的）的属性
+isPrototypeOf() // 检查当前对象是不是指定对象的原型
+propertyIsEnumerable() // 检查指定名字的属性是否尊在并且可以用for/in循环枚举
+toLocaleString() //返回改对象的一个本地化的字符串表示
+toString()　//返回改对象的一个字符串表示
+valueOf() //返回当前对象的原始值
+Object.create() // 使用指定的原型及属性创建一个新的对象
+Object.defineProperties() // 创建或配置指定对象的一个或多个属性
+Object.defineProperty() // 创建或配置指定对象的某个属性
+Object.freeze() // 将制定对象设置为不可改变
+Object.getOwnPropertyDescriptor() // 查询指定对象的指定属性的特性
+Object.getOwnPropertyNames() // 返回一个包含指定对象的所有非继承属性名的数组，包括不可枚举属性
+Object.getPrototypeOf() // 返回指定对象的原型
+Object.isExtensible() // 检查对象是否能添加到新的属性中
+Object.isFrozen()　//　检查当前对象是否已冻结
+Object.isSealed() // 检查指定对象是否为封闭的
+Object.keys() // 返回一个包含指定对象的所有非继承可枚举属性名的数组
+Object.preventExtensions() // 阻止向指定对象添加新的属性
+Object.seal() // 阻止向指定对象添加新属性
+
+
+
+
+
 
 ### 属性
 length 	//
