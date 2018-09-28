@@ -1,7 +1,63 @@
 
 原文：https://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html
 
-# 基本概念
+
+
+# 1px 边框问题的原因与解决
+
+问题现象： 1px的边框在移动端会很粗
+
+问题出现原因： 手机 dpr 影响，1px的在 dpr2 的手机上实际占的是 2px 的宽度
+
+解决方案：
+  原理：在需要 1px 的元素上定位一个伪类，通过缩放伪类的 border 来达到 1px 的效果
+
+```less
+//  定义不同的 dpi 移动设备上的 1px 边框
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5){
+  .border-1px{
+	position: relative;
+    &::after{
+		display: block;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		border-top: 1px solid #666;
+		content: ' ';
+        -webkit-transform: scaleY(0.7);
+        transform: scaleY(0.7);
+    }
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2){
+  .border-1px{
+	position: relative;
+    &::after{
+		display: block;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		border-top: 1px solid #666;
+		content: ' ';
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+    }
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+# 其他基本概念
 
 ## 视窗 viewport
 
