@@ -29,6 +29,14 @@ Vue SSR现在已经比较成熟了，但是如果是把一个SPA应用改造成S
 
 
 
+# 方案
+
+nuxt.js       # 基于 Vue.js 的服务端渲染应用框架
+
+easywebpack   # 基于 Vue.js 的服务端渲染应用框架
+
+
+
 # 原理解析
 
 ### 第一步：编写entry-client.js和entry-server.js
@@ -155,9 +163,6 @@ server.get('*', (req, res) => {
 ```
 
 
-# easywebpack 快速搭建 vue ssr 架子
-
-详情参考 easywebpack
 
 
 
