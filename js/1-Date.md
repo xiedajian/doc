@@ -1,21 +1,21 @@
 
 
-# Data
+# Date
 
 日期时间对象
 
 用于处理日期和时间
 
 
-## 创建Data对象
+## 创建Date对象
 
 四种方式
 
 ```
- new Data();
- new Data(milliseconds);		
- new Data(dateString);		
- new Data(year,month,day,hours,minutes,seconds,milliseconds);		
+ new Date();
+ new Date(milliseconds);		
+ new Date(dateString);		
+ new Date(year,month,day,hours,minutes,seconds,milliseconds);		
 ```
 
 
@@ -72,12 +72,12 @@ getUTCMonth()
 getUTCSeconds()
 
 
-例如
+例如:
 ```
-var now = new Data();
+var now = new Date();
 now.getFullYear()	// => 年 ，2018
 now.getMonth()		// => 月 （0 -11）
-now.getData()		// => 日
+now.getDate()		// => 日
 now.getHours()		// => 当地时间
 now.getUTCHours()	// => 使用UTC表示小时的时间，基于时区
 ```
