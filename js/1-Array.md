@@ -82,7 +82,7 @@ for (x in arr){
 }
 ```
 ```
-arr.forEach(function(v,i){
+arr.forEach(function(v,i,array){
 	console.log('key:' + i);
 	console.log('value:' + v);
 });
@@ -184,3 +184,29 @@ Array.from() 方法有一个可选参数 mapFn，让你可以在最后生成的�
 	// [[1, 2], [2, 4], [4, 8]]
 
 ```
+
+
+
+# 数组的值传递与引用传递、
+
+``` 
+var a = [1,2,3];
+var b = a;
+a = [4,5,6];
+alert(b);  //[1,2,3]
+```
+
+```
+var a = [1,2,3];
+var b = a;
+a.pop();
+alert(b);  //[1,2]
+```
+
+a = [4,5,6];  //改变的是a引用本身，没有改变数组对象
+
+a.pop();//改变的是数组对象，a引用没有改变。
+
+b = a;//该操作后，b直接指向数组对象，不是b指向a，a再指向数组。
+
+//所以改变a引用并不会对b引用造成影响，改变数组对象可以。
