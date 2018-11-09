@@ -129,21 +129,56 @@ console.log(Object.entries(simuArray)); // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] 
 
 
 
-### 遍历
-1. for .. in
+# 遍历
+
+1. 使用for..in..遍历, 循环遍历对象自身的和继承的可枚举属性(不含Symbol属性).
 ```
 var person={fname:"Bill",lname:"Gates",age:56};
 
-for (x in person)
+for (var key in person)
   {
-  txt=txt + person[x];
+	  console.log(key);
+	  console.log(person[key]);
   }
 
 ```
 
+2. 使用Object.keys()遍历, 返回一个数组, 包括对象自身的(不含继承的)所有可枚举属性(不含Symbol属性)
+```
+
+var obj = {'0':'a','1':'b','2':'c'};
+
+Object.keys(obj).forEach(function(key){
+
+     console.log(key,obj[key]);
+
+});
+```
+
+3. 使用Object.getOwnPropertyNames(obj)遍历, 返回一个数组,包含对象自身的所有属性(不含Symbol属性,但是包括不可枚举属性).
+```
+var obj = {'0':'a','1':'b','2':'c'};
+Object.getOwnPropertyNames(obj).forEach(function(key){
+
+    console.log(key,obj[key]);
+
+});
+```
+
+4. 使用 Reflect.ownKeys(obj) 遍历, 返回一个数组,包含对象自身的所有属性,不管属性名是Symbol或字符串,也不管是否可枚举.  
+```
+var obj = {'0':'a','1':'b','2':'c'};
+Reflect.ownKeys(obj).forEach(function(key){
+
+console.log(key,obj[key]);
+
+});
+```
 
 
-###  实现对象继承
+
+
+#  实现对象继承
 /**
  * 拓展对象
  * newconfig = extend({},defaultConfig,myconfig)

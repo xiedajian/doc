@@ -1,6 +1,7 @@
 
 
-### 常用属性
+
+# 常用属性
 ```
 len = arr.length;    //数组的长度（元素个数）
 
@@ -8,7 +9,7 @@ prototype               // prototype 属性使您有能力向对象添加属性�
 ```
 
 
-### 新建数组
+# 新建数组
 var arr = new Array();
 var arr = [];
 arr['key'] = value;
@@ -34,7 +35,7 @@ if (!Array.isArray) {
 
 
 
-### 数组合并
+# 数组合并
 newArr= arr1.concat(arr2, arr3...)     //  数组1合并数组2、3... 返回新的数组
 
 // 参数也可以是具体的值
@@ -43,7 +44,7 @@ document.write(a.concat(4,5));
 
 
 
-### 数组分割  （pop ，shift，splice，slice  ）
+# 数组分割  （pop ，shift，splice，slice  ）
 
 1. lastDeleEle = arr.pop()     //删除数组最后一项（改变原数组），并返回移除的项
 
@@ -59,73 +60,13 @@ deleItemsArr = arr.splice (startIndex, deletecount, newItem1,newItem2...)
 ```
 	
 
-### 数组添加元素  （push，unshift，splice ）
+# 数组添加元素  （push，unshift，splice ）
 ```
 newLength = arr.push(ele1, ele2...)   //将新的元素ele添加到数组末尾 ，返回新的长度
 
 newLength = arr.unshift(ele1, ele2...)   //将新的元素ele添加到数组开头 ，返回新的长度
 
 deleItemsArr = arr.splice (startIndex, deletecount, newItem1,newItem2...)      // 改变原数组，数组从startIndex索引开始删除deletecount数量的元素，并在startIndex索引位置添加新的元素，然后返回被删除的项目数组。
-```
-
-
-
-### 遍历
-```
-for(var i=0;i<arr.length;i++){
- console.log(arr[i]);
-}
-```
-```
-for (x in arr){
-    console.log(arr[x]);
-}
-```
-```
-arr.forEach(function(v,i,array){
-	console.log('key:' + i);
-	console.log('value:' + v);
-});
-```
-```
-// ES6 for of
-var arr=[1,2,3,4,5,6];
-for(var value of Arr){
-    console.log(value);
-} 
-```
-```
-// map
-var newArray = arr.map(function(item){
-	return item;
-});
-```
-```
-// filter
-var newArray = arr.filter(function(item){
-
-		if(typeof item == 'number'){
-			return item
-		}
-	});
-
-```
-
-// every 遍历数组的每一项，都返回true，才为true
-```
-var bool = arr.every(function(ele){
-	if(typeof ele == 'string'){
-	return true;
-	}
-})
-```
-// some()  只要数组中有一项返回true，就位true
-```
-var bool = arr.some(function(ele){
-		if(typeof ele == 'string'){
-			return true
-		}
-	});
 ```
 
 
@@ -160,7 +101,7 @@ str = Arr.toLocaleString()    //把数组转换为本地字符串，并返回结
 ```
 
 
-### Array.from 
+## Array.from 
 
 从一个类似数组或可迭代对象中创建一个新的数组实例。
 
@@ -184,6 +125,82 @@ Array.from() 方法有一个可选参数 mapFn，让你可以在最后生成的�
 	// [[1, 2], [2, 4], [4, 8]]
 
 ```
+
+
+
+
+
+# 遍历
+
+1、使用 for() 遍历
+```
+for(var i=0;i<arr.length;i++){
+ console.log(arr[i]);
+}
+```
+
+2、使用forEach遍历
+```
+arr.forEach(function(v,i,array){
+	console.log('key:' + i);
+	console.log('value:' + v);
+});
+```
+
+3、使用for..in..遍历
+```
+for (var x in arr){
+    console.log(arr[x]);
+}
+```
+
+4、使用for-of遍历
+```
+// ES6 for of
+var arr=[1,2,3,4,5,6];
+for(var value of Arr){
+    console.log(value);
+} 
+```
+
+5、使用 map 遍历
+```
+// map
+var newArray = arr.map(function(item){
+	return item;
+});
+```
+
+6、使用 filter 过滤遍历
+```
+// filter
+var newArray = arr.filter(function(item){
+
+		if(typeof item == 'number'){
+			return item
+		}
+	});
+
+```
+
+7、 every 遍历数组的每一项，都返回true，才为true
+```
+var bool = arr.every(function(ele){
+	if(typeof ele == 'string'){
+	return true;
+	}
+})
+```
+
+8、 some()  只要数组中有一项返回true，就位true
+```
+var bool = arr.some(function(ele){
+		if(typeof ele == 'string'){
+			return true
+		}
+	});
+```
+
 
 
 
