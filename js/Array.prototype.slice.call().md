@@ -3,8 +3,11 @@
 在很多时候经常看到Array.prototype.slice.call()方法，比如Array.prototype.slice.call(arguments)，下面讲一下其原理：
 
 ### 1、基本讲解
+### 
 1.在JS里Array是一个类 slice是此类里的一个方法 ，那么使用此方法应该Array.prototype.slice这么去用 
+
 slice从字面上的意思很容易理解就是截取（当然你不是英肓的话） 这方法如何使用呢? 
+
 arrayObj.slice(start, [end]) 很显然是截取数组的一部分。
 
 2.我们再看call
