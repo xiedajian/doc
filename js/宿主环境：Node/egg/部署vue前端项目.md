@@ -13,9 +13,10 @@ vue 使用 npm run build 把生成的dist文件夹（不要上传文件夹）里
 
 *上传以后 程序出现错误不能运行的原因99.99%的可能性是你引用资源的路径有问题*
 
+
 ## 问题的原因：
 
-一般如果vue框架的程序上传到网站服务器的根目录下是不 会有问题的，也不存在资源文件引用错误的情况。
+一般如果vue框架的程序上传到网站服务器的根目录下是不会有问题的，也不存在资源文件引用错误的情况。
 
 但如果你不是根目录，就会有问题，通过vue-cli 生成的开发目录，build以后默认引用资源文件的路径是:
 
@@ -78,3 +79,32 @@ export default new Router({
 
 因为在history 模式下，只是动态的通过js 操作window.history 来改变有浏览器地址栏里的路径，并没有发起http请求，但当你直接 在浏览器里输入这个地址的时候 就一定要先对服务器放起http请求，但是这个目标在服务器上又不存在所以就返回了404了，怎么解决呢，就是把所有的请求全部转发到http://www.xxx.com/hot/index.hmtl上就可以了　
 
+
+
+
+# 使用 vue 前后端分离测试
+
+1.修改vue项目的 config/index.js 的 build 打包时以下配置
+
+如我们想改为入口文件生成在 app/view/admin.html, 静态资源放在 app/public/ , 引用资源时 /public/demo.png可参考
+
+```
+  build: {
+    // Template for index.html
+    // index: path.resolve(__dirname, '../dist/index.html'),
+
+    // Paths
+    // assetsRoot: path.resolve(__dirname, '../dist'),
+    // assetsSubDirectory: 'static',
+    // assetsPublicPath: '/',
+
+    /**
+     * 在 egg 框架中，修改为下面配置
+     */
+    index: path.resolve(__dirname, '../dist/admin.html'),
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'admin',
+    assetsPublicPath: '/public/',
+```
+
+如果不想分成两个项目做开发的话，可以合并 vue 和 egg 的开发目录，可以自己合并开发结构，也可以使用wasywebpack搭建好的架子

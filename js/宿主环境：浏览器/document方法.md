@@ -36,3 +36,4 @@ document.querySelector() //获取css选择器选中的元素
 document.querySelectorAll() //获取css选择器选中的多个元素
 document.write() //将参数追加到文档中
 document.writeln() //将参数输出文档中添加换行
+
