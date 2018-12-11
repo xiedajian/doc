@@ -1,6 +1,6 @@
 
-
-
+参考： http://www.ha97.com/4197.html
+参考： https://www.cnblogs.com/tangchuanyang/p/6015107.html
 
 MySQL数据库有多种存储引擎：
 
