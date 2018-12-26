@@ -2,6 +2,7 @@
 
 参考文档： https://www.86886.wang/detail/5b8e6081f03d630ba8725892
 
+[官方文档](https://ssr.vuejs.org/zh/)
 
 # vue 服务端渲染
 
