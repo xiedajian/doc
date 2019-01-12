@@ -50,7 +50,7 @@ npm help install				# 例如输入npm help install
 ```
 $ npm install npm -g
 
-$ npm install npm@latest -g 
+$ npm install npm@latest -g 			# 安装最新版本
 ```
 
 4. npm 清理缓存
