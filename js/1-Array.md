@@ -1,22 +1,56 @@
 
+# 数组对象 Array 
 
-
-# 常用属性
-```
-len = arr.length;    //数组的长度（元素个数）
-
-prototype               // prototype 属性使您有能力向对象添加属性和方法。
-```
+Array 对象用于在单个的变量中存储多个值。
 
 
 # 新建数组
-var arr = new Array();
-var arr = [];
-arr['key'] = value;
+
+方式1：使用 Array 构造函数：
+
+var array = new Array(值1,值2,值3);      //直接实例化
+
+var array = new Array(size);           //创建数组并指定长度
+
+
+方式2：使用数组字面量表示法隐式创建：
+
+var arr4 = []; //创建一个空数组
+var arr5 = [20]; // 创建一个包含1项的数组
+var arr6 = ["lily","lucy","Tom"]; // 创建一个包含3个字符串的数组
+
+
+
+# Array 对象属性
+
+constructor
+length
+prototype
+
+
+
+## length 属性
+
+length 属性可设置或返回数组中元素的数目。
+
+```
+arrayObject.length
+
+```
+
+> 注意：arrayObject.length 并不能可靠的返回数组中元素的真实个数。length 返回的是最大的整数下标+1 ，如果key不是数字~返回就是0了~
+
+数组的 length 属性总是比数组中定义的最后一个元素的下标大 1。对于那些具有连续元素，而且以元素 0 开始的常规数组而言，属性 length 声明了数组中的元素的个数。
+
+数组的 length 属性在用构造函数 Array() 创建数组时被初始化。给数组添加新元素时，如果必要，将更新 length 的值。
+
+设置 length 属性可改变数组的大小。如果设置的值比其当前值小，数组将被截断，其尾部的元素将丢失。如果设置的值比它的当前值大，数组将增大，新的元素被添加到数组的尾部，它们的值为 undefined。
+
 
 
 ### 是否为数组
-1. typeof $arr
+
+1. typeof $arr		// Object
 
 2. $arr instanceof Array
 
