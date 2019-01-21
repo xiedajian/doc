@@ -58,3 +58,10 @@ moment().add('hours',9).format('HH:mm:ss');
 
 
 
+## 时间戳
+
+获取当前时间戳
+```
+ moment().unix()      时间戳秒：1547262401
+ moment().valueOf()   时间戳毫秒：1547262424465
+```
