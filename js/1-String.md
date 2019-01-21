@@ -77,12 +77,15 @@ str.replace(regexp/substr,replacement)
 
 
 
+# 字符串分割
 
 ###  slice() 
 提取字符串的某个部分，返回被提取的部分
 
 stringObject.slice(startIndex [,endIndex])
 
+（1）截取字符串不包括 endIndex 的元素
+（2）endIndex 是可选参数，没有时默认截取到结束
 ```
 var str = 'hello happy world';
 var newStr = str.slice(6)		// happy world!
