@@ -107,7 +107,7 @@ nowrap|wrap|wrap-reverse|initial|inherit
 flex-start | flex-end | center | space-between | space-around
 - flex-start		弹性项目向行头紧挨着填充,默认值
 - flex-end			弹性项目向行尾紧挨着填充
-- flex-center		弹性项目居中紧挨着填充。（如果剩余的自由空间是负的，则弹性项目将在两个方向上同时溢出)
+flex-center		弹性项目居中紧挨着填充。（如果剩余的自由空间是负的，则弹性项目将在两个方向上同时溢出)
 - space-between		弹性项目平均分布在该行上
 - space-around		弹性项目平均分布在该行上，两边留有一半的间隔空间
 
