@@ -67,3 +67,28 @@ mysql -u root -p
 
 
 
+# navicat for mysql 远程连接数据库时出错记录
+
+## 报错：2003 - cant connect ro mysql server on  'x.x.x.x' 
+
+解决方法如下:
+
+本文远程连接的ubuntu下的数据库,原因是ubuntu系统的mysql不允许被远程连接操作
+
+因此需要修改mysql配置文件
+
+步骤:(1)cd /etc/mysql
+
+(2)vim my.cnf
+
+(3)将bind-address  = 127.0.0.1修改为bind-address = 0.0.0.0
+
+(4)保存退出
+
+(5)/etc/init.d/mysql restart  (一定要重启数据库,不然没用)
+
+ok,此时就可以远程连接此数据库了
+
+## 1130 - Host 'x.x.x.x' is not allowed to connect to this MySQL server
+
+解决办法参考：https://blog.csdn.net/h985161183/article/details/82218710
