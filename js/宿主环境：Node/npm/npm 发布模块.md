@@ -36,7 +36,7 @@ module.exports = require('./isArr.js');
 module.exports = require('./lib');
 ```
 
-到这里，目录结构就变成了这个样子：
+到这里，目录结构就变成了这个样子：（大部分的包都是这样的结构）
 ```
 |-lib
 |	|-index.js
