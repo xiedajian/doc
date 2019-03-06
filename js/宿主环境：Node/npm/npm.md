@@ -192,7 +192,7 @@ npm --registry https://registry.npm.taobao.org install node-red-contrib-composer
 
 全局配置切换到官方源
 ```
- npm config set registry http://www.npmjs.org
+ npm config set registry https://registry.npmjs.org
 ```
 
 检测是否切换到了淘宝源
