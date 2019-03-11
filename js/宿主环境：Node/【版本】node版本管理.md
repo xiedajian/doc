@@ -37,22 +37,21 @@ Node.js 发布了很多版本，使用一个版本管理器（NVM、nodist、n�
 安装工具n ，这个工具是专门用来管理node.js版本的:
 ```
 $ sudo npm install -g n
-/usr/local/bin/n -> /usr/local/lib/node_modules/n/bin/n
-+ n@2.1.8
-added 1 package from 4 contributors in 1.776s
 ```
 
 
 安装最新版本的node.js:
 ```
-$ sudo n stable
-     install : node-v9.8.0
-       mkdir : /usr/local/n/versions/node/9.8.0
-       fetch : https://nodejs.org/dist/v9.8.0/node-v9.8.0-darwin-x64.tar.gz
-######################################################################## 100.0%
-   installed : v9.8.0
-```
+$ sudo n stable		//升级为最新稳定版本的node.js
+$ sudo n latest		//升级为最新版本的node.js
 
+```
+安装特定版本
+```
+ 安装版本号(示例)：n x.x.x 
+ 选择版本号(实例)：n 8.7.0
+ 选择版本号：n
+```
 
 再次查看node.js版本:
 ```
