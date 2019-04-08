@@ -103,6 +103,28 @@ newLength = arr.unshift(ele1, ele2...)   //将新的元素ele添加到数组开�
 deleItemsArr = arr.splice (startIndex, deletecount, newItem1,newItem2...)      // 改变原数组，数组从startIndex索引开始删除deletecount数量的元素，并在startIndex索引位置添加新的元素，然后返回被删除的项目数组。
 ```
 
+# js中判断数组中是否包含某元素的方法
+
+## indexOf
+
+arr.indexOf(某元素)：未找到则返回 -1,找到了返回元素的索引坐标。
+
+实际用法：if(arr.indexOf(某元素) > -1){//则包含该元素}
+
+
+##  includes() 方法
+
+includes() 方法用来判断一个数组是否包含一个指定的值，如果是返回 true，否则false。
+
+```
+arr.includes(searchElement)
+arr.includes(searchElement, fromIndex)				// fromIndex可选。从该索引处开始查找
+```
+
+```
+['runoob', 'google', 'taobao'].includes('runoob'); 		// true 
+['runoob', 'google', 'taobao'].includes('baidu'); 		// false 
+```
 
 
 ### 数组排序

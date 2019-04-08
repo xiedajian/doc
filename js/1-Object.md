@@ -68,8 +68,6 @@ var bool = obj.hasOwnProperty('name')
 判断两个值是否相同。
 
 
-
-
 ### Object.keys(obj)
 返回一个对象的key组成的数组
 
@@ -98,6 +96,7 @@ var obj = { 0: 'a', 1: 'b', 2: 'c' };
 console.log(Object.values(obj)); // ['a', 'b', 'c']
 ```
 
+
 ### Object.entries()
 返回一个对象的[key,value]组成的数组
 ```
@@ -109,22 +108,51 @@ console.log(Object.entries(simuArray)); // [ ['0', 'a'], ['1', 'b'], ['2', 'c'] 
 
 ```
 
+
 ### Object.assign()
 
 用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+注意：目标对象自身也会改变。
+注意：拷贝的是属性值，并不是深拷贝，注意对象引用的问题
 
 ```
-  const object1 = {
-    a: 1,
-    b: 2,
-    c: 3
-  };
+const target = { a: 1, b: 2 };	//目标对象。
+const source = { b: 4, c: 5 };	//源对象
 
-  const object2 = Object.assign({c: 4, d: 5}, object1);
+//如果目标对象中的属性具有相同的键，则属性将被源对象中的属性覆盖。后面的源对象的属性将类似地覆盖前面的源对象的属性。
+const returnedTarget = Object.assign(target, source);
 
-  console.log(object2.c, object2.d);
-  // expected output: 3 5
+console.log(target);
+// expected output: Object { a: 1, b: 4, c: 5 }
 
+console.log(returnedTarget);
+// expected output: Object { a: 1, b: 4, c: 5 }
+
+```
+
+[Object.assign](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+
+
+#  实现对象继承
+
+```
+/**
+ * 拓展对象
+ * newconfig = extend({},defaultConfig,myconfig)
+ */
+ function extend(target) {
+  var sources = Array.prototype.slice.call(arguments, 1);
+
+  for (var i = 0; i < sources.length; i += 1) {
+    var source = sources[i];
+    for (var key in source) {
+      if (source.hasOwnProperty(key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+  return target;
+};
 ```
 
 
@@ -175,25 +203,3 @@ console.log(key,obj[key]);
 });
 ```
 
-
-
-
-#  实现对象继承
-/**
- * 拓展对象
- * newconfig = extend({},defaultConfig,myconfig)
- */
-
- function extend(target) {
-  var sources = Array.prototype.slice.call(arguments, 1);
-
-  for (var i = 0; i < sources.length; i += 1) {
-    var source = sources[i];
-    for (var key in source) {
-      if (source.hasOwnProperty(key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-  return target;
-};
