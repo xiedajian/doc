@@ -15,6 +15,7 @@
 
 # video.js
 
+video.js是一款很流行的html5视频播放插件。很适合在移动端播放视频(比如微信网页)，功能强大，且支持降级到flash,兼容ie8。
 Video.js是一款web视频播放器,支持html5和flash两种播放方式。支持在桌面和移动设备上的视频播放
 Video.js 自动检测浏览器对 HTML5 的支持情况，如果不支持 HTML5 则自动使用 Flash 播放器。
 
@@ -66,7 +67,7 @@ import 'video.js/dist/video-js.css'
 ```
 我们可以使用data-setup属性来设置video的一些额外的option选项，通常是JSON格式，如：
 ```
-<video data-setup='{"controls": true, "autoplay": false, "preload": "auto"}'...>
+<video normalize...>
 ```
 如果你不想使用auto-setup，你可以暂时不用设置 data-setup属性，然后手动初始化一个视频元素。
 

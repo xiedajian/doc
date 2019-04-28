@@ -26,3 +26,9 @@ Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分�
 
 
 
+# 配置用户名
+
+```
+$ git config --global user.name 'xiedajian'
+$ git config --global user.email '172265972@qq.com'
+```
