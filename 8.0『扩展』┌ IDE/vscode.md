@@ -45,8 +45,8 @@ ctrl+Shift+F 文件夹查找
 ctrl+Enter 下方插入一行
 ctrl+Shift+enter  上方插入一行
 Alt+Shift+F	 格式化代码
-
-
+Shift+alt+↓ 复制当前行
+ctrl+shift+k 删除当前行
 
 # 主命令框
 
@@ -55,6 +55,11 @@ F1或 Ctrl+Shift+P: 打开命令面板。在打开的输入框内，可以输入
 
 
 # 扩展插件
+
+- Settings Sync
+同步vscode的配置，插件到github
+Setting Sync 可同步包含的所有扩展和完整的用户文件夹
+[使用教程](http://www.imooc.com/article/251855)
 
 - CSS Peek
 html与css关联，可以鼠标浮到html上显示关联的css，方便调试
