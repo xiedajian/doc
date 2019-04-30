@@ -1,4 +1,5 @@
-
+[github](https://github.com/julianshapiro/velocity)
+官网： http://velocityjs.org/
 
 # velocity
 
@@ -12,13 +13,15 @@ Velocity 不仅包含了 $.animate() 的全部功能， 还拥有：颜色动画
 
 它支持所有现代浏览器，最低可兼容到 IE8 和 Android 2.3。
 
+cdn:  
+```
+<script src="https://cdn.bootcss.com/velocity/2.0.4/velocity.min.js"></script>
+```
 
-官网： http://velocityjs.org/
-
-cdn:  <script src="https://cdn.bootcss.com/velocity/2.0.4/velocity.min.js"></script>
-
-
-
+npm
+```
+npm install velocity-animate@beta
+```
 
 ## 使用
 
