@@ -1,17 +1,22 @@
 
+[github](https://github.com/necolas/normalize.css)
 
 
 # Normalize.css
 
 为了增强跨浏览器表现的一致性，我们使用了 Normalize.css
 
+它有什么作用？
+与许多CSS重置不同，保留有用的默认值。
+规范化各种元素的样式。
+更正了错误和常见的浏览器不一致性。
+通过微妙的修改提高可用性。
+使用详细注释说明代码的作用。
+
+npm
 ```
 npm install normalize.css
 ```
-
-或者
-
-下载地址： http://necolas.github.io/normalize.css/
 
 
 # 内容
