@@ -5,6 +5,13 @@
 ## mock.js
 
 
+## Easy Mock
+
+Easy Mock就是一个在线创建mock的服务平台，帮你省去你 配置、安装、起服务、维护、多人协作Mock数据不互通等一系列繁琐的操作
+
+Easy Mock 引入了 Mock.js
+
+
 ## RAP
 
 阿里妈妈 开源的mock工具
