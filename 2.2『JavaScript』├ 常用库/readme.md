@@ -1,74 +1,195 @@
 
 
-# 此目录记录的常用的 js 库
+# 前端开源插件
 
-只能在 node 端使用的请看 node 下的库
+不要重复造轮子
 
 
 
-# BootCDN
+# CDN
+
+BootCDN
 稳定、快速、免费的前端开源项目 CDN 加速服务
 http://www.bootcdn.cn/
 
 
-# 百度静态资源公共库
+百度静态资源公共库
 http://cdn.code.baidu.com/
 
 
 
+# 函数库
 
-## artTemplate
+Lodash（推荐）：[Lodash](https://github.com/lodash/lodash)
+
+Moment.js：最常用的处理日期和时间的 JavaScript 类库。
+
+
+
+# 动画库
+
+Animate.css
+CSS3 动画库，也是目前最通用的动画库。
+
+Anime.js：
+一个强大的、轻量级的用来制作动画的javascript库
+
+Hover.css：
+CSS hover 悬停效果，可以应用于链接、按钮、图片等等。
+
+Waves：
+点击波纹效果
+
+Velocity.js：
+一个功能齐全的 JavaScript 动画套件，包括诸如淡入淡出、滚动、滚动、停止、结束、翻转等动画效果
+
+parallax.js
+视差引擎
+视差滚动（Parallax Scrolling）通过在网页向下滚动的时候，控制背景的移动速度比前景的移动速度慢来创建出令人惊叹的3D效果。
+
+
+
+# 滚动库
+
+iscroll - 平滑滚动插件： GitHub:https://github.com/cubiq/iscroll/
+			插件是兼容所有移动端滚动条事件的插件，在一些安卓机中，我们没法通过overflo:scroll操作滚动条；但IScroll.js确可以放在安全的容器元素中处理滚动 
+
+BetterScroll：iscroll 的优化版，使移动端滑动体验更加流畅
+
+mescroll：移动端上拉刷新下拉加载
+
+
+# 轮播图
+
+Swiper：最常用的轮播库
+
+iSlider：移动端滑动组件
+
+# 全屏滚动
+
+fullPage.js： 全屏滚动插件，企业站点常用的效果，分几个全屏的内容
+
+
+# 弹出框
+
+layer：[弹窗](http://layer.layui.com/)
+
+Bootbox.js：bootboxjs.com/
+
+
+# 消息通知
+
+Notyf：简单的响应式纯js消息通知插件
+
+PNotify：页面右上角的提示信息（非弹框提示）
+
+
+# 下拉框
+
+select2：select2.org/
+
+
+# 级联选择器
+
+ustbhuangyi/picker： 移动端最好用的的筛选器组件 [picker](https://github.com/ustbhuangyi/picker)
+
+
+# 颜色选择器
+
+Bootstrap Colorpicker 2：[](https://github.com/farbelous/bootstrap-colorpicker)
+
+
+# 时间选择器
+
+layDate：www.layui.com/laydate/
+
+
+# 富文本编辑器
+
+wangEditor：www.wangeditor.com/
+
+
+# Markdown 编辑器
+
+Editor.md：[Editor.md](https://pandao.github.io/editor.md/)
+
+
+# 树插件
+
+www.treejs.cn
+
+
+# 图片懒加载
+
+lazyload：[](https://github.com/tuupola/lazyload)
+
+
+# 瀑布流
+
+Masonry是最流行的瀑布流插件之一,配置简单,功能强大
+GitHub:https://github.com/desandro/masonry
+
+
+# 相册展示（图片滑动切换展示效果）
+
+移动端和PC：PhotoSwipe：[](https://github.com/dimsemenov/PhotoSwipe)
+
+
+# 导航插件
+
+[okayNav](https://github.com/VPenkov/okayNav)   当窗口宽度变小到无法容纳菜单时，它就会把“多余”的菜单变成“三个点”的图标，
+
+
+# 视频播放器
+
+Chimee：chimee.org/    组件化H5播放器框架
+
+flv.js：Bilibili开源纯JavaScript编写的FLV播放器
+
+Video.js：开源、免费的HTML5和Flash视频播放器
+
+
+# 复制粘贴插件
+
+clipboard.js：https://github.com/zenorocha/clipboard.js/
+
+
+# 二维码插件
+
+qrcodejs：https://github.com/davidshimjs/qrcodejs)
+条形码 ： barcode
+
+
+# 拖拽
+
+sortable.js 
+
+
+# 代码高亮
+
+[github](https://github.com/isagalaev/highlight.js)
+Highlight.js 是一个用 JavaScript 写的代码高亮插件，在客户端和服务端都能工作
+
+
+# PDF阅读器
+
+[pdf.js](https://github.com/mozilla/pdf.js)
+
+
+# 模板引擎
 
 art-template 是一个简约、超快的模板引擎。
-
 并且同时支持 NodeJS 和浏览器
 
 
 
+## 数据 Mock
 
-## clipboard.min.js
+Mockjs：mockjs.com
 
-将文本复制到剪贴板
-
-ZeroClipboard.js 利用透明的 flash 将文本复制到剪贴板,技术已逐渐被淘汰
-
-Clipboard.js 是将文本复制到剪贴板的现代方法，没有Flash。没有框架。只需3kb
-
-
-
-## layer.js
-
-web弹窗组件，mobile弹窗组件  
-
-地址：  http://layer.layui.com/
-
-
-
-## lodash
-
-Lodash 是一个一致性、模块化、高性能的 JavaScript 实用工具库。
-
-
-## mock.js
-
-前端开发 mock 数据插件
-
-其他mock工具
+Easy Mock：[](https://github.com/easy-mock/easy-mock)
 
 阿里妈妈：RAP
-
-
-## parallax.js
-
-视差引擎
-
-视差滚动（Parallax Scrolling）通过在网页向下滚动的时候，控制背景的移动速度比前景的移动速度慢来创建出令人惊叹的3D效果。
-
-
-## sortable.js 
-
-拖动库	（不依赖jq）
-
 
 
 
@@ -77,37 +198,10 @@ Lodash 是一个一致性、模块化、高性能的 JavaScript 实用工具库�
 手机 uc 和 qq 浏览器分享到微信的插件
 
 
-# Velocity JS
-
-
-Velocity 是一个简单易用、高性能、功能丰富的轻量级JS动画库。
-
-它能和 jQuery 完美协作，并和$.animate()有相同的 API， 但它不依赖 jQuery，可单独使用。
-
-它比 $.animate() 更快更流畅，性能甚至高于 CSS3 animation， 是 jQuery 和 CSS3 transition 的最佳组合
-
-它支持所有现代浏览器，最低可兼容到 IE8 和 Android 2.3。
-
-npm install velocity-animate
-
-
-
-# highlight
-
-[github](https://github.com/isagalaev/highlight.js)
-Highlight.js 是一个用 JavaScript 写的代码高亮插件，在客户端和服务端都能工作
-
-
 # reveal.js
 
 GitHub:https://github.com/hakimel/reveal.js
 一个用来做WEB演示文稿的框架
-
-
-# Masonry
-
-Masonry是最流行的瀑布流插件之一,配置简单,功能强大
-GitHub:https://github.com/desandro/masonry
 
 
 # UglifyJs
@@ -115,21 +209,3 @@ GitHub:https://github.com/desandro/masonry
 一个js 解释器、最小化器、压缩器、美化器工具集,是目前最流行的JS压缩工具，JQuery 就是使用此工具压缩，
 GitHub:https://github.com/mishoo/UglifyJS2
 
-
-# iScroll.js
-
-IScroll是移动页面上被使用的一款仿系统滚动插件。
-GitHub:https://github.com/cubiq/iscroll/
-IScroll.js插件是兼容所有移动端滚动条事件的插件，在一些安卓机中，我们没法通过overflo:scroll操作滚动条；
-但IScroll.js确可以放在安全的容器元素中处理滚动  
-
-
-# BetterScroll
-
-移动端滚动插件,支持下拉刷新，上拉刷新，轮播图，slider等功能
-GitHub:https://github.com/ustbhuangyi/better-scroll
-BetterScroll 是一款重点解决移动端各种滚动场景需求的开源插件（GitHub地址），适用于滚动列表、选择器、轮播图、索引列表、开屏引导等应用场景。 
-
-为了满足这些场景，它不仅支持惯性滚动、边界回弹、滚动条淡入淡出等效果的灵活配置，让滚动更加流畅，同时还提供了很多 API 方法和事件，以便我们更快地实现滚动场景下的需求，如下拉刷新、上拉加载。
-
- 由于它基于原生 JavaScript 实现，不依赖任何框架，所以既可以原生 JavaScript 引用，也可以与目前前端 MVVM 框架结合使用，比如，其官网上的示例就是与 Vue 的结合。  
