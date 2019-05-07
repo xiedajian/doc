@@ -80,8 +80,8 @@ sticky属性有以下几个特点：
 
 ```
 
-传统js的方式通过监听scroll方式
 
+传统js的方式通过监听scroll方式
 ```
 <script>
    $(function () {
