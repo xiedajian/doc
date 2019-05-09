@@ -1,4 +1,15 @@
 
+
+
+# float
+
+Float浮动用于设置对象靠左与靠右浮动样式
+
+float : none | left |right
+
+
+
+
 # 清除浮动的方法总结
 
 
@@ -6,7 +17,6 @@
 父级div定义 伪类:after 和 zoom
 
 ```
-
 .clearfix:after {
     display: block;
     content: ".";
