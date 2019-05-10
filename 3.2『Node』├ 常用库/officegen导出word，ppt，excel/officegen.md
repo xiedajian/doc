@@ -184,3 +184,75 @@ docx.generate(out)
 ```
 
 [完整的生成word的API](https://github.com/Ziv-Barber/officegen/blob/master/manual/README-docx.md)
+
+
+# officegen 生成 word 时的缺陷
+
+可以生成word，可以插入图片，可以插入表格，但是表格单元格中插入图片无法实现
+
+解决方法：在officegen 基础上的扩展库：officegen-complex-table
+ 
+ 
+ 
+ # officegen-complex-table
+
+在officegen 基础上的扩展库，可以实现在word中表格内插入图片
+```
+npm install officegen-complex-table
+```
+
+核心代码：
+```
+const officegen = require('officegen-complex-table')
+let docx = officegen('docx')
+
+  var table = [
+            [
+                {
+                    "val": "编号",
+                    "opts": {
+                        "align": "center",
+                        "vAlign": "center",
+                        "cellColWidth": 4261,
+                        "b": true,
+                        "sz": "24",
+                        "shd": {
+                            "fill": "7F7F7F",
+                            "themeFill": "text1",
+                            "themeFillTint": "80"
+                        },
+                        "fontFamily": "Avenir Book"
+                    }
+                },
+                {
+                    "val": "截图",
+                    "opts": {
+                        "align": "center",
+                        "vAlign": "center",
+                        "cellColWidth": 42,
+                        "b": true,
+                        "sz": "24",
+                        "shd": {
+                            "fill": "92CDDC",
+                            "themeFill": "text1",
+                            "themeFillTint": "80"
+                        }
+                    }
+                },
+            ],
+			[
+				1,
+				// 插入图片，记得得加 []包裹
+                [{
+                    "type": "image",
+                    "path":  path.resolve(__dirname, './image1.png') ,
+                    "opts": {
+                        "cx": 72,
+                        "cy": 72
+                    }
+                }],
+			]
+        ]
+		
+	docx.createTable(table, tableStyle);
+```
