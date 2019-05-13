@@ -29,3 +29,8 @@
 
 3. 如果要使用js灵活设定动画属性，用transition.
 
+
+# 一、旋转rotate
+
+## 二、移动translate
+## 三、缩放scale
