@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+	</head>
+	<body>
+		<img src="img1" id="img1" style="display: block" width="240" height="240" />
+		<img src="img2" id="img2" style="display: block" width="500" height="750" />
+		<img id="img3" />
+		<button onclick="draw()" id="btn">点击下载</button>
+		<script>
+			function draw() {
+				var img1 = document.getElementById("img1"),
+					img2 = document.getElementById("img2"),
+					img3 = document.getElementById("img3");
+				img1.width = 240;
+				img1.height = 240;
+				img2.width = 500;
+				img2.height = 750;
+				var canvas = document.createElement("canvas"),
+					context = canvas.getContext("2d");
+				canvas.width = img2.width;
+				canvas.height = img2.height;
+				canvas.style.letterSpacing = '10px';
+				// 将 img2 加入画布
+				context.drawImage(img2, 0, 0, img2.width, img2.height);
+
+				// 将 img1 加入画布
+				context.drawImage(img1, 300, 550, img1.width, img1.height);
+
+
+
+				context.fillStyle = '#333'; // 文字填充颜色
+				context.font = 'bold 45px Baoli SC';
+
+				var name_text = '济 南 兴 国 寺';
+				var name_width = context.measureText(name_text).width;
+				var x = (canvas.width - name_width) / 2;
+				context.fillText(name_text, x, 450);
+				console.log(x)
+
+
+				context.fillStyle = '#333'; // 文字填充颜色
+				context.font = '25px  Baoli SC';
+				var desc_1 = '功德无量';
+				var desc_2 = '随缘乐助';
+
+				context.fillText(desc_1, x, 500);
+				var desc_width_2 = context.measureText(desc_2).width;
+				context.fillText(desc_2, canvas.width - x - desc_width_2, 500);
+
+				console.log(context.measureText(desc_width_2));
+
+				context.stroke();
+				// 将画布内容导出
+				var src = canvas.toDataURL();
+				img3.src = src;
+				console.log(img3);
+				const a = document.createElement("a");
+				a.href = src;
+				a.download = '自定义文件名.png';
+				a.click();
+			}
+		</script>
+	</body>
+</html>
