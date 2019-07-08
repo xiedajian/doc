@@ -1,5 +1,6 @@
 
 github:  [https://github.com/oldj/SwitchHosts](https://github.com/oldj/SwitchHosts)
+官网：[https://oldj.github.io/SwitchHosts/](https://oldj.github.io/SwitchHosts/)
 
 # SwitchHosts
 
