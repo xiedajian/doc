@@ -242,8 +242,3 @@ git checkout -- '*' 			// 检索出所有的 .txt
 git checkout dev 		 // 将分支切换到master
 git checkout -b master	 // 如果分支存在则只切换分支，若不存在则创建并切换到master分支
 
-
-
-
-
-

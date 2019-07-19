@@ -201,9 +201,10 @@ for(var i=0;i<arr.length;i++){
 
 2、使用forEach遍历
 ```
-arr.forEach(function(v,i,array){
+arr.forEach(function(value,idex,array){
 	console.log('key:' + i);
 	console.log('value:' + v);
+	value = 'newValue'; 	//
 });
 ```
 
