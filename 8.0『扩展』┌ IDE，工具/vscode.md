@@ -100,7 +100,42 @@ JavaScript（ES6）代码段
 jQuery Code Snippets
 jQuery Code 代码段
 
-Vetur
-VUE扩展
 
-ESLint
+### ESlint
+代码规范，对不符合要求的代码或者有语法错误的JS代码进行提示，可以自定制提示规则。
+
+### beautify
+格式化代码的工具。
+
+### colorize
+
+可视化颜色，让你的css颜色代码直接呈现背景色，比如 #30B08F;
+
+### Bracket Pair Colorizer
+
+让你的 （） {} 有颜色，清楚
+
+
+### CSS Blocks
+
+支持 css 模块化的智能提示，跳转，墙裂推荐。
+
+
+### vetur
+
+语法高亮、智能感知、Emmet 等
+
+
+
+### Markdown All in One
+Markdown 的提示插件用这一个足以，集成了语法快捷键、Math、预览等，很实用
+
+
+### fileheader
+顶部注释模板，可定义作者、时间等信息，并会自动更新最后修改时间。
+
+> ctrl+alt+i
+
+
+### Path Intellisense
+自动路径补全
