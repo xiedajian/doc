@@ -79,18 +79,21 @@ npm config list
 npm config edit
 ```
 
-8. npm list 查看当前目录下已安装的 node 包
+8. npm list 查看已安装的 node 包
 
 ```
-npm list
+npm list		# 当前目录下
+npm list -g		# 全局安装的包
+npm ls  		# list 简写为 ls
+npm ls -g 
 ```
 
 
-9. 查看安装的模块
+9.npm list 加上 --depth 0，来限制结果的层数
 ```
-npm ls
+npm ls --depth 0			# npm list会把依赖包递归展示，如果只看第一层依赖包，用 --depth 限制层数
 
-npm ls -g 			# 查看全局安装的模块及依赖
+npm ls -g --depth 0			# 查看全局安装的模块及依赖
 ```
 
 10. npm 用户登录
@@ -180,7 +183,8 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 临时使用淘宝源
 ```
-npm --registry https://registry.npm.taobao.org install node-red-contrib-composer@latest
+npm install --registry=https://registry.npm.taobao.org
+npm install node-red-contrib-composer@latest --registry https://registry.npm.taobao.org
 ```
 
 全局配置切换到淘宝源

@@ -37,9 +37,3 @@ VUE_APP_SECRET=secret
 ```
 process.env.VUE_APP_SECRET
 ```
-
-不过还需要注意的是在项目的不同地方使用，限制也不一样。
-
-在项目中，也就是 src 中使用环境变量的话，必须以 VUE*APP*开头。
-
-例如我们可以在 main.js 中直接输出：console.log(process.env.VUE_APP_SECRET)
