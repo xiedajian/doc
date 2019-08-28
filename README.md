@@ -17,6 +17,8 @@ md笔记仓库
 - js event loop 机制
 - Object.defineProperty（）
 - debugger
+- echarts
+- baidu-map
 
 ### vue
 - vue router （嵌套路由，路由钩子来判断权限，动态挂载router.addRoutes）
