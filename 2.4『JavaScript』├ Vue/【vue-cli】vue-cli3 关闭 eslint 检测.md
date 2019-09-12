@@ -1,5 +1,7 @@
-关闭 eslint
-直接注释掉 package.json 文件中 eslint 的配置就可以了（以下是 vue-cli 的默认配置）
+
+
+
+vue-cli3 新建项目的默认在package.json 文件中 eslintConfig 配置
 
 ```
   "eslintConfig": {
@@ -20,7 +22,11 @@
    },
 ```
 
-或者 vue.config.js 中将以下三项设置为 false
+# 取消 ESLint 校验（不推荐取消）
+
+方式一：直接注释掉 package.json 中的 eslintConfig 就可以了
+
+方式二： vue.config.js 中进行如下设置 lintOnSave: false 即可
 
 ```
     devServer: {
@@ -31,3 +37,5 @@
         lintOnSave: false
     }
 ```
+
+[官方文档](https://cli.vuejs.org/zh/config/#lintonsave)
