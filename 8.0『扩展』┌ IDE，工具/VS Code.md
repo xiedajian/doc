@@ -56,16 +56,11 @@ F1或 Ctrl+Shift+P: 打开命令面板。在打开的输入框内，可以输入
 
 # 扩展插件
 
-- Settings Sync
-同步vscode的配置，插件到github
-Setting Sync 可同步包含的所有扩展和完整的用户文件夹
-[使用教程](http://www.imooc.com/article/251855)
+
 
 - CSS Peek
 html与css关联，可以鼠标浮到html上显示关联的css，方便调试
 
-- Prettier
-代码格式化
 
 - Icon Fonts
 图标集，如Font Awesome , Glyphicons
@@ -101,30 +96,9 @@ jQuery Code Snippets
 jQuery Code 代码段
 
 
-### ESlint
-代码规范，对不符合要求的代码或者有语法错误的JS代码进行提示，可以自定制提示规则。
-
-### beautify
-格式化代码的工具。
-
-### colorize
-
-可视化颜色，让你的css颜色代码直接呈现背景色，比如 #30B08F;
-
-### Bracket Pair Colorizer
-
-让你的 （） {} 有颜色，清楚
-
-
 ### CSS Blocks
 
 支持 css 模块化的智能提示，跳转，墙裂推荐。
-
-
-### vetur
-
-语法高亮、智能感知、Emmet 等
-
 
 
 ### Markdown All in One
@@ -139,3 +113,39 @@ Markdown 的提示插件用这一个足以，集成了语法快捷键、Math、�
 
 ### Path Intellisense
 自动路径补全
+
+
+
+## 代码格式化
+
+
+Editorconfig
+
+vetur (已包含prettier，不推荐beautify)
+
+tslint/eslint
+
+PS: 以上3个足够，根治一切烦恼
+
+
+## 代码视觉优化
+
+
+#### colorize
+
+可视化颜色，让你的css颜色代码直接呈现背景色，比如 #30B08F;
+
+#### Bracket Pair Colorizer
+
+让你的 （） {} 有颜色，清楚
+
+
+
+
+
+## 同步配置
+
+- Settings Sync
+同步vscode的配置，插件到github
+Setting Sync 可同步包含的所有扩展和完整的用户文件夹
+[使用教程](http://www.imooc.com/article/251855)
