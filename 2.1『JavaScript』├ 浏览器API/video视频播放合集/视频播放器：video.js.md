@@ -1,7 +1,8 @@
-
+[videojs官网](https://videojs.com/)
 [github](https://github.com/videojs/video.js)
-[官网](https://videojs.com/)
-[npm](https://www.npmjs.com/package/video.js)
+[videojs-contrib-hls](https://github.com/videojs/videojs-contrib-hls)
+[video.js 播放 rtsp、hls](https://juejin.im/post/5c91f8e6e51d45743908dbe6)
+
 
 
 为什么要使用video.js？
@@ -15,12 +16,29 @@
 
 # video.js
 
-video.js是一款很流行的html5视频播放插件。很适合在移动端播放视频(比如微信网页)，功能强大，且支持降级到flash,兼容ie8。
-Video.js是一款web视频播放器,支持html5和flash两种播放方式。支持在桌面和移动设备上的视频播放
-Video.js 自动检测浏览器对 HTML5 的支持情况，如果不支持 HTML5 则自动使用 Flash 播放器。
+Videojs是一个基于JavaScript的HTML5视频播放器，当浏览器不支持时自动切换成Flashplayer播放器。
+
+它没有依赖任何JavaScript框架，支持全屏播放和音量控制。支持HTML5和Flash的播放技术切换。
+
+支持在桌面和移动设备上的视频播放
 
 
-# 安装
+## video.js 7
+
+Video.js 7 版本也放弃了对一些旧的Internet Explorer浏览器的支持，只支持IE11。
+
+HLS封装的视频播放，videojs7默认包含hls插件，不需要引入其它插件。
+
+
+## video.js 6
+
+如果你想支持IE11以下，就不能用video 7了，可以用video 6
+
+
+
+# 引用
+
+首先需要在页面引用videojs的js和css文件
 
 npm方式
 ```
@@ -32,20 +50,24 @@ import 'video.js/dist/video-js.css'
 
 传统 CDN 方式
 ```
-<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
-<script src="https://unpkg.com/video.js/dist/video.js"></script>
+<link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
+<script src="https://unpkg.com/video.js/dist/video.min.js"></script>
 ```
+
 
 # 使用
 
-## 方式1：通过html的data-setup 属性进行设置
-只需使用一个HTML5 `<video>` 标签嵌入视频即可
+ 有两种方法可以创建Video.js播放器并传递选项，
+ 但它们都以具有属性`class ="video-js"`的标准`<video>`元素开头：
+ 
+## 方式1：auto-setup 自动初始化，通过html的 data-setup 属性进行设置
+
+ 只需使用一个HTML5 `<video>` 标签嵌入视频即可, 通过设置 data-setup 属性来是配置生效
 
  Video.js 接下来会读取标签然后让它在所有浏览器中都可以工作，并非只有支持 HTML5 video 的浏览器。
- 除了基本的标记，Video.js 还需要一些额外的标记。
  
- Video.js支持<video>元素的所有属性（如控件，预加载等），但它也支持它自己的选项。 有两种方法可以创建Video.js播放器并传递选项，
- 但它们都以具有属性class ="video-js"的标准<video>元素开头：
+ Video.js 支持 `<video>` 元素的所有属性（如控件，预加载等），但它也支持它自己的选项。 
+
 ```
 <video
     id="my-player"
@@ -65,15 +87,23 @@ import 'video.js/dist/video-js.css'
     </p>
 </video>
 ```
-我们可以使用data-setup属性来设置video的一些额外的option选项，通常是JSON格式，如：
-```
-<video normalize...>
-```
-如果你不想使用auto-setup，你可以暂时不用设置 data-setup属性，然后手动初始化一个视频元素。
 
-> 播放按钮默认是在左上角，官方说这样可以不会遮挡内容的精彩部分，但是如果我们想要放到中间，增加一个vjs-big-play-centered样式就好了
+使用data-setup属性来设置video的一些额外的option选项，通常是JSON格式
 
-## 方式2：手动js调用播放器
+应用了videojs必须的文件之后，我们在html把video加上去，下面代码的属性说明
+
+- class=“video-js”：引用videojs的css
+- poster：封面图地址
+- data-setup：videojs其他参数
+- src：视频的地址
+- type：视频对应的格式，mp4对应video/mp4，webm对应webm，ogv对应video/ogg，hls对应xxx
+
+> 播放按钮默认是在左上角，官方说这样可以不会遮挡内容的精彩部分，但是如果我们想要放到中间，增加一个 `vjs-big-play-centered` 样式就好了
+
+如果你不想使用 auto-setup，你可以暂时不用设置 data-setup 属性，然后 js 中手动初始化一个视频元素。
+
+
+## 方式2：手动 js 调用初始化播放器
 
 首先`<video>`元素中去掉了auto-setup属性，其他不变。
 ```
@@ -94,9 +124,10 @@ import 'video.js/dist/video-js.css'
     </p>
 </video>
 ```
-然后，使用videojs()方法加载Video
+
+然后，使用 videojs() 方法加载Video
 ```
-var player = videojs('example_video_1',{
+var player = videojs('my-player',{
     muted: true,
 	controls : true/false,      
 	height:300, 
@@ -104,10 +135,11 @@ var player = videojs('example_video_1',{
 	loop : true,
 },function(){});
 ```
+
 videojs()方法中，3个参数：
-第一个参数是video标签的 ID
-第二个参数是一个选项对象
-第三个参数是一个'ready'回调。一旦 Video.js 初始化完成后，就会触发这个回调。
+- 第一个参数是video标签的 ID
+- 第二个参数是一个选项对象
+- 第三个参数是一个'ready'回调。一旦 Video.js 初始化完成后，就会触发这个回调。
 
 完整的js代码如下：
 ```
@@ -130,31 +162,57 @@ videojs()方法中，3个参数：
 
 
 
-# 直播流
+# 播放器更换皮肤
 
-播放m3u8视频流
+videojs可以替换皮肤的，当然也可以开发皮肤
 
-安装video.js 及 HLS 流插件 相关依赖
+[皮肤](https://docs.videojs.com/tutorial-skins.html)
+
+通过覆盖css样式来实现换肤
+
+
+
+
+# video.js 播放直播流
+
+常见直播流传输协议：  *RTMP, HLS, FLV*
+
+## 安装相关插件
+
 ```
-npm install --save video.js
-npm install --save videojs-contrib-hls
+npm install video.js 				# 安装video.js
+npm install videojs-flash			# 如需播放 RTMP 流，需要安装 videojs-flash 插件
+npm install videojs-contrib-hls		# 如需播放 HLS 流，需要安装 videojs-contrib-hls 插件，非原生支持的浏览器，直播服务端需要开启 CORS
 ```
+
+如果两个流都需要播放，flash 插件需要安装到 hls 插件之前
+
 
 我们需要引入videojs的css文件，例如在main.js中引入
 ```
 import 'video.js/dist/video-js.css'
 ```
+
+
+## HLS (m3u8)
+
+HLS封装的视频播放，videojs7 默认包含hls插件，不需要引入其它插件。
+videojs7 以下需要引入videojs-contrib-hls.js插件。
+
 接着，我们在需要播放视频的页面引入js对象
 ```
 import videojs from 'video.js'
 import 'videojs-contrib-hls'
 ```
+
 指定一个video容器，例如：
 ```
 <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" poster="../assets/video.png">
     <source src="http://127.0.0.1:7086/aaa/213/stream/1.m3u8" type="application/x-mpegURL">
 </video>
 ```
+
+
 最后，我们在mounted节点初始化播放器：
 ```
 videojs('my-video', {
@@ -169,6 +227,91 @@ videojs('my-video', {
 ```
 
 
+完整代码
+```
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
+        <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+    </head>
+    <body>
+        <video id="my-player" class="video-js" controls preload="auto" data-setup='{}'>
+            <source src="hls的路劲.m3u8" type="application/x-mpegURL"></source>
+        </video>
+    </body>
+</html>
+```
+
+
+
+# video.js 播放 RTMP, HLS
+
+
+## 安装
+
+```
+npm install video.js 				# 安装video.js
+npm install videojs-flash			# 如需播放 RTMP 流，需要安装 videojs-flash 插件
+npm install videojs-contrib-hls		# 如需播放 HLS 流，需要安装 videojs-contrib-hls 插件，非原生支持的浏览器，直播服务端需要开启 CORS
+```
+
+如果两个流都需要播放，flash 插件需要安装到 hls 插件之前
+
+```
+<template>
+    <div>
+        <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" width="1280" height="720" poster="http://vjs.zencdn.net/v/oceans.png" data-setup="{}">
+            <source src="rtmp://live.hkstv.hk.lxdns.com/live/hks2" type="rtmp/flv">
+        </video>
+        <video id="example_video_2" class="video-js vjs-default-skin" controls preload="auto" width="1280" height="720" poster="http://vjs.zencdn.net/v/oceans.png" data-setup="{}">
+        <source src="rtmp://video.zhiguaniot.com/test01/stream01?auth_key=1552979972-0-0-3502db2f66a4560c886f44c7f68e20d5" type="rtmp/flv">
+        </video>
+        <video id="example_video_3" class="video-js vjs-default-skin" controls preload="auto" width="1280" height="720" poster="http://vjs.zencdn.net/v/oceans.png" data-setup="{}">
+        <source src="rtmp://live.hkstv.hk.lxdns.com/live/hks2" type="rtmp/flv">
+        </video>
+        <video id="example_video_4" class="video-js vjs-default-skin" controls preload="auto" width="1280" height="720" poster="http://vjs.zencdn.net/v/oceans.png" data-setup="{}">
+        <source src="rtmp://live.hkstv.hk.lxdns.com/live/hks2" type="rtmp/flv">
+        </video>
+    </div>
+</template>
+
+<script>
+    import Vue from "vue";
+    import video from 'video.js';
+    import 'videojs-flash'; 	// 引入videojs flash
+    Vue.prototype.$video = video; 	// 将video.js 实例放在Vue原型上
+	
+	export default {
+		name: 'video',
+		data() {
+			return {}
+		},
+		mounted() {
+			this.playervideo('example_video_1');
+			this.playervideo('example_video_2');
+			this.playervideo('example_video_3');
+			this.playervideo('example_video_4');
+		},
+		methods: {
+			playervideo(id) {
+				var player = this.$video(id, {}, function onPlayerReady() {
+					this.play();
+					this.on('ended', function() {
+						console.log('Awww...over so soon?!');
+					});
+				});
+			}
+		}
+	}
+</script>
+
+```
+
+
+
 案例参考：
 ```
 <!DOCTYPE html>
@@ -176,6 +319,8 @@ videojs('my-video', {
 <head>
     <title>videojs支持hls直播实例</title>
     <link href="./video.css?v=bcd2ce1385" rel="stylesheet">
+	<script src="./video.js?v=fc5104a2ab23"></script>
+	<script src="./videojs-contrib-hls.js?v=c726b94b9923"></script>
 </head>
 <body>
 
@@ -183,9 +328,6 @@ videojs('my-video', {
         <source src="/chat/playlist.m3u8"  type="application/x-mpegURL">
     </video>
 
-    <script src="./video.js?v=fc5104a2ab23"></script>
-    <script src="./videojs-contrib-hls.js?v=c726b94b9923"></script>
-    
     <script type="text/javascript">
         var myPlayer = videojs('roomVideo',{
             bigPlayButton : false,
@@ -285,3 +427,8 @@ videojs('my-video', {
 </body>
 </html>
 ```
+
+
+
+[video.js自定义皮肤](https://codepen.io/heff/pen/EarCt)
+
