@@ -1,99 +1,86 @@
-# flex
-用于设置或检索弹性盒模型对象的子元素如何分配空间
+[微信小程序flex讲解](https://developers.weixin.qq.com/ebook?action=get_post_info&docid=00080e799303986b0086e605f5680a)
+[flex布局中妙用margin: auto](https://juejin.im/post/5bde54ce51882516e840a8af)
+[探秘 flex 上下文中神奇的自动 margin](https://www.cnblogs.com/coco1s/archive/2019/05/23/10910588.html)
 
 
-## Flex 布局是什么？
+# Flex 布局是什么？
 
 Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。
 
-任何一个容器都可以指定为 Flex 布局。
+任何一个容器都可以指定为 Flex 布局。行内元素也可以使用 Flex 布局。
 
-
+```
 .box{
   display: flex;
 }
-行内元素也可以使用 Flex 布局。
-
 ```
-	.box{
-	  display: inline-flex;
-	}
-	Webkit 内核的浏览器，必须加上-webkit前缀。
 
-
-	.box{
-	  display: -webkit-flex; /* Safari */
-	  display: flex;
-	}
-```
 
 ## 基本概念
 
-采用 Flex 布局的元素，称为 Flex 容器（flex container），简称"容器"。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称"项目"。
+采用 Flex 布局的元素，称为 Flex 容器（flex container），简称"容器"。
 
-容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。
+它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称"项目"。
 
-项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size
+容器默认存在两根轴：坐标轴
 
+默认的情况下，水平方向的是主轴（main axis），垂直方向的是交叉轴（cross axis）。
+
+项目是在主轴上排列，排满后在交叉轴方向换行。需要注意的是，交叉轴垂直于主轴，它的方向取决于主轴方向。
+
+单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size
 
 ```语法
 	flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;
 ```
 
 
-## 兼容
-注意: Internet Explorer 9 及更早版本不支持 flex 属性。
-
-注意: Internet Explorer 10 通过 -ms-flex 属性来支持。 IE11 及更新版本完全支持 flex 属性 (不需要 -ms- 前缀)。
-
-注意: Safari 6.1 (及更新浏览器) 通过 -webkit-flex 属性支持。
-
-注意，设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效
-
-
-
-## 属性
+# 属性
 ```
-	// 写在父元素的属性
+	// 父容器的属性，用于统一管理容器内项目布局，也就是管理项目的排列方式和对齐方式。
 	display:flex 		使用flex弹性布局
-	flex-direction		定义子元素在父容器中排序的主轴方向
-	flex-wrap			指定弹性盒子的子元素换行方式,如果一条轴线排不下，如何换行。
+	flex-direction		通过设置坐标轴，来设置项目排列方向。
+	flex-wrap			设置是否允许项目多行排列，以及多行排列时换行的方向。
 	flex-flow			是flex-direction 和 flex-wrap 的简写形式
-	justify-content		内容对齐方式,项目在主轴上的对齐方式
-	align-items			元素在侧轴（纵轴）方向上的对齐方式
-	align-content 		属性用于修改 flex-wrap 属性的行为
+	justify-content		设置项目在主轴方向上对齐方式，以及分配项目之间及其周围多余的空间。
+	align-items			设置项目在行中的对齐方式。
+	align-content 		多行排列时，设置行在交叉轴方向上的对齐方式，以及分配行之间及其周围多余的空间。
 
-	// 写在子元素属性
-	order			排序,用整数值来定义排列顺序，数值小的排在前面。可以为负值
-	flex-grow		项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
-	flex-shrink		项目的缩小比例，默认为1，即如果空间不足，该项目将缩小
-	flex-basis		定义了在分配多余空间之前，项目占据的主轴空间。它的默认值为auto，即项目的本来大小
-	flex 			flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选
-	align-self		align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch
-	margin			设置"margin"值为"auto"值，自动获取弹性容器中剩余的空间
-
+	// 子项目的属性，设置项目的尺寸、位置，以及对项目的对齐方式做特殊设置。
+	order				主轴方向上的排列顺序,用整数值来定义排列顺序，数值小的排在前面。可以为负值
+	flex-grow			当项目在主轴方向上还有剩余空间时，通过设置项目扩张因子进行剩余空间的分配。默认为0，即如果存在剩余空间，也不放大。
+	flex-shrink			当项目在主轴方向上溢出时，通过设置项目收缩因子来压缩项目适应容器。默认为1，即如果空间不足，该项目将缩小
+	flex-basis			定义了在分配多余空间之前，项目占据的主轴空间。flex-basis优先级高于width，它的默认值为auto，即项目的本来大小
+	flex 				是flex-grow，flex-shrink，flex-basis的简写方式。后两个属性可选。默认值为0 1 auto。值设置为none，等价于0 0 auto。值设置为auto，等价于1 1 auto。
+	align-self			设置项目在行中交叉轴方向上的对齐方式，用于覆盖容器的align-items，这么做可以对项目的对齐方式做特殊处理。默认值为auto，表示继承父元素的align-items属性
+	margin				设置"margin"值为"auto"值，自动获取弹性容器中剩余的空间
 ```
 
-### flex-direction
-定义子元素在父容器中排序的主轴方向
-[  row | row-reverse | column | column-reverse ]
-- row： 				x轴，默认的排列方式。
-- row-reverse：		反转横向排列（右对齐，从后往前排，最后一项排在最前面。
-- column： 			y轴排列。
-- column-reverse：	反转纵向排列，从后往前排，最后一项排在最上面
+## flex-direction
+
+通过设置坐标轴，来设置项目排列方向。
+
+[ row（默认值） | row-reverse | column |column-reverse ]
+
+- row： 			主轴横向，x轴，方向为从左指向右。项目沿主轴排列，从左到右排列。。
+- row-reverse：		反转横向排列,row的反方向。主轴横向，方向为从右指向左。项目沿主轴排列，从右到左排列
+- column： 			主轴纵向，y轴排列。方向从上指向下。项目沿主轴排列，从上到下排列。
+- column-reverse：	反转纵向排列，column的反方向。主轴纵向，方向从下指向上。项目沿主轴排列，从下到上排列。
 
 
 
-###	flex-wrap			
-指定弹性盒子的子元素换行方式,如果一条轴线排不下，如何换行
-nowrap|wrap|wrap-reverse|initial|inherit
-- nowrap		默认，弹性容器为单行,不换行
-- wrap 			弹性容器为多行，子元素会换行排列，第一行在上边
-- wrap-reverse	反转wrap排列，换行，第一行在下边
-- initial
+##	flex-wrap			
+
+设置是否允许项目多行排列，以及多行排列时换行的方向。
+
+[ nowrap（默认值） | wrap | wrap-reverse ] 
+
+- nowrap		默认，不换行。如果单行内容过多，则溢出容器。
+- wrap 			容器单行容不下所有项目时，换行排列。
+- wrap-reverse	容器单行容不下所有项目时，换行排列。换行方向为wrap时的反方向。
 
 
-### flex-flow
+## flex-flow
 
 是flex-direction 和 flex-wrap 的简写形式
 
@@ -102,43 +89,63 @@ nowrap|wrap|wrap-reverse|initial|inherit
 }
 
 
-### justify-content		
-内容主轴对齐方式,项目在主轴上的对齐方式
-flex-start | flex-end | center | space-between | space-around
-- flex-start		弹性项目向行头紧挨着填充,默认值
+## justify-content		
+
+设置项目在主轴方向上对齐方式，以及分配项目之间及其周围多余的空间。
+
+[ flex-start（默认值） | flex-end | center |space-between | space-around | space-evenly ] 
+
+- flex-start		项目对齐主轴起点，项目间不留空隙。
 - flex-end			弹性项目向行尾紧挨着填充
-flex-center		弹性项目居中紧挨着填充。（如果剩余的自由空间是负的，则弹性项目将在两个方向上同时溢出)
-- space-between		弹性项目平均分布在该行上
-- space-around		弹性项目平均分布在该行上，两边留有一半的间隔空间
+- center			项目在主轴上居中排列，项目间不留空隙。主轴上第一个项目离主轴起点距离等于最后一个项目离主轴终点距离。（如果剩余的自由空间是负的，则弹性项目将在两个方向上同时溢出)
+- space-between		项目间间距相等，第一个项目离主轴起点和最后一个项目离主轴终点距离为0
+- space-around		与space-between相似。不同点为，第一个项目离主轴起点和最后一个项目离主轴终点距离为中间项目间间距的一半。
+- space-evenly		项目间间距、第一个项目离主轴起点和最后一个项目离主轴终点距离等于项目间间距。
+
+![](./imgs/flex-justify-content.png)
 
 
-### align-items			
-元素在侧轴方向上的对齐方式
- flex-start | flex-end | center | baseline | stretch
-- flex-start	弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界
-- flex-end		弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界
-- center 		弹性盒子元素在该行的侧轴（纵轴）上居中放置
-- baseline		如弹性盒子元素的行内轴与侧轴为同一条，则该值与'flex-start'等效。其它情况下，该值将参与基线对齐
-- stretch		如果指定侧轴大小的属性值为'auto'，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸，但同时会遵照'min/max-width/height'属性的限制
+## align-items			
+
+设置项目在行中的对齐方式。
+
+[ stretch（默认值） | center  | flex-end | baseline | flex-start ]
+ 
+- stretch		项目拉伸至填满行高
+- flex-start	项目顶部与行起点对齐
+- flex-end		项目底部与行终点对齐
+- center 		项目在行中居中对齐
+- baseline		项目的第一行文字的基线对齐
+
+
+![](./imgs/flex-align-items.png)
+![](./imgs/flex-align-items2.png)
+
+
+##	align-content
+
+多行排列时，设置行在交叉轴方向上的对齐方式，以及分配行之间及其周围多余的空间。
+
+[ stretch（默认值） | flex-start | center |flex-end | space-between | space-around | space-evenly ] 
+
+- stretch 		 当未设置项目尺寸，将各行中的项目拉伸至填满交叉轴。当设置了项目尺寸，项目尺寸不变，项目行拉伸至填满交叉轴。
+- flex-start 	 首行在交叉轴起点开始排列，行间不留间距。
+- flex-end 		 尾行在交叉轴终点开始排列，行间不留间距。
+- center 		 行在交叉轴中点排列，行间不留间距，首行离交叉轴起点和尾行离交叉轴终点距离相等。
+- space-between  行与行间距相等，首行离交叉轴起点和尾行离交叉轴终点距离为0。
+- space-around   行与行间距相等，首行离交叉轴起点和尾行离交叉轴终点距离为行与行间间距的一半。
+- space-evenly	 行间间距、以及首行离交叉轴起点和尾行离交叉轴终点距离相等。
+
+
+![](./imgs/flex-align-content.png)
+![](./imgs/flex-align-content2.png)
+![](./imgs/flex-align-content3.png)
 
 
 
-###	align-content
-属性用于修改 flex-wrap 属性的行为。类似于 align-items, 但它不是设置弹性子元素的对齐，而是设置各个行的对齐。
-flex-start | flex-end | center | space-between | space-around | stretch
-- stretch 		 默认。各行将会伸展以占用剩余的空间。
-- flex-start 	 各行向弹性盒容器的起始位置堆叠。
-- flex-end 		 各行向弹性盒容器的结束位置堆叠。
-- center 		 各行向弹性盒容器的中间位置堆叠。
-- space-between  各行在弹性盒容器中平均分布。
-- space-around   各行在弹性盒容器中平均分布，两端保留子元素与子元素之间间距大小的一半。
 
+## order
 
-
-
-
-
-### order
 排序,用整数值来定义排列顺序，数值小的排在前面。可以为负值
 ```
 	item:first {order:-1}
@@ -146,9 +153,11 @@ flex-start | flex-end | center | space-between | space-around | stretch
 
 
 
-### flex-grow		
+## flex-grow		
 
-属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
+当项目在主轴方向上还有剩余空间时，通过设置项目扩张因子进行剩余空间的分配。属性值为项目的扩张因子，属性值取非负数。
+
+默认为0，即如果存在剩余空间，也不放大。
 
 ```
 	.item {
@@ -156,13 +165,45 @@ flex-start | flex-end | center | space-between | space-around | stretch
 	}
 ```
 
-如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
+如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。
+如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
+
+为了加深理解，我们举个例子：
+
+一个宽度为400px的容器，里面的三个项目width分别为80px，120px，140px。分别对这项目1和项目2设置flex-grow值为3和1。
+
+```
+.container{
+  display: flex;
+  width: 400px; // 容器宽度为400px
+}
+
+.item1{
+  width: 80px;
+  flex-grow: 3;
+}
+
+.item2{
+  width: 120px;
+  flex-grow: 1;
+}
+
+.item3{// 项目3未设置flex-grow，默认flex-grow值为0
+  width: 140px;
+}
+```
+
+在这个例子中，容器的剩余空间为 400 - (80 + 120 + 140) = 60px。剩余空间按 60 / (3 + 1 + 0) = 15px进行分配：
+
+item1的最终宽度为：80+ (15 * 3) = 125px
+item2的最终宽度为：120 + (15 * 1) = 135px
+item3的最终宽度为：140 + (15 * 0) =140px
 
 
 
-###	flex-shrink		
+##	flex-shrink		
 
-属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小
+当项目在主轴方向上溢出时，通过设置项目收缩因子来压缩项目适应容器。属性值为项目的收缩因子，属性值取非负数。
 
 ```
 	.item {
@@ -170,39 +211,65 @@ flex-start | flex-end | center | space-between | space-around | stretch
 	}
 
 ```
+
 如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。
 
 负值对该属性无效。
 
+为了加深理解，我们举个例子：
+
+一个宽度为400px的容器，里面的三个项目width分别为120px，150px，180px。分别对这项目1和项目2设置flex-shrink值为2和3。
+
+```
+.container{
+  display: flex;
+  width: 400px; // 容器宽度为400px
+}
+```
+
+在这个例子中，项目溢出 400 - (120 + 150 + 180) = -50px。计算压缩量时总权重为各个项目的宽度乘以flex-shrink的总和，这个例子压缩总权重为120 * 2 + 150 * 3+ 180 * 1 = 870。各个项目压缩空间大小为总溢出空间乘以项目宽度乘以flex-shrink除以总权重：
+
+item1的最终宽度为：120 - 50 * 120 * 2 / 870 ≈ 106px
+
+item2的最终宽度为：150 - 50 * 150 * 3 / 870 ≈ 124px
+
+item3的最终宽度为：180 - 50 * 180 * 1 / 870 ≈ 169px
+
+其中计算时候值如果为小数，则向下取整。
 
 
-### flex-basis		
 
-flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（mainsize）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小
+## flex-basis		
 
+flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（mainsize）
+
+浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小
+
+当容器设置flex-direction为row或row-reverse时，flex-basis和width同时存在，flex-basis优先级高于width，也就是此时flex-basis代替项目的width属性。
+
+当容器设置flex-direction为column或column-reverse时，flex-basis和height同时存在，flex-basis优先级高于height，也就是此时flex-basis代替项目的height属性。
+
+需要注意的是，当flex-basis和width（或height），其中一个属性值为auto时，非auto的优先级更高。
 
 ```
 	.item {
 	  flex-basis: <length> | auto; /* default auto */
 	}
-
-
 ```
-它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间。
 
 
-### flex 
+
+## flex 
 
 flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
 
-auto | initial | none | inherit |  [ flex-grow ] || [ flex-shrink ] || [ flex-basis ]
-- auto: 		计算值为 1 1 auto
-- initial: 		计算值为 0 1 auto
-- none：			计算值为 0 0 auto
-- inherit：		从父元素继承
-- [ flex-grow ]：定义弹性盒子元素的扩展比率。
-- [ flex-shrink ]：定义弹性盒子元素的收缩比率。
-- [ flex-basis ]：定义弹性盒子元素的默认基准值。
+[ none | auto | @flex-grow @flex-shrink@flex-basis ]
+  
+- auto: 			值为 1 1 auto
+- none：			值为 0 0 auto
+- flex-grow			定义弹性盒子元素的扩展比率。
+- [ flex-shrink ]	定义弹性盒子元素的收缩比率。
+- [ flex-basis ]	定义弹性盒子元素的默认基准值。
 
 ```
 	.item {
@@ -213,33 +280,33 @@ auto | initial | none | inherit |  [ flex-grow ] || [ flex-shrink ] || [ flex-ba
 
 该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。
 
-建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。
+
+
+## align-self		
+
+设置项目在行中交叉轴方向上的对齐方式，用于覆盖容器的align-items，这么做可以对项目的对齐方式做特殊处理。
+
+默认值为auto，继承容器的align-items值，当容器没有设置align-items时，属性值为stretch
+
+[ auto（默认值） | flex-start | center | flex-end | baseline |stretch ]
 
 
 
 
-### align-self		
+# flex 中的 margin 有很大的妙用
 
-用于设置弹性元素自身在侧轴（纵轴）方向上的对齐方式
+[flex布局中妙用margin: auto](https://juejin.im/post/5bde54ce51882516e840a8af)
+[探秘 flex 上下文中神奇的自动 margin](https://www.cnblogs.com/coco1s/archive/2019/05/23/10910588.html)
 
-align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch
+设置"margin"值为"auto"值，自动获取弹性容器中剩余的空间。
 
-auto | flex-start | flex-end | center | baseline | stretch
-- auto：			如果'align-self'的值为'auto'，则其计算值为元素的父元素的'align-items'值，如果其没有父元素，则计算值为'stretch'。
-- flex-start：	弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。
-- flex-end：		弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界。
-- center：		弹性盒子元素在该行的侧轴（纵轴）上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会向两个方向溢出相同的长度）。
-- baseline：		如弹性盒子元素的行内轴与侧轴为同一条，则该值与'flex-start'等效。其它情况下，该值将参与基线对齐。
-- stretch：		如果指定侧轴大小的属性值为'auto'，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸，但同时会遵照'min/max-width/height'属性的限制
+所以设置垂直方向margin值为"auto"，可以使弹性子元素在弹性容器的两上轴方向都完全集中。
 
-
-### margin
-设置"margin"值为"auto"值，自动获取弹性容器中剩余的空间。所以设置垂直方向margin值为"auto"，可以使弹性子元素在弹性容器的两上轴方向都完全集中。
 可以通过这个特性实现完美居中：
+
 ```
 	<style> 
 	.flex-container {
-	    display: -webkit-flex;
 	    display: flex;
 	    width: 400px;
 	    height: 250px;
@@ -262,3 +329,15 @@ auto | flex-start | flex-end | center | baseline | stretch
 
 
 
+
+## 兼容
+
+注意: Internet Explorer 9 及更早版本不支持 flex 属性。
+
+注意: Internet Explorer 10 通过 -ms-flex 属性来支持。 IE11 及更新版本完全支持 flex 属性 (不需要 -ms- 前缀)。
+
+注意: Safari 6.1 (及更新浏览器) 通过 -webkit-flex 属性支持。
+
+注意，设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效
+
+兼容不是很大的问题，如非要兼容低版本浏览器，无非就是加个垫片的事情
