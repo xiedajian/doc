@@ -7,7 +7,9 @@ md笔记仓库
 # TODO
 
 ### css
-- css transition
+- flex
+- css动画 
+- canvas
 
 ### js
 - object对象新方法
@@ -33,3 +35,9 @@ md笔记仓库
 - axios
 - Object.defineProperty（）优雅的使用第三方库
 	
+	
+### Node
+
+[node-interview](https://github.com/ElemeFE/node-interview/tree/master/sections/zh-cn)
+
+[Node实践教程](https://github.com/ElemeFE/node-practice)
