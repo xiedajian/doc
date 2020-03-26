@@ -108,3 +108,42 @@ title可加可不加
 文字默认居左
 两边加-：表示文字居中
 右边加-：表示文字居右
+
+
+
+# 语法高亮
+[文档](http://alexgorbatchev.com/SyntaxHighlighter/manual/brushes/)
+
+|Brush name		|Brush aliases					|File name				|
+|ActionScript3	|as3, actionscript3				|shBrushAS3.js			|
+|Bash/shell		|bash, shell					|shBrushBash.js			|
+|ColdFusion		|cf, coldfusion					|shBrushColdFusion.js	|
+|C#				|c-sharp, csharp				|shBrushCSharp.js		|
+|C++			|cpp, c							|shBrushCpp.js			|
+|CSS			|css							|shBrushCss.js			|
+|Delphi			|delphi, pas, pascal			|shBrushDelphi.js		|
+|Diff			|diff, patch					|shBrushDiff.js			|
+|Erlang			|erl, erlang					|shBrushErlang.js		|
+|Groovy			|groovy							|shBrushGroovy.js		|
+|JavaScript		|js, jscript, javascript		|shBrushJScript.js		|
+|Java			|java							|shBrushJava.js			|
+|JavaFX			|jfx, javafx					|shBrushJavaFX.js		|
+|Perl			|perl, pl						|shBrushPerl.js			|
+|PHP			|php							|shBrushPhp.js			|
+|Plain Text		|plain, text					|shBrushPlain.js		|
+|PowerShell		|ps, powershell					|shBrushPowerShell.js	|
+|Python			|py, python						|shBrushPython.js		|
+|Ruby			|rails, ror, ruby				|shBrushRuby.js			|
+|Scala			|scala							|shBrushScala.js		|
+|SQL			|sql							|shBrushSql.js			|
+|Visual Basic	|vb, vbnet						|shBrushVb.js			|
+|XML			|xml, xhtml, xslt, html, xhtml	|shBrushXml.js			|
+
+例如，js的代码查看上表，可以用 js, jscript, javascript 来表明是js的代码高亮
+```
+console.log(1)
+```
+
+```js
+console.log(1)
+```
