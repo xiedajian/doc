@@ -5,19 +5,40 @@
 (3)属性节点：nodeType ===2;
 
 # 什么是事件委托，应用在哪些地方
+原理是使用dom的冒泡，将事件绑定到父元素上，让父元素进行监听，提高性能
+并且，后来新增的li元素还会有点击事件效果
 
+# 基本数据类型和引用数据类型的区别
+基本数据类型存储到栈内存中，引用数据类型存储到堆内存中 
+基本数据类型操作值的，引用数据类型操作的是空间地址；
+基本数据类型: number(数字) string(字符串) boolean(布尔) null undefined；
+对象数据类型(非基础就是对象)：对象、数组 、正则 、Date的实例、Math… 函数,类
 # 常见的状态码有哪些
 
 # var 申明变量 和用 let什么变量有啥区别
 # console.log(c) 打印了一个没有定义的变量，会输出什么。
 
+# null和undefind的区别
+null是表示一个空的对象，转为数值为0，undefind表示一个空的原始值，转为数值为NAN
+当声明的变量还未被初始化时，变量的默认值为undefined。 null用来表示尚未存在的对象
+undefined是访问一个未初始化的变量时返回的值，而null是访问一个尚未存在的对象时所返回的值
+undefind指本该有一个值，但却并有定义，null表示没有对象，不应该有值
+
 # 判定变量是否为数组
+```js
+instanceof
+```
+```js
+// Array.isArray() 用于确定传递的值是否是一个数组，返回一个布尔值。但有个问题，Array.isArray() 是在ES5中提出
+let a = [1,2,3]
+Array.isArray(a);//true
+```
 ```js
 function isArray(arr){
     return Object.prototype.toString.call(arr) === '[Object Array]';
 }
 ```
-
+# 数组去重
 # 怎么判断两个对象相等
 # 两个对象合并
 
@@ -42,6 +63,9 @@ CommonJs 的 this 是当前模块，ES6 Module的 this 是 undefined
 
 
 
+# webpack
+如何配置多入口文件?
+你是如何提高webpack构件速度的?
+利用webpack如何优化前端性能?
 
-
-
+通过cdn的方式引入的库，怎么在webpack项目中使用
