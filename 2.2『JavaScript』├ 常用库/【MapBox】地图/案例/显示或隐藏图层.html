@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+ 
+<style>
+    #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 10px;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid rgba(0,0,0,0.4);
+        font-family: 'Open Sans', sans-serif;
+    }
+ 
+    #menu a {
+        font-size: 13px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0,0,0,0.25);
+        text-align: center;
+    }
+ 
+    #menu a:last-child {
+        border: none;
+    }
+ 
+    #menu a:hover {
+        background-color: #f8f8f8;
+        color: #404040;
+    }
+ 
+    #menu a.active {
+        background-color: #3887be;
+        color: #ffffff;
+    }
+ 
+    #menu a.active:hover {
+        background: #3074a4;
+    }
+</style>
+ 
+<nav id="menu"></nav>
+<div id="map"></div>
+ 
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibHh0aWFudGlhbiIsImEiOiJjaXd2ZjlkYnQwMTZvMnRtYWZnM2lpbHFvIn0.ef3rFZTr9psmLWahrqap2A';  //引用accessToken
+var map = new mapboxgl.Map({   //创建并初始化一个map
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',    //街道风格
+    zoom: 15,
+    center: [-71.97722138410576, -13.517379300798098]
+});
+ 
+map.on('load', function () {            /*on(type,listener):为type类型事件添加监听器，lisener是响应函数 */
+    map.addSource('museums', {          /*addSource(id, source) :向map的style添加source，source是数据*/   
+        type: 'vector',
+        url: 'mapbox://mapbox.2opop9hr'
+    });
+    map.addLayer({                     /* addLayer(layer, [before])将style layer添加到地图的style中，layer是数据的显示 */
+        'id': 'museums',
+        'type': 'circle',
+        'source': 'museums',
+        'layout': {
+            'visibility': 'visible'
+        },
+        'paint': {
+            'circle-radius': 8,
+            'circle-color': 'rgba(55,148,179,1)'
+        },
+        'source-layer': 'museum-cusco'
+    });
+ 
+    map.addSource('contours', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    map.addLayer({
+        'id': 'contours',
+        'type': 'line',
+        'source': 'contours',
+        'source-layer': 'contour',
+        'layout': {
+            'visibility': 'visible',
+            'line-join': 'round',
+            'line-cap': 'round'
+        },
+        'paint': {
+            'line-color': '#877b59',
+            'line-width': 1
+        }
+    });
+});
+ 
+var toggleableLayerIds = [ 'contours', 'museums' ];
+ 
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+    var id = toggleableLayerIds[i];
+ 
+    var link = document.createElement('a');      /* 创建a标签 */
+    link.href = '#';
+    link.className = 'active';
+    link.textContent = id;
+ 
+    link.onclick = function (e) {                /* 设置onclick事件回调函数 */
+        var clickedLayer = this.textContent;     /* textContent 属性设置或返回指定节点的文本内容，以及它的所有后代 */
+        e.preventDefault();
+        e.stopPropagation();
+ 
+        var visibility = map.getLayoutProperty(clickedLayer, 'visibility'); /* getLayoutProperty(layer, name) 返回指定style layer上名为name的layout属性的值*/
+ 
+        if (visibility === 'visible') {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'none'); /* setLayoutProperty(layer, name, value)设置指定layer上名为name的layou属性的值 */
+            this.className = '';
+        } else {
+            this.className = 'active';
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+        }
+    };
+ 
+    var layers = document.getElementById('menu');
+    layers.appendChild(link);  /* appendChild() 方法向节点添加最后一个子节点,此处即向menu后面添加link节点 */
+}
+ 
+</script>
+ 
+</body>
+</html>
