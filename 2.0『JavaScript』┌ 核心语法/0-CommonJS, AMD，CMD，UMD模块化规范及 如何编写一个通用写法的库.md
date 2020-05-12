@@ -1,4 +1,4 @@
-
+[AMD、CMD规范](https://www.cnblogs.com/leftJS/p/11073481.html)
 
 # CommonJS 规范
 
