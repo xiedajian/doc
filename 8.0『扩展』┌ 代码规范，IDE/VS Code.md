@@ -115,6 +115,14 @@ Markdown 的提示插件用这一个足以，集成了语法快捷键、Math、�
 自动路径补全
 
 
+## Vue 2 Snippets
+[文档](https://marketplace.visualstudio.com/items?itemName=hollowtree.vue-snippets)
+
+创建一个新.vue，然后创建一个<template>、<script>、<style>，还是有些麻烦的
+
+Vue 2 Snippets 快速生成 代码片段。
+
+
 
 ## 代码格式化
 
@@ -126,6 +134,9 @@ vetur (已包含prettier，不推荐beautify)
 tslint/eslint
 
 PS: 以上3个足够，根治一切烦恼
+
+
+
 
 
 ## 代码视觉优化
