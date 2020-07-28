@@ -307,3 +307,37 @@ a.pop();//改变的是数组对象，a引用没有改变。
 b = a;//该操作后，b直接指向数组对象，不是b指向a，a再指向数组。
 
 //所以改变a引用并不会对b引用造成影响，改变数组对象可以。
+
+
+# 数组去重比较	（简单数组，复杂数组）
+
+```
+	let oArray = [1,2,1,1,3,2,4,5,6,2,10];
+    let user = {name:"xiaozhang"};
+    let objArray=[1,2,3,2,3,user,user]
+    let objArray1=[1,2,3,2,3,{name:"xiaoqiang"},{name:"xiaoqiang"}]
+    function duplicate(origin){
+        if(typeof origin != "object"){
+            return origin;//如果不是引用类型就直接返回。
+        }
+        //调用对象原型链上面的tostring方法判断数据主体是对象还是数组
+        let toString = Object.prototype.toString,
+            obj_array = "[object Array]",
+            target = (toString.call(origin) == obj_array ? [] : {});//判断当前源主体是对象还是数组并赋值
+                 
+        for(let prop in origin){
+            if(target.indexOf(origin[prop]) == -1){
+                target.push(origin[prop]);
+            }
+        }
+        return target;
+    }
+    console.log(duplicate(oArray))                    //[1, 2, 3, 4, 5, 6, 10]
+    console.log(duplicate(objArray))            //[1,2,3,{name:"xiaozhang"}]
+    console.log(duplicate(objArray1))            //[1,2,3,{name:"xiaoqiang"},{name:"xiaoqiang"}]
+    console.log(Array.from(new Set(oArray)))     //[1, 2, 3, 4, 5, 6, 10]
+    console.log(Array.from(new Set(objArray)))    //[1,2,3,{name:"xiaozhang"}]
+    console.log(Array.from(new Set(objArray1)))    //[1,2,3,{name:"xiaoqiang"},{name:"xiaoqiang"}]
+```
+
+完美的数组去重可用 lodash 的 _.uniqBy()
