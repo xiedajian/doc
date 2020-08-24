@@ -196,6 +196,10 @@ homepage 是包的项目主页或者文档首页。
 
 项目包含的文件，可以是单独的文件、整个文件夹，或者通配符匹配到的文件。
 
+.npmignore与files字段的取舍 : 优先级不同，files>.npmignore>.gitignore
+
+
+
 ## main
 
 ```
