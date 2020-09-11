@@ -44,6 +44,24 @@ function isArray(arr){
 
 # A,B,C 3个异步，C要求在AB完成之后执行
 
+# 函数申明与函数表达式的区别
+```
+// 函数声明
+    function funDeclaration(type){
+        return type==="Declaration";
+    }
+// 函数表达式
+    var funExpression = function(type){
+        return type==="Expression";
+    }
+```
+Javascript 中函数声明和函数表达式是存在区别的，函数声明在JS解析时进行函数提升，
+因此在同一个作用域内，不管函数声明在哪里定义，该函数都可以进行调用。
+而函数表达式的值是在JS运行时确定，并且在表达式赋值完成后，该函数才能调用。
+
+
+
+
 # 前端模块化的规范你都知道哪些，有什么差别 （common.js 和 es6 ）
 
 CommonJS 是一种模块规范，最初被应用于 Nodejs，成为 Nodejs 的模块规范。
