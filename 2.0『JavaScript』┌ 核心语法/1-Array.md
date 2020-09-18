@@ -211,30 +211,43 @@ Array.from() 方法有一个可选参数 mapFn，让你可以在最后生成的�
 
 # 遍历
 
+[JS 数组遍历的几种方式，性能分析](https://www.cnblogs.com/ajaxlu/p/12122843.html)
+[js 数组遍历几种方式的中断](https://www.cnblogs.com/yuanjili666/p/12096514.html)
+
+
+
+关于跳出循环的几种方式：
+
+return ==》结束循环并中断函数执行；
+break ==》结束循环函数继续执行；
+continue ==》跳过本次循环；
+for 循环中的变量 i，由于 ES5并没有块级作用域的存在，它在循环结束以后仍然存在于内存中，所以建议使用函数自执行的方式来避免；
+
+
+
 1、使用 for() 遍历
 ```
 for(var i=0;i<arr.length;i++){
  console.log(arr[i]);
 }
 ```
-
-2、使用forEach遍历
+优化版：
 ```
-arr.forEach(function(value,idex,array){
-	console.log('key:' + i);
-	console.log('value:' + v);
-	value = 'newValue'; 	//
-});
-```
-
-3、使用for..in..遍历
-```
-for (var x in arr){
-    console.log(arr[x]);
+// 先缓存 arr.length
+for(var i = 0, len = arr.length; i < len; i++) {
+  console.log(arr[i]);
 }
 ```
 
-4、使用for-of遍历
+2、使用for..in..遍历
+数组既可遍历对象，也可遍历数组。
+```
+for (var key in arr){
+    console.log(arr[key]);
+}
+```
+
+3、使用for-of遍历
 ```
 // ES6 for of
 var arr=[1,2,3,4,5,6];
@@ -243,7 +256,40 @@ for(var value of Arr){
 } 
 ```
 
-5、使用 map 遍历
+
+4、使用forEach遍历
+
+用来遍历数组中的每一项，不影响原数组
+
+缺陷 你不能使用break语句中断循环，也不能使用return语句返回到外层函数
+
+```
+arr.forEach(function(value,idex,array){
+	console.log('key:' + i);
+	console.log('value:' + v);
+	value = 'newValue'; 	//
+});
+```
+
+
+5、while 遍历数组
+```
+// while 循环
+var i = 0;
+while (i < arr.length) {
+  console.log(arr[i]);
+  i++;
+}
+//while 逆向遍历
+var i = arr.length;
+while (i--) {
+  console.log(arr[i]);
+}
+```
+
+6、使用 map 遍历
+
+相当与原数组克隆了一份，把克隆的每项改变了，不影响原数组
 ```
 // map
 var newArray = arr.map(function(item){
@@ -251,7 +297,7 @@ var newArray = arr.map(function(item){
 });
 ```
 
-6、使用 filter 过滤遍历
+7、使用 filter 过滤遍历
 ```
 // filter
 var newArray = arr.filter(function(item){
@@ -263,7 +309,7 @@ var newArray = arr.filter(function(item){
 
 ```
 
-7、 every 遍历数组的每一项，都返回true，才为true
+8、 every 遍历数组的每一项，都返回true，才为true
 ```
 var bool = arr.every(function(ele){
 	if(typeof ele == 'string'){
@@ -272,7 +318,7 @@ var bool = arr.every(function(ele){
 })
 ```
 
-8、 some()  只要数组中有一项返回true，就位true
+9、 some()  只要数组中有一项返回true，就位true
 ```
 var bool = arr.some(function(ele){
 		if(typeof ele == 'string'){
@@ -280,7 +326,6 @@ var bool = arr.some(function(ele){
 		}
 	});
 ```
-
 
 
 
