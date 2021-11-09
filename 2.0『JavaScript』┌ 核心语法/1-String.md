@@ -89,7 +89,7 @@ stringObject.slice(startIndex [,endIndex])
 ```
 var str = 'hello happy world';
 var newStr = str.slice(6)		// happy world!
-var newStr = str.slice(2,4)		// llo
+var newStr = str.slice(2,4)		// ll
 	
 ```
 

@@ -206,6 +206,72 @@ Array.from() 方法有一个可选参数 mapFn，让你可以在最后生成的�
 ```
 
 
+##  Array.reduce
+
+```
+arr. reduce( function(prev, cur, index,arr){
+}, init);
+//或者
+arr. reduce( function(prev, cur , index,arr){
+},);
+```
+
+arr表示将要的原数组（你要操作的原数组）;
+prev表示上一次调用回调时的返回值，或者初始值init;
+cur表示当前正在处理的数组元素;
+index表示当前正在处理的数组元素的索引，若提供init 值，则索引为0， 否则索引为1;
+init 表示初始值。
+常用的参数只有两个: prev和cur
+
+作用
+1：数组求和，求乘积。
+```
+ var arr = [1, 2, 3, 4]
+        var sum = arr.reduce((pre, cur) => {
+            return pre + cur
+        })
+        console.log(sum);
+```
+
+2:计算数组中每个元素出现的次数
+```
+let sb=['sb','sb','dsb','sb']
+        let nameNum=sb.reduce((pre,cur)=>{
+            if(cur in pre){
+                pre[cur]++
+            }else{
+                pre[cur]=1
+            }
+            return pre
+        },{})
+        console.log(nameNum);
+
+```
+
+3.数组去重
+```
+let sb = ['sb', 'sb', 'dsb', 'sb']
+        let resNum = sb.reduce((pre, cur) => {
+            if (!pre.includes(cur)) {
+                return pre.concat(cur)
+            } else {
+                return pre
+            }
+
+        }, [])
+        console.log(resNum);
+```
+4.数组拍平（二维多维都一样）
+```
+const arr = [1, 2, 2, 3, [9, 8, 7[5, 2, 1]]]
+const flatten = arr => {
+    return arr.reduce(
+        (pre, cur) => {
+            return pre.concat(Array.isArray(cur) ? flatten(cur) : cur);
+        }, [])
+}
+const res4 = flatten(arr)
+```
 
 
 
