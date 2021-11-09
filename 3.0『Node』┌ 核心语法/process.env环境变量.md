@@ -69,3 +69,14 @@ process（进程）其实就是存在nodejs中的一个全局变量
 	console.log(process.env.test);  // => 1
 
 ```
+
+
+## 有啥用呢？
+
+能根据不同的环境，做一些配置上的处理。
+
+比如开启 sourceMap，后端接口的域名切换等等
+
+
+
+

@@ -52,3 +52,24 @@ npm link npm-link-module			# 引用
 ```
 
 npm-link-module会被链接到 npm-link-example/node_modules下面
+
+
+# 加载本地地址包
+
+[参考](https://www.cnblogs.com/lin0123/p/13020292.html)
+```
+{ 
+  "dependencies" :{ 
+    "dyl" : "file:../dyl", // 本地地址
+    "xyz" : "git+ssh://git@github.com:npm/npm.git#v1.0.27", // git 地址
+    "fir" : "git+ssh://git@github.com:npm/npm#semver:^5.0",
+    "wdy" : "git+https://isaacs@github.com/npm/npm.git",
+    "xxy" : "git://github.com/npm/npm.git#v1.0.27",
+  }
+}
+```
+
+"dyl" : "file:local", // 对应的目录local的本地包
+"dyl" : "file:local/icon", // 对应的目录local/icon的本地包
+
+与 npm link 效果类似

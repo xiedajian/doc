@@ -28,6 +28,7 @@ hs ./static				# 缩写
 http-server -p 3000 	# 配置端口	
 http-server -p 3000 -P https://condejs.org			# —P 配置请求代理
 http-server -p 3000 -P https://condejs.org	-c-1	# 禁用缓存 -c表示缓存 -1表示禁用
+http-server --cors
 ```
 
 

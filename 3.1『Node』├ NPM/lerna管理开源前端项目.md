@@ -41,12 +41,29 @@ npm i lerna -g
 
 ## 两种包管理模式
 
+### 固定模式
 1.默认的为固定模式(Fixed mode)，当使用lerna init命令初始化项目时，就默认为固定模式，也可以使用 lerna init --independent 命令初始化项目，这个时候就为独立模式(Independent mode)。
 
+这种模式也是Babel使用的方式。如果你希望所有的版本一起变更， 可以更新minor版本号，这样会导致所有的模块都更新版本。
+
+```
+lerna init
+```
+
+### 独立模式
 2.固定模式中，packages下的所有包共用一个版本号(version)，会自动将所有的包绑定到一个版本号上(该版本号也就是lerna.json中的version字段)，所以任意一个包发生了更新，这个共用的版本号就会发生改变。
 独立模式允许每一个包有一个独立的版本号，在使用lerna publish命令时，可以为每个包单独制定具体的操作，同时可以只更新某一个包的版本号。此种模式时，lerna.json中的version字段指定为independent即可。
+```
+lerna init --independent
+```
 
 
+成功后，生成目录：
+```
+- packages(目录)
+- lerna.json(配置文件)
+- package.json(工程描述文件)
+```
 
 
 ## 添加lerna.json配置
@@ -88,3 +105,11 @@ npm i lerna -g
 
 - packages字段指定包所在的目录。
 
+
+## 创建子包
+
+```
+lerna create [-y]
+```
+
+在packages所指目录下创建package包。
