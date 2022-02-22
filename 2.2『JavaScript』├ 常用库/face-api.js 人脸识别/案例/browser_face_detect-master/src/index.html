@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Telecommuting</title>
+	<script src="https://static.insta360.com/assets/storage/20200217/61c3a507bed020d76945e914c5f9be29/jquery.min.js"></script>
+	<script src="https://static.insta360.com/face/face-api.js"></script>
+    <script src="https://g.alicdn.com/dingding/dingtalk-jsapi/2.7.13/dingtalk.open.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        video {
+            /*clear: both;*/
+            display: block;
+            margin: auto;
+        }
+        canvas {
+            position: absolute;
+        }
+        #welcome {
+            position: fixed;
+            right: 0;
+            top: 0;
+        }
+        #declare {
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome"></div>
+    <div id="declare">声明：本网站尊重用户隐私，您的图片视频数据不会被上传到服务器，仅用作本地人脸识别。</div>
+	<video id="v" width="720" height="560" autoplay muted></video>    
+    <script>
+        let faceapiReady = false;
+        let url = window.location.href;
+        // if (!url.startsWith("https") && !url.startsWith("http://127.0.0.1") && !url.startsWith("http://localhost")) {
+        //     window.location.href = url.replace(/http/, "https");
+        // } else {
+        var canvas;
+        var video = document.getElementById('v');
+        var displaySize = {width: video.width, height: video.height};
+        let dir = 'https://static.insta360.com/face/model';
+        video.addEventListener('play', () => {
+            console.log('play lisetner')
+            canvas = faceapi.createCanvasFromMedia(video);
+            document.body.append(canvas);
+            faceapi.matchDimensions(canvas, displaySize);
+            takePhoto();
+            setInterval(takePhoto,1000);
+        });
+
+        startVideo();
+
+        Promise.all([
+            faceapi.nets.ssdMobilenetv1.loadFromUri(dir),
+            // faceapi.nets.tinyFaceDetector.loadFromUri(dir),
+            faceapi.nets.faceLandmark68Net.loadFromUri(dir),
+            // faceapi.nets.faceRecognitionNet.loadFromUri(dir),
+            // faceapi.nets.faceExpressionNet.loadFromUri(dir)
+        ]).then(setFaceapiReady);
+
+
+        function setFaceapiReady() {
+            console.log("faceapi ready")
+            faceapiReady = true;
+            startTime = new Date().getTime();
+        }
+        
+        async function startVideo () {
+            console.log("start video");
+            // 老的浏览器可能根本没有实现 mediaDevices，所以我们可以先设置一个空的对象
+            if (navigator.mediaDevices === undefined) {
+                navigator.mediaDevices = {};
+            }
+            if (navigator.mediaDevices.getUserMedia === undefined) {
+                navigator.mediaDevices.getUserMedia = function (constraints) {
+                    // 首先，如果有getUserMedia的话，就获得它
+                    var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+ 
+                    // 一些浏览器根本没实现它 - 那么就返回一个error到promise的reject来保持一个统一的接口
+                    if (!getUserMedia) {
+                        return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+                    }
+ 
+                    // 否则，为老的navigator.getUserMedia方法包裹一个Promise
+                    return new Promise(function (resolve, reject) {
+                        getUserMedia.call(navigator, constraints, resolve, reject);
+                    });
+                }
+            }
+            const constraints = {
+                video: true,
+                audio: false
+            };
+            let promise = navigator.mediaDevices.getUserMedia(constraints);
+            promise.then(stream => {
+                let v = document.getElementById('v');
+                // 旧的浏览器可能没有srcObject
+                if ("srcObject" in v) {
+                    v.srcObject = stream;
+                } else {
+                    // 防止再新的浏览器里使用它，应为它已经不再支持了
+                    v.src = window.URL.createObjectURL(stream);
+                }
+                v.onloadedmetadata = function (e) {
+                    v.play();
+                };
+            }).catch(err => {
+                console.error(err.name + ": " + err.message);
+            })
+        }
+
+
+        async function detect() {
+            // const options = new faceapi.TinyFaceDetectorOptions({ scoreThreshold: 0.2, inputSize: 608 });
+            const options = new faceapi.SsdMobilenetv1Options({ minConfidence: 0.5, maxResults: 3 });
+            const detections = await faceapi.detectAllFaces(video, options).withFaceLandmarks();
+            return detections;
+        }
+
+        function draw(detections) {
+            const resizedDetections = faceapi.resizeResults(detections, displaySize);
+            canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+            faceapi.draw.drawDetections(canvas, resizedDetections);
+            faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
+        }
+
+        async function takePhoto(){
+            if (!faceapiReady) {
+                return;
+            }
+            let detections = await detect();
+            draw(detections);
+        }
+    </script>
+</body>
+</html>
+
