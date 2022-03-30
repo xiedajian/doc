@@ -1,3 +1,4 @@
+[渲染函数 & JSX](https://cn.vuejs.org/v2/guide/render-function.html)
 
 # $createElement
 
