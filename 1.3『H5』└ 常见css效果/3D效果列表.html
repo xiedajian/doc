@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>【每日一练】168—CSS实现一款列表图效果</title>
+  <link rel="stylesheet" href="style.css">
+<style type="text/css">
+	@import url('https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css');
+	@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+	
+	* { margin: 0; padding: 0; box-sizing: border-box }
+	body {
+	  padding: 2rem;
+	  font-family: 'Roboto', sans-serif;
+	  min-height: 100vh;
+	  display: grid;
+	  place-items: center;
+	  background-color: #060606;
+	}
+	ul{
+	  width: min(100%, 60rem);
+	  overflow: hidden;
+	  margin-inline: auto;
+	  padding-inline: clamp(1rem, 5vw, 4rem);
+	  list-style: none;
+	  perspective: 1000px;
+	  display: grid;
+	  row-gap: 0.5rem;
+	}
+	ul li.card{
+	  position: relative;
+	  padding-block: 1.5rem;
+	  padding-inline: 2rem;
+	  background-color: var(--bg-color);
+	  background-image: linear-gradient(to right, rgb(0 0 0 / .15), transparent);
+	  transform-style: preserve-3d;
+	  color: var(--color);
+	  
+	  display: grid;
+	  grid-template: 'icon' 'title' 'content';
+	  row-gap: 0.5rem;
+	  column-gap: 2rem;
+	}
+	ul li.card::before, ul li.card::after {
+	  --side-rotate: 60deg;
+	  content: "";
+	  position: absolute;
+	  top: 0;
+	  height: 100%;
+	  width: 100%;
+	  transform-origin: calc(50% - (50% * var(--ry))) 50%  ;
+	  transform: rotateY(calc(var(--side-rotate) * var(--ry)));
+	  background-color: inherit;
+	  background-image: linear-gradient(calc(90deg * var(--ry)), rgb(0 0 0 / .25), rgb(0 0 0 / .5));  
+	}
+	ul li.card::before {--ry: -1; right: 100% }
+	ul li.card::after {--ry: 1; left: 100% }
+	
+	ul li.card .icon {
+	  grid-area: icon;
+	  display: grid;
+	  place-items: center;
+	}
+	ul li.card .icon i {
+	  font-size: 2rem;
+	}
+	ul li.card .title{
+	  grid-area: title;
+	  font-size: 1.25rem;
+	  font-weight: 700;
+	  text-align: center;
+	}
+	ul li.card .content{
+	  grid-area: content;
+	}
+	
+	@media (min-width: 30rem){
+	  ul li.card {
+	    grid-template: 'icon title' 'icon content';
+	    text-align: left;
+	  }
+	  ul li.card .title { text-align: left }
+	}
+</style>
+</head>
+<body>
+
+<ul>
+  <li class="card" style="--color:#ececec; --bg-color:#E98B43">
+    <div class="icon"><i class="fa-solid fa-house"></i></div>
+    <div class="title">01-好词好句整理</div>
+    <div class="content">春有百花秋望月，夏有凉风冬听雪。心中若无烦恼事，便是人生好时节。路再长也会有终点，夜再长也会有尽头，不管雨下得有多大，总会有停止的时候，乌云永远遮不住微笑的太阳。</div>
+  </li>
+  <li class="card" style="--color:#ececec; --bg-color:#C23D2A">
+    <div class="icon"><i class="fa-solid fa-gear"></i></div>
+    <div class="title">02-好词好句整理</div>
+    <div class="content">每一次选择必须是一次超越，否则就不要选择；每一次放弃必须是一次升华，否则就不要放弃。选择靠智慧，放弃依心量，正确的合理的选择和放弃才会使得生活更加多彩。</div>
+  </li>
+  <li class="card" style="--color:#ececec; --bg-color:#842C2A">
+    <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+    <div class="title">03-好词好句整理</div>
+    <div class="content">你并不是一个坚强的人，但你知道在该坚强的时候一定要坚强，假如今天生活欺骗了你，不要悲伤，不要哭泣，因为明天生活还会继续欺骗你。夜深人静之时，想起那句话：胸怀，都是被委屈撑大的。</div>
+  </li>
+  <li class="card" style="--color:#ececec; --bg-color:#022F46">
+    <div class="icon"><i class="fa-solid fa-chart-column"></i></i></div>
+    <div class="title">04-好词好句整理</div>
+    <div class="content">人生，需要等候。等候一阵风的拂过，等候一朵花的盛开，等候伊人的到来，等候生命爆发的强音。心灵，也需要在等候中坚守。坚守无风的日月，坚守落花的寂寞，坚守情感的空白，坚守生活的平凡。只有懂得等候与坚守，才能做到从容不迫、笑看花开、终结圣果。</div>
+  </li>
+  <li class="card" style="--color:#ececec; --bg-color:#032437">
+    <div class="icon"><i class="fa-solid fa-circle-star"></i></div>
+    <div class="title">05-好词好句整理</div>
+    <div class="content">生的败笔，也多存在于选择当中：一是不会选择，盲目攀高，心神分离，难修正果；二是不坚持选择，心易旁顾，朝秦暮楚，难成其大；三是不断地选择，胸无大志，似萍戏水，如草随风，难得善终。</div>
+  </li>
+</ul>
+
+  
+</body>
+</html>

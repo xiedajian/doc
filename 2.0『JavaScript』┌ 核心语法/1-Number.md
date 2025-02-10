@@ -59,3 +59,44 @@ parseFloat('3.14 meter')	// => 3.14
 
 
 
+# BigInt(原始类型)
+
+ES11 新的原始数据类型：BigInt，表示一个任意精度的整数，可以表示超长数据，可以超出2的53次方
+
+特别注意：
+
+- Number类型的数字有精度限制，数值的精度只能到 53 个二进制位（相当于 16 个十进制位, 正负9007199254740992），大于这个范围的整数，就无法精确表示了。
+- Bigint没有位数的限制，任何位数的整数都可以精确表示。但是其只能用于表示整数，且为了与Number进行区分，BigInt 类型的数据必须添加后缀n。
+- BigInt 可以使用负号，但是不能使用正号
+- number类型的数字和Bigint类型的数字不能混合计算
+
+```
+ // Number
+ console.log(2 ** 53) // 9007199254740992
+ console.log(Number.MAX_SAFE_INTEGER) // 9007199254740991
+ 
+ //BigInt
+ const bigInt = 9007199254740993n
+ console.log(bigInt) // 9007199254740993n
+ console.log(typeof bigInt) // bigint
+ console.log(1n == 1) // true
+ console.log(1n === 1) // false
+ const bigIntNum = BigInt(9007199254740993n)
+ console.log(bigIntNum) // 9007199254740993n
+
+```
+
+
+# 数值分隔符
+
+```
+let num1 = 100000;
+let num2 = 100_000;
+
+console.log(num1); // 100000
+console.log(num2); // 100000
+
+const num3 = 10.12_34_56
+console.log(num3); // 10.123456
+
+```

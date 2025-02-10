@@ -1,7 +1,9 @@
 
+
+官方文档： [https://docxtemplater.com/](https://docxtemplater.com/)
 npm: [https://www.npmjs.com/package/docxtemplater](https://www.npmjs.com/package/docxtemplater)
 github: [https://github.com/open-xml-templating/docxtemplater](https://github.com/open-xml-templating/docxtemplater)
-官方文档： [https://docxtemplater.readthedocs.io/en/latest/#](https://docxtemplater.readthedocs.io/en/latest/#)
+
 
 
 
@@ -18,19 +20,14 @@ docxtemplater使用JSON（Javascript对象）作为数据输入，因此它也�
 相比之下，docxtemplater基于标记的概念，并且每种类型的标记向用户编写模板的功能。
 
 
+> 浏览器，Nodejs 环境通用
+
 
 # 安装
 
 ```
-npm install docxtemplater
-npm install jszip@2
-npm install jszip-utils 		# only for the browser (webpack)
+npm install --save docxtemplater pizzip
 ```
-
-> szip版本2很重要！它不适用于jszip版本3
-
-> jszip-utils（仅适用于浏览器）未随jszip一起安装，必须单独安装
-
 
 
 # 生成文档
@@ -44,50 +41,43 @@ npm install jszip-utils 		# only for the browser (webpack)
 
 利用模板文件生成新的 docx 文件
 ```
-var JSZip = require('jszip');
-var Docxtemplater = require('docxtemplater');
+const PizZip = require("pizzip");
+const Docxtemplater = require("docxtemplater");
 
-var fs = require('fs');
-var path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-//Load the docx file as a binary
-var content = fs
-    .readFileSync(path.resolve(__dirname, 'input.docx'), 'binary');
+// Load the docx file as binary content
+const content = fs.readFileSync(
+    path.resolve(__dirname, "input.docx"),
+    "binary"
+);
 
-var zip = new JSZip(content);
+const zip = new PizZip(content);
 
-var doc = new Docxtemplater();
-doc.loadZip(zip);
-
-//set the templateVariables
-doc.setData({
-    first_name: 'John',
-    last_name: 'Doe',
-    phone: '0652455478',
-    description: 'New Website'
+const doc = new Docxtemplater(zip, {
+    paragraphLoop: true,
+    linebreaks: true,
 });
 
-try {
-    // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
-    doc.render()
-}
-catch (error) {
-    var e = {
-        message: error.message,
-        name: error.name,
-        stack: error.stack,
-        properties: error.properties,
-    }
-    console.log(JSON.stringify({error: e}));
-    // The error thrown here contains additional information when logged with JSON.stringify (it contains a property object).
-    throw error;
-}
+// Render the document (Replace {first_name} by John, {last_name} by Doe, ...)
+doc.render({
+    first_name: "John",
+    last_name: "Doe",
+    phone: "0652455478",
+    description: "New Website",
+});
 
-var buf = doc.getZip()
-             .generate({type: 'nodebuffer'});
+const buf = doc.getZip().generate({
+    type: "nodebuffer",
+    // compression: DEFLATE adds a compression step.
+    // For a 50MB output document, expect 500ms additional CPU time
+    compression: "DEFLATE",
+});
 
-// buf is a nodejs buffer, you can either write it to a file or do anything else with it.
-fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
+// buf is a nodejs Buffer, you can either write it to a
+// file or res.send it with express for example.
+fs.writeFileSync(path.resolve(__dirname, "output.docx"), buf);
 ```
 
 
@@ -97,53 +87,58 @@ fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
     <body>
         <button onclick="generate()">Generate document</button>
     </body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.9.1/docxtemplater.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.6.1/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.32.5/docxtemplater.js"></script>
+    <script src="https://unpkg.com/pizzip@3.1.3/dist/pizzip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.js"></script>
+    <script src="https://unpkg.com/pizzip@3.1.3/dist/pizzip-utils.js"></script>
     <!--
     Mandatory in IE 6, 7, 8 and 9.
     -->
     <!--[if IE]>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils-ie.js"></script>
+        <script
+            type="text/javascript"
+            src="https://unpkg.com/pizzip@3.1.3/dist/pizzip-utils-ie.js"
+        ></script>
     <![endif]-->
     <script>
-    function loadFile(url,callback){
-        JSZipUtils.getBinaryContent(url,callback);
-    }
-    function generate() {
-        loadFile("https://docxtemplater.com/tag-example.docx",function(error,content){
-            if (error) { throw error };
-            var zip = new JSZip(content);
-            var doc=new window.docxtemplater().loadZip(zip)
-            doc.setData({
-                first_name: 'John',
-                last_name: 'Doe',
-                phone: '0652455478',
-                description: 'New Website'
-            });
-            try {
-                // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
-                doc.render()
-            }
-            catch (error) {
-                var e = {
-                    message: error.message,
-                    name: error.name,
-                    stack: error.stack,
-                    properties: error.properties,
+        function loadFile(url, callback) {
+            PizZipUtils.getBinaryContent(url, callback);
+        }
+        window.generate = function generate() {
+            loadFile(
+                "https://docxtemplater.com/tag-example.docx",
+                function (error, content) {
+                    if (error) {
+                        throw error;
+                    }
+                    var zip = new PizZip(content);
+                    var doc = new window.docxtemplater(zip, {
+                        paragraphLoop: true,
+                        linebreaks: true,
+                    });
+
+                    // Render the document (Replace {first_name} by John, {last_name} by Doe, ...)
+                    doc.render({
+                        first_name: "John",
+                        last_name: "Doe",
+                        phone: "0652455478",
+                        description: "New Website",
+                    });
+
+                    var blob = doc.getZip().generate({
+                        type: "blob",
+                        mimeType:
+                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        // compression: DEFLATE adds a compression step.
+                        // For a 50MB output document, expect 500ms additional CPU time
+                        compression: "DEFLATE",
+                    });
+                    // Output the document using Data-URI
+                    saveAs(blob, "output.docx");
                 }
-                console.log(JSON.stringify({error: e}));
-                // The error thrown here contains additional information when logged with JSON.stringify (it contains a property object).
-                throw error;
-            }
-            var out=doc.getZip().generate({
-                type:"blob",
-                mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            }) //Output the document using Data-URI
-            saveAs(out,"output.docx")
-        })
-    }
+            );
+        };
     </script>
 </html>
+
 ```

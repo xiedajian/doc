@@ -25,7 +25,9 @@ ES6引入了Class（类）这个概念,作为对象的模板,通过class关键�
 
 constructor方法,这就是构造方法,而this关键字则代表实例对象。
 
-一个类必须有constructor方法，如果没有显式定义，一个空的constructor方法会被默认添加。constructor方法默认返回实例对象（即this），完全可以指定返回另外一个对象
+一个类必须有constructor方法，如果没有显式定义，一个空的constructor方法会被默认添加。
+
+constructor方法默认返回实例对象（即this），完全可以指定返回另外一个对象
 
 类的构造函数，不使用new是没法调用的，会报错。
 

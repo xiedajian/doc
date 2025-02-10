@@ -73,8 +73,11 @@ Promise 构造函数接受一个函数作为参数，该函数的两个参数分
   Promise.reject()
   Promise.prototype.then()
   Promise.prototype.catch()
-	Promise.all() 		// 所有的完成  var p = Promise.all([p1,p2,p3]);
+  Promise.prototype.finally()	// 不管最后状态如何都会执行的回调函数
+  Promise.all() 		// 所有的完成  Promise.all([p1,p2,p3]).then((res1,res2,res3)=>{})
   Promise.race() 		// 竞速，完成一个即可
+  Promise.allSettled() 		// ES11新增，增强版 all，将结果何为一个数组  Promise.allSettled([p1,p2,p3]).then(resArr=>{})
+  Promise.any() 		// ES12新增，区别于 Promise.race()。 尽管某个 promise 的 reject 早于另一个 promise 的 resolve，仍将返回那个首先 resolve 的 promise
 
 
 

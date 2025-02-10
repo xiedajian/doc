@@ -1,6 +1,11 @@
 
 # 刷新表格数据
 
+`this.$refs.table.refresh();`  刷新列表数据
+
+
+# 案例
+
 比如 用户管理-对用户进行禁用
 
 在表格的在 operation 添加一个操作按钮，点击后调取接口，然后刷新列表
@@ -92,3 +97,12 @@
 # 说明
 
 `this.$refs.table.refresh();`  刷新列表数据
+
+自定义传的参数 
+```js
+`this.$refs.table.refresh({a:1,b:2});` 
+```
+自定义传的参数, 会和搜索框的参数 合并成请求参数
+
+
+ 刷新实际调用的是  `tm-table` 组件的 `fetchHandler()` 方法

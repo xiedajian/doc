@@ -5,7 +5,6 @@ Array 对象用于在单个的变量中存储多个值。
 
 
 - `map`: 遍历数组，返回回调返回值组成的新数组
-
 - `forEach`: 无法`break`，可以用`try/catch`中`throw new Error`来停止
 - `filter`: 过滤
 - `some`: 有一项返回`true`，则整体为`true`
@@ -19,6 +18,19 @@ Array 对象用于在单个的变量中存储多个值。
 - `splice(start, number, value...)`: 返回删除元素组成的数组，value 为插入项，改变原数组
 - `indexOf / lastIndexOf(value, fromIndex)`: 查找数组项，返回对应的下标
 - `reduce / reduceRight(fn(prev, cur)， defaultPrev)`: 两两执行，prev 为上次化简函数的`return`值，cur 为当前值(从第二项开始) 
+- `Array.of()`: 将一组值转化为数组，返回一个新数组，并且不考虑参数的数量或类型。
+- `copyWithin()`：把指定位置的成员复制到其他位置，返回原数组
+- `find()`: 返回第一个符合条件的值
+- `findIndex()`： 返回第一个符合条件的索引
+- `keys()`：对键名的遍历，返回一个遍历器对象，可用for-of循环，
+- `values()`：与 keys() 用法一样，不过是对 键值 的遍历
+- `entries()`：与 keys() 用法一样，不过是对 键值对 的遍历
+- `Array.from()`: 从一个类似数组或可迭代对象中创建一个新的数组实例。
+- `fill()`: 使用制定的元素填充数组，返回原数组
+- `includes()`：判断是否包含某一元素，返回布尔值，对 NaN 也有效，但不能进行定位
+- `flatMap()`：ES10新增，使用映射函数映射每个元素，然后将结果压缩成一个新数组 （与 map 类似）
+- `flat()`：ES10新增，拍平数组，按照指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。默认为1 (当输入 Infinity 自动解到最底层)
+
 
 
 

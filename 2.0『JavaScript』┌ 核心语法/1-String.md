@@ -66,10 +66,12 @@ stringObject.search(regexp)
 
 
 
-###  replace() 
+###  replace() , replaceAll()
 在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串
 
 str.replace(regexp/substr,replacement)
+
+replace() 方法仅替换一个字符串中某模式（pattern）的首个实例, replaceAll() 相当于增强了 replace() 的特性，全量替换
 
 ```
 	var newString = 'helloworld'.replace('hello','你好');	// 你好world
@@ -131,3 +133,11 @@ var strArray = str.split(" ",3)		// [How,are,you]
 
 ### toLowerCase()	//用于把字符串转换为小写
 ### toUpperCase()	//用于把字符串转换为大写
+### startsWith(): 返回布尔值，表示参数字符串是否在原字符串的头部。
+### endsWith()：返回布尔值，表示参数字符串是否在原字符串的尾部。
+### repeat()：方法返回一个新字符串，表示将原字符串重复n次
+### includes()：返回布尔值，表示是否找到了参数字符串。
+### trimStart()： 方法从字符串的开头删除空格。trimLeft() 是此方法的别名。
+### trimEnd()： 方法从一个字符串的末端移除空白字符。trimRight() 是这个方法的别名。
+### padStart()：用于头部补全	 // "1".padStart(2, "0")); // 01
+### padEnd()：用于尾部补全。

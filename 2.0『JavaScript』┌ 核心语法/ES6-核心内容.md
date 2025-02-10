@@ -159,85 +159,6 @@ ES6的继承机制，实质是先创造父类的实例对象this（所以必须�
 
 
 
-# arrow function 箭头函数
-
-这个恐怕是ES6最最常用的一个新特性了，用它来写function比原来的写法要简洁清晰很多
-
-```
-function(i){ return i + 1; } //ES5
-
-(i) => i + 1 //ES6
-```
-
-简直是简单的不像话对吧...
-
-如果方程比较复杂，则需要用{}把代码包起来：
-```
-function(x, y) { 
-    x++;
-    y--;
-    return x + y;
-}
-(x, y) => {x++; y--; return x+y}
-```
-
-除了看上去更简洁以外，arrow function还有一项超级无敌的功能！
-
-长期以来，JavaScript语言的this对象一直是一个令人头痛的问题，在对象方法中使用this，必须非常小心。例如：
-```
-class Animal {
-    constructor(){
-        this.type = 'animal'
-    }
-    says(say){
-        setTimeout(function(){
-            console.log(this.type + ' says ' + say)
-        }, 1000)
-    }
-}
-
- var animal = new Animal()
- animal.says('hi')  //undefined says hi
-```
-运行上面的代码会报错，这是因为setTimeout中的this指向的是全局对象。
-
-所以为了让它能够正确的运行，传统的解决方法有两种：
-```
-  1. 第一种是将this传给self,再用self来指代this
-   says(say){
-       var self = this;
-       setTimeout(function(){
-           console.log(self.type + ' says ' + say)
-       }, 1000)
-	   
-  2.第二种方法是用bind(this),即
-   says(say){
-       setTimeout(function(){
-           console.log(this.type + ' says ' + say)
-       }.bind(this), 1000)
-```
-
-但现在我们有了箭头函数，就不需要这么麻烦了：
-```
-class Animal {
-    constructor(){
-        this.type = 'animal'
-    }
-    says(say){
-        setTimeout( () => {
-            console.log(this.type + ' says ' + say)
-        }, 1000)
-    }
-}
- var animal = new Animal()
- animal.says('hi')  //animal says hi
-```
-
-当我们使用箭头函数时，函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
-
-并不是因为箭头函数内部有绑定this的机制，实际原因是箭头函数根本没有自己的this，它的this是继承外面的，因此内部的this就是外层代码块的this。
-
-
 
 # template string
 
@@ -265,34 +186,6 @@ $("#result").append(`
 用反引号（\）来标识起始，用${}`来引用变量，而且所有的空格和缩进都会被保留在输出之中，是不是非常爽？！
 
 
-
-
-# destructuring 解构赋值
-
-ES6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。
-
-看下面的例子：
-```
-let cat = 'ken'
-let dog = 'lili'
-let zoo = {cat: cat, dog: dog}
-console.log(zoo)  //Object {cat: "ken", dog: "lili"}
-```
-
-用ES6完全可以像下面这么写：
-```
-let cat = 'ken'
-let dog = 'lili'
-let zoo = {cat, dog}
-console.log(zoo)  //Object {cat: "ken", dog: "lili"}
-```
-
-反过来可以这么写：
-```
-let dog = {type: 'animal', many: 2}
-let { type, many} = dog
-console.log(type, many)   //animal 2
-```
 
 
 
@@ -431,3 +324,17 @@ console.log(`The ${content.type} says ${says} to ${animal}`)
 ```
 
 通常星号*结合as一起使用比较合适。
+
+
+## globalThis
+
+ES11 新增，全局this，无论是什么环境（浏览器，node等），始终指向全局对象
+
+```
+// 浏览器环境
+console.log(globalThis) //  window
+
+// node
+console.log(globalThis) //  global
+
+```

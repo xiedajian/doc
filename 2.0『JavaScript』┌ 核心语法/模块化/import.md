@@ -41,10 +41,10 @@ import * as name语法导入所有导出接口，即导入模块整体。
 关键字import可以像调用函数一样来动态的导入模块。以这种方式调用，将返回一个 promise
 
 ```
-import('/modules/my-module.js')
-  .then((module) => {
-    // Do something with the module.
-  });
+ let modulePage = "/modules/my-module.js";
+ import(modulePage).then((module) => {
+    module.init();
+ });
 ```
 
 这种使用方式也支持 await 关键字。
@@ -153,10 +153,14 @@ import fun1 from './default.js'; // 引入时可以为该匿名函数重新命�
 
 
 
+## export命令和import命令 复合模式
 
+export命令和import命令结合在一起写成一行，变量实质没有被导入当前模块，相当于对外转发接口，导致当前模块无法直接使用其导入变量，
 
-
-
+- 默认导入导出： `export { default } from './Index'
+- 整体导入导出： `export * from './Index'
+- 按需导入导出： `export { name, value, id } from './Index'
+- 默认改具名导入导出： `export { default as name } from './Index'
 
 
 
