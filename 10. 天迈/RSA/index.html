@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入jsencrypt.js文件 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jsencrypt/3.2.1/jsencrypt.min.js"></script>
+</head>
+<body>
+   <script>
+	
+    //公钥
+    var PUBLIC_KEY = 'MIIBIDANBgkqhkiG9w0BAQEFAAOCAQ0AMIIBCAKCAQEAtqN6IZOconCqWx5iShZulpEEHeJMTcU4zDcmu1C4E+uBunqyGAIoMHOLn3HH/mnyMuNujrJFkoM9e9nQQ74afuCEv4UmVIMo2ilbb4ozYCbHiCepOWKX9Ayzpvbu5J1W+hmT5evbYqTKKAZ0fOwzX0voa4KeEFMA2t+Ks30r0f3njb46NHOnXsK0qBxCdXTbj675EqKok8YBesrSEdcgmg4B8bYHlbosvfU/wSbsNyHc+UkIBf4BInNP4xnJOAPzNZRmXQbD78ZzSthmC0Ea0MrmRa488IunwuVeaOVvZs/u8TA+dgn/wt4eru1jwlj1mZeUSiZgMNid3k53RK2vKQIBAw==';
+    //私钥
+	var PRIVATE_KEY ='MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC2o3ohk5yicKpbHmJKFm6WkQQd4kxNxTjMNya7ULgT64G6erIYAigwc4ufccf+afIy426OskWSgz172dBDvhp+4IS/hSZUgyjaKVtvijNgJseIJ6k5Ypf0DLOm9u7knVb6GZPl69tipMooBnR87DNfS+hrgp4QUwDa34qzfSvR/eeNvjo0c6dewrSoHEJ1dNuPrvkSoqiTxgF6ytIR1yCaDgHxtgeVuiy99T/BJuw3Idz5SQgF/gEic0/jGck4A/M1lGZdBsPvxnNK2GYLQRrQyuZFrjzwi6fC5V5o5W9mz+7xMD52Cf/C3h6u7WPCWPWZl5RKJmAw2J3eTndEra8pAgEDAoIBAAecJRa7e9waBxkhRBhrmfDwtYE+wy3oN7Ms9vJ4slYp0BJvx2uqwayveyakvaqZv2zJefCcwuYazTp+aK19QRqesDKljEOFdwkXDnn7F3lW8vsBpw0OxlTV3NGfn0mGjkpru37p087G3cGq74U0giP4fwR6xpYDdV5z+xzP4dNqgkuYj7il0o6FbHk/hHJEeGpLUd6fz2yS3TyIZG5mISQKJmmTgRempmP+JqoKdLlVgK5oodKldvtgNRArvqWVuIPCuT2smPi3+EpGxZokysU87mkZFsZcKXFNp03/8PfJurYwYegT6sSrTmo8xspKK2N8Swv2o5xIXT/Wxuqc39sCgYEA2WW9ZQiITfIHh2KTibP8EVMAquRBzbnR3MQZzMilyBEWSLzLuULDk7g2WlyxBlfZO7jQqRHLOT50fdNbZ5n73mEpnJHO/I+ssZNc3U2ttYADCnLY/KN2c8vV522IM9usKlaOqdH5GArNOTtKpK+aDo9jwmhs6caQzMM9IBb1BbkCgYEA1xGzW9xfnBA5AeeUTgsNgEWeoU9laKwvZwnnmu+ePSgEH08WNBtW/6XrRXN69H9EkOapMzSvoFL52Iukghf+yHopbAMJcA7aesDZAkogYtMRgfh7HbRxUVfHx6tepFA6Q4YYZuIy5UgBi33wHBvK1baMyMKaH8N/Ex7usS8DrPECgYEAkO5+Q1sFiUwFBOxiW81StjdVx0LWiSaL6IK73dsZMAtkMH3dJiyCYnrO5uh2BDqQ0ns1xgvc0NRNqTeSRRFSlEDGaGE0qF/IdmI96N5zzlVXXEyQqGz5oofj755azT0dcY8Jxov7ZVyI0NIxwx+8CbTtLEWd8S8LMyzTarn4rnsCgYEAj2EiPT2VErV7Vppi3rIJAC5pwN+Y8HLKRLFFEfUUKMVYFN9kIrzkqm6c2PenTaotte8bd3h1FYymkF0YVrqp2vwbnVdboAnm/ICQrDFq7Iy2VqWnaSL2NjqFL8eUbYrRglllmewh7jABB6lKvWfcjnmzMIG8FSz/YhSfIMoCc0sCgYEAgXUpFwgsz6HRanRYnRZgfnRs4snNLM0zCEXKBrlexYHrhDCf0xYrg/y7Ka4N7RyKUPuSFGMbP6rupvHz+S9EYXXwgkRNCNxXsw6BaDtSUwF/7Ts3PO3ifc1IgZ+gaC+0oKBLfGrKzkG6Jsvikm/imCNPzsYQji+eCa5pjdw7JOw=';
+	
+	//使用公钥加密
+    var encrypt = new JSEncrypt();
+    encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + PUBLIC_KEY + '-----END PUBLIC KEY-----');
+    var encrypted = encrypt.encrypt("张三");
+    console.log('加密后数据:%o', encrypted);
+    
+    //使用私钥解密
+    var decrypt = new JSEncrypt();
+    decrypt.setPrivateKey('-----BEGIN RSA PRIVATE KEY-----'+PRIVATE_KEY+'-----END RSA PRIVATE KEY-----');
+    var uncrypted = decrypt.decrypt(encrypted); 
+    console.log('解密后数据:%o', uncrypted); // 张三
+
+	var m1Str = 'geKU/U/lzcx1kzqA8Dhd2DvdcAXFUdULzwArOxqCAu1fLBtkPu6k1VDuOu+Op97ofv0sckd8fcLmXYnEWyrXaaRmJwOy6/wSEAWZeA9dy0zAY1UO3qLuIj28ANcj/+H8exdh8hVQDOrlMGPdUHf0Ul4JtN366fRlUqxieHL9UxV1N172aHtw22gLcQRid0vkm3g4Z+75ZCYFfIVQpAvwoW8/0G3DGod3STMeVGywdORT0NgEhYdJAgP9fIytprbiOVm7VSY800kbfqF6LlaC47zV4+bWG2uzPKDnAsElpOuqeQ2+pIRu5bD6/xQg7L541Bm1ZUVzy/lszS88ozDBrg=='
+	var m1 = decrypt.decrypt(m1Str); 
+	console.log('m1解密后数据:%o', m1); // 张三
+
+    </script> 
+</body>
+</html>
